@@ -36,3 +36,10 @@ valuation and stats work), `python-dotenv` (local config/secrets), `fastapi` + `
 app), `pytest`. Re-run `pip freeze > requirements.txt` after adding packages.
 
 `yahoo_oauth` persists OAuth tokens to a JSON file on disk — never commit those (see `.gitignore`).
+
+## Permissions
+
+Bash execution is pre-approved for this project via `.claude/settings.json` (`permissions.allow: ["Bash"]`) — Claude
+should not need to ask before running shell commands here. If prompts still appear, the rule must be the bare tool
+name `"Bash"`, not `"Bash(*)"` (the latter is parsed as a literal-prefix pattern requiring the command to start with
+the character `*`, so it silently allows nothing).
