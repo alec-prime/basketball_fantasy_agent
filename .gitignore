@@ -1,0 +1,10 @@
+fantasy_venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+
+# Yahoo OAuth token/credential files (yahoo_oauth writes these to disk)
+*token*.json
+private.json
+oauth2.json
