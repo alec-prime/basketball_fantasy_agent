@@ -8,8 +8,8 @@ recreate that capability. This spec covers a research spike to determine *whethe
 possible against Yahoo's Fantasy Sports API (or, failing that, the underlying request the Yahoo web
 client itself uses) — not a production implementation.
 
-Football (NFL) Live Standard mock drafts are the testing surface, since they're available for testing
-outside of basketball's draft season.
+Basketball (NBA) Live Standard mock drafts are the testing surface — the same sport the app targets.
+(Originally NFL mock drafts were used because basketball was off-season; NBA mock drafts are now open.)
 
 ## Success criteria
 
@@ -34,12 +34,12 @@ from scratch:
 
 **A — Official Yahoo Fantasy Sports API.** `yahoo_fantasy_api`'s `league.draft_results()` (backed by
 `GET league/{league_key}/draftresults`) is documented and already in `requirements.txt`, but it's keyed
-by `league_key` (e.g. `nfl.l.12345`), not a raw room ID. Resolve the current NFL `game_key` via
-`yahoo_fantasy_api.Game(sc, 'nfl')`, then try candidate `league_key` formats built from a room ID
+by `league_key` (e.g. `nba.l.12345`), not a raw room ID. Resolve the current NBA `game_key` via
+`yahoo_fantasy_api.Game(sc, 'nba')`, then try candidate `league_key` formats built from a room ID
 copied out of a Live Standard mock draft URL (e.g. `{game_key}.l.{room_id}`) against that endpoint.
 
 **B — Captured browser request (fallback).** If A doesn't return usable data for a mock draft room —
-likely, since mock drafts aren't a "league" the user belongs to — join a Live Standard NFL mock draft
+likely, since mock drafts aren't a "league" the user belongs to — join a Live Standard NBA mock draft
 in a browser, use DevTools → Network to capture the actual XHR/fetch request the draft board fires
 while a pick happens, and replicate that request with `requests` in the notebook (reusing the OAuth
 session's credentials where applicable). This is presumed to be how Basketball Monster achieves
@@ -65,7 +65,6 @@ captured request didn't work, rather than silently swallowing the error.
 
 - Extracting any of this into reusable application/module code — that's a follow-up once an approach
   is proven to work.
-- Basketball draft rooms (off-season; football is the testing surface for this spike).
 - Any authentication/session approach beyond what's needed to prove the concept (e.g. token refresh
   hardening, multi-user auth).
 

@@ -12,7 +12,7 @@
 > Tasks 2–4.
 
 **Goal:** Build a Jupyter notebook that proves whether Yahoo draft picks can be fetched given only a
-draft room ID, for both real leagues and public Live Standard mock drafts, using NFL mock drafts as
+draft room ID, for both real leagues and public Live Standard mock drafts, using NBA mock drafts as
 the test surface.
 
 **Architecture:** Single notebook, four sections run in the same kernel so state (OAuth session, game
@@ -28,7 +28,8 @@ draft.
 
 - Credentials live in `private.json` at the project root (`{"consumer_key": ..., "consumer_secret":
   ...}`); this file is already in `.gitignore` and must never be committed.
-- NFL (football) Live Standard mock drafts are the test surface — basketball is off-season.
+- NBA (basketball) Live Standard mock drafts are the test surface (originally NFL, while basketball was
+  off-season).
 - No `pytest` suite for this work; validation is reading notebook output cells directly.
 - Error handling is diagnostic (print raw HTTP status/body on failure), not defensive.
 - Deliverable is exploratory only — no module extraction / production code in this plan.
@@ -67,7 +68,7 @@ Use the NotebookEdit tool to create `notebooks/draft_room_by_room_id.ipynb`. Fir
 # Draft room data by room ID — research spike
 
 Goal: given only a Yahoo draft room ID, fetch the picks made so far — for both real leagues and
-public Live Standard mock drafts. NFL mock drafts are the test surface.
+public Live Standard mock drafts. NBA mock drafts are the test surface.
 ```
 
 First code cell:
@@ -135,7 +136,7 @@ built from a room ID.
 - [ ] **Step 2: Add the game_key resolution cell**
 
 ```python
-gm = Game(sc, 'nfl')
+gm = Game(sc, 'nba')
 game_key = gm.game_id()
 print("game_key:", game_key)
 ```
@@ -143,13 +144,13 @@ print("game_key:", game_key)
 - [ ] **Step 3: Add the room ID + candidate fetch cell**
 
 ```python
-# Paste the room ID from a Live Standard NFL mock draft URL, e.g.
-# https://football.fantasysports.yahoo.com/league/mockdraft/12345 -> room_id = "12345"
+# Paste the room ID from a Live Standard NBA mock draft URL, e.g.
+# https://basketball.fantasysports.yahoo.com/nba/mockdraft/12345 -> room_id = "12345"
 room_id = "REPLACE_ME"
 
 candidate_league_keys = [
     f"{game_key}.l.{room_id}",
-    f"nfl.l.{room_id}",
+    f"nba.l.{room_id}",
     room_id,
 ]
 
@@ -166,7 +167,7 @@ for candidate in candidate_league_keys:
 
 - [ ] **Step 4 [USER ACTION]: Run against a real mock draft room**
 
-Join (or open) a Yahoo Live Standard NFL mock draft in a browser, copy its room ID from the URL into
+Join (or open) a Yahoo Live Standard NBA mock draft in a browser, copy its room ID from the URL into
 the `room_id` variable above, and run the cell.
 
 Expected: either one candidate prints a `SUCCESS` with a real draft-results payload (proceed to Task
@@ -205,7 +206,7 @@ git commit -m "Add Section A: official API attempt at draft-room-by-room-id spik
 
 If Section A didn't return mock draft data, capture the request Yahoo's own draft board uses:
 
-1. Join a Live Standard NFL mock draft in a browser.
+1. Join a Live Standard NBA mock draft in a browser.
 2. Open DevTools → Network, filter to Fetch/XHR.
 3. Wait for a pick to happen (or make one), and find the request that carries new pick data in its
    response.
@@ -323,7 +324,7 @@ for _ in range(6):  # ~90s at 15s intervals
     time.sleep(15)
 ```
 
-While a Live Standard NFL mock draft is actively picking, run this cell. Expected: at least one
+While a Live Standard NBA mock draft is actively picking, run this cell. Expected: at least one
 iteration prints new picks that weren't present in an earlier iteration, confirming the fetch reflects
 live draft state rather than a cached/static snapshot.
 
@@ -345,8 +346,8 @@ git commit -m "Add Section C: normalize picks and validate against a live mock d
 
 - **Spec coverage:** Credentials/setup → Task 1. Approach A → Task 2. Approach B fallback → Task 3.
   Normalize + live-poll success criteria → Task 4. Diagnostic (non-defensive) error handling → Task
-  2 Step 3's try/except print, Task 3 Step 4. Out-of-scope items (module extraction, basketball,
-  auth hardening) are not present in any task, consistent with the spec excluding them.
+  2 Step 3's try/except print, Task 3 Step 4. Out-of-scope items (module extraction, auth
+  hardening) are not present in any task, consistent with the spec excluding them.
 - **Placeholder scan:** Task 4's `get_current_picks()` body is deliberately left as
   `NotImplementedError` in Step 2 because the real payload shape is genuinely unknown until Tasks 2–3
   run against live data — this is called out explicitly as depending on runtime discovery, not left
