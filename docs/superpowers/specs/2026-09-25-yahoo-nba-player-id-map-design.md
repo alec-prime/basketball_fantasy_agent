@@ -70,8 +70,9 @@ The rules run for each Yahoo player, in this order:
 
 1. **Override.** If the Yahoo `player_id` appears in `id_overrides.csv`, use its `nba_player_id`.
    Method `override`. Overrides always win and survive every rebuild.
-2. **Normalize names on both sides.** On the Yahoo side, use `ascii_first` + `ascii_last`. On the NBA
-   side, apply Unicode NFKD and drop combining marks. Then on both: lowercase, remove `.` and `'`,
+2. **Normalize names on both sides.** On the Yahoo side, use `ascii_first` + `ascii_last`. On both
+   sides, apply Unicode NFKD and drop combining marks, because Yahoo's "ascii" fields aren't always ASCII
+   (probe on 2026-09-26: `ascii_last` for Jokić is `"Jokić"`). Then on both: lowercase, remove `.` and `'`,
    turn `-` into a space, drop the suffix words `jr`, `sr`, `ii`, `iii`, `iv`, and collapse
    whitespace. Examples: `Nikola Jokić` → `nikola jokic`, `Jaren Jackson Jr.` → `jaren jackson`,
    `De'Aaron Fox` → `deaaron fox`.
