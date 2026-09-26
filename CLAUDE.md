@@ -10,7 +10,8 @@ both for valuation/ranking methodology (e.g. category z-scores, punt strategies)
 pulling draft-relevant data out of Yahoo Fantasy. The app does not scrape or otherwise pull data from Basketball
 Monster's own site.
 
-Interface: local web app (browser UI + backend), intended for use during a live draft.
+Interface (MVP): a local MCP server that Claude Desktop / Claude Code uses as a chatbot during a live draft
+(find undrafted players, look up past-season stats). A web UI is parked for later. See `docs/roadmap.md`.
 
 Auth: Yahoo Developer OAuth credentials are already provisioned for the Yahoo Fantasy Sports API. Never commit
 credentials, tokens, or `.env` files to the repo.

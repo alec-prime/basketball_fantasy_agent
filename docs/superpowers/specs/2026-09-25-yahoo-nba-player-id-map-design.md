@@ -109,6 +109,7 @@ dropping the player.
 | `nba_name` | |
 | `nba_team` | 2026-27 team, blank if not on a roster |
 | `nba_jersey` | may be blank |
+| `yahoo_position` | Yahoo `display_position`, e.g. `PG,SG` (added 2026-09-26; see draft-chat MVP spec) |
 | `match_method` | `override`, `name`, `name+active`, `name+team`, `team+jersey+last`, `ambiguous`, `unmatched` |
 
 Rows are sorted by `yahoo_player_id` so rebuilds produce minimal git diffs.
