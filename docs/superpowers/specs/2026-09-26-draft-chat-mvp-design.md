@@ -24,8 +24,11 @@ implemented first.
   "how has Cooper Flagg looked in preseason". The answers reflect picks made seconds ago.
 - Players with no NBA stats (rookies, unmatched IDs) still show up as available, labeled as having no
   stats. They are never silently dropped, and ADP still ranks them.
-- After a room or league is set, Claude knows the league's scoring type, team count, roster slots and
-  scoring categories. "Best available" defaults to ADP order and shows the league's own categories.
+- Claude always knows my league's scoring type, team count, roster slots and scoring categories. These
+  are pulled once before the draft. "Best available" defaults to ADP order and shows the league's own
+  categories.
+- A background poller keeps the drafted list current for the whole draft. Every answer reflects the
+  board as of the last poll (≤ 5s old) and says how old that is.
 
 ## Amendment to the ID map spec
 
@@ -121,32 +124,51 @@ file is not an error.
 
 Probed on 2026-09-26:
 
-- `league/{league_key}/settings` returns 200 for a real league (`478.l.50556`: 14 teams,
-  `scoring_type: headone` = H2H one-win categories, `draft_status: predraft`). It includes
-  `roster_positions` (position, count, is_starting_position) and `stat_categories`.
-- The 5-day-old mock room `2479477` now returns 400 for every league call. **Mock rooms go away after
-  the draft**, so settings are fetched when a room is set, not cached ahead of time.
+- `league/{league_key}/settings` returns 200 for my league (`478.l.50556`: 14 teams,
+  `scoring_type: headone` = H2H one-win categories, `draft_type: self`, `draft_status: predraft`).
+- The 5-day-old mock room `2479477` now returns 400 for every league call. Mock rooms go away after the
+  draft. That doesn't matter for settings, which come from my league, not the draft room.
 - `game/nba/players;start=N;count=25/draft_analysis` returns 200, with `average_pick`, `average_round`,
   `percent_drafted`, `average_cost` and `preseason_*` variants per player. This is Yahoo-wide ADP, not
   per league.
 
 ### League settings
 
-These live in `yahoo_fantasy/league.py`.
+League settings never change, so they are **pulled once before the draft** and cached on disk. They are
+not fetched from the draft room. The league is configured by `LEAGUE_KEY=478.l.50556` in `.env`.
+A mock draft room is only a source of picks: when practicing in a mock, the tools still use my league's
+settings.
 
-- `fetch_settings(league_key) -> LeagueSettings` returns name, `scoring_type`, `num_teams`,
-  `draft_type`/`is_auction_draft`, roster slots (`[(position, count, is_starting)]`), and **scoring
-  categories**. Scoring categories are the enabled stats with `is_only_display_stat` unset, which drops
-  display-only stats such as `FGM/A`.
-- `parse_settings(json)` is the pure parser, tested against a fixture recorded from `478.l.50556`.
-- `CATEGORY_COLUMNS` maps a Yahoo category `display_name` to its stats-cache column: `FG%`→`FG_PCT`,
-  `FT%`→`FT_PCT`, `3PTM`→`FG3M`, `PTS`→`PTS`, `REB`→`REB`, `AST`→`AST`, `ST`→`STL`, `BLK`→`BLK`,
-  `TO`→`TOV`, `3PT%`→`FG3_PCT`, `OREB`→`OREB`, `DREB`→`DREB`, `A/T`→`AST_TO`, `DD`→`DD2`,
-  `TD`→`TD3`, `FGM`→`FGM`, `FTM`→`FTM`. The exact display names are confirmed against the recorded
-  fixture during implementation. A category with no mapping is reported as "not in stats cache", not
-  dropped.
-- Settings are fetched when the room is set, held in memory, and not refetched during the draft.
-  Settings don't change mid-draft.
+`scripts/pull_league_settings.py` calls `league/{LEAGUE_KEY}/settings` and writes
+`data/league_settings.json` (gitignored). The file holds:
+
+- name, `scoring_type`, `num_teams`, `draft_type`, `is_auction_draft`
+- roster slots: `[{position, count, is_starting}]`. For my league: PG, SG, G, SF, PF, F, C, Util×3,
+  BN×4.
+- scoring categories: `[{stat_id, display_name, column}]`. These are the enabled stats with
+  `is_only_display_stat` unset, which drops `FGM/A` and `FTM/A`.
+
+The pure parser `parse_settings(json)` in `yahoo_fantasy/league.py` is tested against a fixture
+recorded from `478.l.50556`.
+
+`CATEGORY_COLUMNS` (in `league.py`) maps **only my league's scoring categories**, keyed by Yahoo
+`stat_id`, which is stable where display names are not:
+
+| stat_id | Yahoo | stats-cache column |
+|---|---|---|
+| 5 | FG% | `FG_PCT` |
+| 8 | FT% | `FT_PCT` |
+| 10 | 3PTM | `FG3M` |
+| 12 | PTS | `PTS` |
+| 15 | REB | `REB` |
+| 16 | AST | `AST` |
+| 17 | ST | `STL` |
+| 18 | BLK | `BLK` |
+| 19 | TO | `TOV` |
+
+If the settings contain a scoring category that isn't in this table, `pull_league_settings.py` **fails**
+and names the missing `stat_id`. That can only happen if a different league is configured, and then a
+row gets added to the table. Nothing is guessed.
 
 ### ADP
 
@@ -162,7 +184,7 @@ columns:
 - ADP drifts daily through draft season, so the script is re-run on demand (the same "refresh until
   draft day" habit as the preseason pull). Responses that use ADP include its `pulled_at`.
 
-## Part 3 — Draft client
+## Part 3 — Draft client and poller
 
 `yahoo_fantasy/draft.py` turns the spike's Section C into a module. It uses `yahoo_client.fantasy_json()`
 from sub-project 1.
@@ -171,32 +193,54 @@ from sub-project 1.
   (`https://basketball.fantasysports.yahoo.com/draftclient/nba/2479477/2`; the trailing `/2` is the
   user's team slot and is ignored), or a league key (`478.l.50556` / `nba.l.50556`). A real league's
   ID works the same way as a mock room's, so settings can be checked before draft day.
-- `fetch_league(room_id) -> dict` returns name, `draft_status`, `is_mock`, `num_teams`, and the team key → name
-  map (`league/nba.l.{id}` + `/teams`).
+- `fetch_room(room_id) -> dict` returns name, `draft_status`, `is_mock`, `num_teams`, and the team
+  key → name map (`league/nba.l.{id}` + `/teams`).
 - `fetch_picks(room_id) -> list[Pick]` calls `league/nba.l.{id}/draftresults/players`. Each `Pick` has
   `round`, `pick`, `team_key`, `yahoo_player_id`, `player_name`. Picks that haven't been made yet come
   back as empty lists and are skipped.
 - The parsing is a pure function, `parse_picks(json) -> list[Pick]`, tested against recorded fixtures.
 
-There's no background poller. The MCP server fetches picks when a tool needs them and caches the result
-for **10 seconds**, so the several tool calls one Claude answer makes share a single fetch. Team names
-are fetched once per room.
+### Poller
+
+`yahoo_fantasy/poller.py` holds `DraftPoller`, a background thread that the MCP server starts when a
+room is set. The thread keeps the draft state current, and tools read that state from memory.
+
+- **Loop:** every `DRAFT_POLL_SECONDS` (default **5**, set in `.env`), it calls `fetch_picks(room_id)`
+  and replaces the in-memory `DraftState` under a lock. `DraftState` holds the picks, the drafted
+  Yahoo ID set, `draft_status`, `last_success_at`, `last_error` and `consecutive_failures`.
+- **Room refresh:** every 12th poll, and whenever a pick has a `team_key` it doesn't recognize, the
+  poller also calls `fetch_room` to pick up `draft_status` and team names.
+- **Start and stop:** `set_draft_room` stops any running poller, does one synchronous first fetch (so
+  its response and the next tool call are already current), and then starts the thread. The poller
+  stops itself when `draft_status` becomes `postdraft`, after one final fetch. It is a daemon thread,
+  so it dies with the server.
+- **Failures:** a failed poll keeps the last good state and records `last_error`. After 3 failures in a
+  row, it backs off to 30s, and the first success resets it. A failed poll never clears the drafted
+  set.
+- **Freshness in answers:** every draft-aware tool response includes `as_of` (the age of the last
+  successful poll) and, if it's set, `last_error`. If the state is more than 30s old, the response
+  starts with a staleness warning.
+- **Pick log:** each new pick is appended to `data/drafts/{room_id}.jsonl` (gitignored) with the time
+  the poller first saw it. That gives a record of the draft and replayable fixtures for tests.
+
+The poller's loop logic, `poll_once(state, fetch) -> state`, is a pure step function, so tests drive
+it with a fake fetcher and no threads or network.
 
 ## Part 4 — MCP server
 
 `yahoo_fantasy/chat/tools.py` holds the tool logic as plain functions that take DataFrames and the drafted
 set, so they can be tested without MCP or the network. `yahoo_fantasy/chat/server.py` is a thin
 [`mcp`](https://pypi.org/project/mcp/) `FastMCP` stdio server that wraps them. It loads the ID map and
-the stats cache once at startup, and the ADP file too.
+the stats cache, the ADP file and `data/league_settings.json` once at startup.
 
 ### Tools
 
 | tool | args | returns |
 |---|---|---|
-| `set_draft_room` | `room` (ID, URL or league key) | League name, draft status, picks made so far, and a settings summary (scoring type, teams, roster slots, categories). The room and settings are held in memory. The default comes from `DRAFT_ROOM_ID` in `.env` if it's set. |
-| `league_settings` | — | The full settings for the current room: scoring type, team count, draft type, roster slots with counts, and scoring categories with their stats-cache column (or "not in stats cache"). |
-| `draft_status` | `last_n=10` | Picks made / total, the last `n` picks (round, pick, fantasy team, player). |
-| `available_players` | `position=None`, `sort_by="ADP"`, `season="2025-26"`, `season_type="Regular Season"`, `min_gp=0`, `limit=25` | Undrafted players with ADP (`average_pick`, `percent_drafted`) and that season's line: name, NBA team, Yahoo positions, GP, MIN, then **the league's scoring-category columns** (the standard 9-cat set — FG_PCT, FT_PCT, FG3M, PTS, REB, AST, STL, BLK, TOV — when no settings are loaded), plus the `sort_by` column if it's something else. `position` matches any Yahoo eligibility (`C` matches `PF,C`). Also reports how many available players have no stats for that season, with up to 10 of their names (these players still appear in ADP order). |
+| `set_draft_room` | `room` (ID, URL or league key) | Starts the poller for that room (see Part 3) and returns the room name, draft status and picks made so far. If `DRAFT_ROOM_ID` is set in `.env`, the server starts polling that room at launch. |
+| `league_settings` | — | My league's cached settings: scoring type, team count, draft type, roster slots with counts, and scoring categories with their stats-cache columns. |
+| `draft_status` | `last_n=10` | Picks made / total, the last `n` picks (round, pick, fantasy team, player), and poller health (`as_of`, `last_error`). |
+| `available_players` | `position=None`, `sort_by="ADP"`, `season="2025-26"`, `season_type="Regular Season"`, `min_gp=0`, `limit=25` | Undrafted players with ADP (`average_pick`, `percent_drafted`) and that season's line: name, NBA team, Yahoo positions, GP, MIN, then **the league's scoring-category columns** from `league_settings.json`, plus the `sort_by` column if it's something else. `position` matches any Yahoo eligibility (`C` matches `PF,C`). Also reports how many available players have no stats for that season, with up to 10 of their names (these players still appear in ADP order). |
 | `player_stats` | `name` | Every cached season line for the player (3 regular seasons + preseason), their Yahoo positions and team, ADP (average pick, average round, % drafted), and draft status (available / drafted by whom, which round). |
 | `game_logs` | `name`, `season_type="Regular Season"`, `last_n=15` | The last `n` games (date, matchup, MIN, and the counting stats), plus averages over those games. |
 
@@ -226,14 +270,15 @@ CLAUDE.md. The server resolves `private.json`, `.env` and `data/` relative to th
 
 - The server never writes to stdout (stdio transport). Logging goes to stderr.
 - If a tool needs the room and none is set, it returns a message asking for a room ID or URL.
-- If a Yahoo fetch fails (network, 401 after refresh, bad room), the tool returns the error text. The
-  server keeps running, and stats-only tools (`player_stats`, `game_logs`) still work without a room,
-  with draft status shown as "unknown".
-- If `data/stats/`, `data/adp.csv` or the ID map is missing at startup, tools return "run
-  `scripts/pull_stats.py`" (or `pull_adp.py` / `build_id_map.py`) instead of crashing. If ADP is
-  missing, `available_players` falls back to `sort_by="PTS"` and says so.
-- If settings fail to load but picks load (for example, a transient Yahoo 400), the room is still set,
-  tools use the default 9-cat columns, and the response says settings are unavailable.
+- `set_draft_room` returns the error text if its first fetch fails (bad room, network, 401 after
+  refresh), and it doesn't start a poller. After that, poll failures are handled by the poller (Part 3):
+  tools keep answering from the last good state, flagged as stale.
+- Stats-only tools (`player_stats`, `game_logs`) work without a room, with draft status shown as
+  "unknown".
+- If `data/stats/`, `data/adp.csv`, `data/league_settings.json` or the ID map is missing at startup,
+  tools return the script to run (`pull_stats.py`, `pull_adp.py`, `pull_league_settings.py`,
+  `build_id_map.py`) instead of crashing. If ADP is missing, `available_players` falls back to
+  `sort_by="PTS"` and says so.
 - An empty preseason returns "no 2026-27 preseason games in cache (pulled at …)".
 
 ## Testing
@@ -247,23 +292,28 @@ Unit tests (`pytest`, no network):
   `parse_picks` is run against fixtures recorded from a live mock draft during implementation (the spike
   did not save raw JSON): `tests/fixtures/draftresults_partial.json` has some picks unmade, and
   `…_empty.json` is from before any pick.
-- `tests/test_league.py` — `parse_settings` on the recorded `478.l.50556` fixture gives the right team
-  count, roster slots and scoring categories, with display-only stats excluded. Every category in
-  that fixture maps to a column. `parse_draft_analysis` handles normal rows and `"-"` (no data) rows.
+- `tests/test_league.py` — `parse_settings` on the recorded `478.l.50556` fixture gives 14 teams, the
+  roster slots above, and exactly the 9 scoring categories, with `FGM/A`/`FTM/A` excluded and each
+  mapped to its column. An unmapped `stat_id` raises an error that names it. `parse_draft_analysis`
+  handles normal rows and `"-"` (no data) rows.
+- `tests/test_poller.py` — drives `poll_once` with a fake fetcher. New picks are added and logged once
+  each. A failed fetch keeps the previous drafted set and records the error. 3 failures in a row
+  switch to the 30s backoff, and a success resets it. `postdraft` stops the poller. The staleness flag
+  turns on after 30s.
 - `tests/test_chat_tools.py` — uses small hand-built frames. Drafted players are excluded. Position
   eligibility matching works. The `sort_by` direction and unknown-column message are correct.
   No-stats players are counted and named. Name lookup covers exact, substring and ambiguous
-  candidates. `game_logs` averages are correct. ADP sort puts blanks last. With settings loaded,
-  the columns follow the league's categories; without settings, they fall back to the 9-cat set.
+  candidates. `game_logs` averages are correct. ADP sort puts blanks last. The columns follow the
+  league's categories.
 
 The fetchers and the server wrapper are validated live, not unit-tested:
 
-1. Run `pull_stats.py` and `pull_adp.py` and check the printed counts.
-2. Register the server and call each tool once from Claude Code, with `set_draft_room("478.l.50556")`
-   (the real league, predraft) to check settings.
+1. Run `pull_league_settings.py`, `pull_stats.py` and `pull_adp.py`, and check the printed output.
+2. Register the server and call each tool once from Claude Code.
 3. **End-to-end check (sub-project 5):** join a Yahoo Live Standard NBA mock draft. Set the room from
-   Claude, draft a few rounds, and confirm "best available" drops players within one question of them
-   being picked.
+   Claude and draft a few rounds. Confirm that "best available" drops players within about 5s of them
+   being picked, that `draft_status` shows the poller healthy, and that `data/drafts/{room}.jsonl`
+   records every pick.
 
 ## Dependencies
 
@@ -277,4 +327,5 @@ requirements.txt`. `fastapi`/`uvicorn` stay installed but unused for now.
 - Tracking "my team" or opponents' category needs. The picks list shows who drafted whom, and Claude
   can reason over that when asked.
 - Totals, other `LeagueDashPlayerStats` measure types, shot/tracking data, and older game logs.
-- Any background polling or push notification of new picks.
+- Pushing new picks to Claude unprompted. MCP tools answer when asked; the poller only keeps the
+  answers current.
