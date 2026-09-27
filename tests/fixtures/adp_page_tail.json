@@ -1,0 +1,2805 @@
+{
+ "xml:lang": "en-US",
+ "yahoo:uri": "/fantasy/v2/game/nba/players;start=650;count=25/draft_analysis",
+ "game": [
+  {
+   "game_key": "478",
+   "game_id": "478",
+   "name": "Basketball",
+   "code": "nba",
+   "type": "full",
+   "url": "https://basketball.fantasysports.yahoo.com/nba",
+   "season": "2026",
+   "is_registration_over": 0,
+   "is_game_over": 0,
+   "is_offseason": 0,
+   "is_live_draft_lobby_active": 1
+  },
+  {
+   "players": {
+    "0": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10594"
+       },
+       {
+        "player_id": "10594"
+       },
+       {
+        "name": {
+         "full": "Jayden Quaintance",
+         "first": "Jayden",
+         "last": "Quaintance",
+         "ascii_first": "Jayden",
+         "ascii_last": "Quaintance"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10594"
+       },
+       {
+        "status": "O",
+        "status_full": "Out (short-term injury)"
+       },
+       {
+        "injury_note": "Knee"
+       },
+       {
+        "editorial_player_key": "nba.p.10594"
+       },
+       {
+        "editorial_team_key": "nba.t.24"
+       },
+       {
+        "editorial_team_full_name": "San Antonio Spurs"
+       },
+       {
+        "editorial_team_abbr": "SAS"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/san-antonio/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "22"
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "1": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10598"
+       },
+       {
+        "player_id": "10598"
+       },
+       {
+        "name": {
+         "full": "Labaron Philon Jr.",
+         "first": "Labaron",
+         "last": "Philon Jr.",
+         "ascii_first": "Labaron",
+         "ascii_last": "Philon Jr."
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10598"
+       },
+       {
+        "editorial_player_key": "nba.p.10598"
+       },
+       {
+        "editorial_team_key": "nba.t.20"
+       },
+       {
+        "editorial_team_full_name": "Philadelphia 76ers"
+       },
+       {
+        "editorial_team_abbr": "PHI"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/philadelphia/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "00"
+       },
+       {
+        "display_position": "PG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "2": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10658"
+       },
+       {
+        "player_id": "10658"
+       },
+       {
+        "name": {
+         "full": "Jayden Nunn",
+         "first": "Jayden",
+         "last": "Nunn",
+         "ascii_first": "Jayden",
+         "ascii_last": "Nunn"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10658"
+       },
+       {
+        "editorial_player_key": "nba.p.10658"
+       },
+       {
+        "editorial_team_key": "nba.t.24"
+       },
+       {
+        "editorial_team_full_name": "San Antonio Spurs"
+       },
+       {
+        "editorial_team_abbr": "SAS"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/san-antonio/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": ""
+       },
+       {
+        "display_position": "SG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "3": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10632"
+       },
+       {
+        "player_id": "10632"
+       },
+       {
+        "name": {
+         "full": "Emanuel Sharp",
+         "first": "Emanuel",
+         "last": "Sharp",
+         "ascii_first": "Emanuel",
+         "ascii_last": "Sharp"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10632"
+       },
+       {
+        "editorial_player_key": "nba.p.10632"
+       },
+       {
+        "editorial_team_key": "nba.t.23"
+       },
+       {
+        "editorial_team_full_name": "Sacramento Kings"
+       },
+       {
+        "editorial_team_abbr": "SAC"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/sacramento/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "34"
+       },
+       {
+        "display_position": "SG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "4": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10600"
+       },
+       {
+        "player_id": "10600"
+       },
+       {
+        "name": {
+         "full": "Tre Donaldson",
+         "first": "Tre",
+         "last": "Donaldson",
+         "ascii_first": "Tre",
+         "ascii_last": "Donaldson"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10600"
+       },
+       {
+        "editorial_player_key": "nba.p.10600"
+       },
+       {
+        "editorial_team_key": "nba.t.14"
+       },
+       {
+        "editorial_team_full_name": "Miami Heat"
+       },
+       {
+        "editorial_team_abbr": "MIA"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/miami/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "24"
+       },
+       {
+        "display_position": "PG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "5": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10629"
+       },
+       {
+        "player_id": "10629"
+       },
+       {
+        "name": {
+         "full": "Trey Kaufman-Renn",
+         "first": "Trey",
+         "last": "Kaufman-Renn",
+         "ascii_first": "Trey",
+         "ascii_last": "Kaufman-Renn"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10629"
+       },
+       {
+        "editorial_player_key": "nba.p.10629"
+       },
+       {
+        "editorial_team_key": "nba.t.16"
+       },
+       {
+        "editorial_team_full_name": "Minnesota Timberwolves"
+       },
+       {
+        "editorial_team_abbr": "MIN"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/minnesota/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "14"
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "6": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.6784"
+       },
+       {
+        "player_id": "6784"
+       },
+       {
+        "name": {
+         "full": "John Butler Jr.",
+         "first": "John",
+         "last": "Butler Jr.",
+         "ascii_first": "John",
+         "ascii_last": "Butler Jr."
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/6784"
+       },
+       {
+        "editorial_player_key": "nba.p.6784"
+       },
+       {
+        "editorial_team_key": "nba.t.15"
+       },
+       {
+        "editorial_team_full_name": "Milwaukee Bucks"
+       },
+       {
+        "editorial_team_abbr": "MIL"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/milwaukee/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "19"
+       },
+       {
+        "display_position": "C"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/_hSc0IkFEtrIow9CAiyBKQ--~C/YXBwaWQ9eXNwb3J0cztjaD0yMzM2O2NyPTE7Y3c9MTc5MDtkeD04NTc7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/10162023/6784.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/_hSc0IkFEtrIow9CAiyBKQ--~C/YXBwaWQ9eXNwb3J0cztjaD0yMzM2O2NyPTE7Y3c9MTc5MDtkeD04NTc7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/10162023/6784.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "C"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "7": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10575"
+       },
+       {
+        "player_id": "10575"
+       },
+       {
+        "name": {
+         "full": "Christian Anderson Jr.",
+         "first": "Christian",
+         "last": "Anderson Jr.",
+         "ascii_first": "Christian",
+         "ascii_last": "Anderson Jr."
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10575"
+       },
+       {
+        "editorial_player_key": "nba.p.10575"
+       },
+       {
+        "editorial_team_key": "nba.t.30"
+       },
+       {
+        "editorial_team_full_name": "Charlotte Hornets"
+       },
+       {
+        "editorial_team_abbr": "CHA"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/charlotte/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "5"
+       },
+       {
+        "display_position": "PG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "8": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10545"
+       },
+       {
+        "player_id": "10545"
+       },
+       {
+        "name": {
+         "full": "Dain Dainja",
+         "first": "Dain",
+         "last": "Dainja",
+         "ascii_first": "Dain",
+         "ascii_last": "Dainja"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10545"
+       },
+       {
+        "editorial_player_key": "nba.p.10545"
+       },
+       {
+        "editorial_team_key": "nba.t.17"
+       },
+       {
+        "editorial_team_full_name": "Brooklyn Nets"
+       },
+       {
+        "editorial_team_abbr": "BKN"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/brooklyn/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "42"
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "9": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10587"
+       },
+       {
+        "player_id": "10587"
+       },
+       {
+        "name": {
+         "full": "Joshua Jefferson",
+         "first": "Joshua",
+         "last": "Jefferson",
+         "ascii_first": "Joshua",
+         "ascii_last": "Jefferson"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10587"
+       },
+       {
+        "editorial_player_key": "nba.p.10587"
+       },
+       {
+        "editorial_team_key": "nba.t.17"
+       },
+       {
+        "editorial_team_full_name": "Brooklyn Nets"
+       },
+       {
+        "editorial_team_abbr": "BKN"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/brooklyn/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "9"
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "10": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10610"
+       },
+       {
+        "player_id": "10610"
+       },
+       {
+        "name": {
+         "full": "Ugonna Onyenso",
+         "first": "Ugonna",
+         "last": "Onyenso",
+         "ascii_first": "Ugonna",
+         "ascii_last": "Onyenso"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10610"
+       },
+       {
+        "editorial_player_key": "nba.p.10610"
+       },
+       {
+        "editorial_team_key": "nba.t.8"
+       },
+       {
+        "editorial_team_full_name": "Detroit Pistons"
+       },
+       {
+        "editorial_team_abbr": "DET"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/detroit/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "34"
+       },
+       {
+        "display_position": "C"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "C"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "11": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10649"
+       },
+       {
+        "player_id": "10649"
+       },
+       {
+        "name": {
+         "full": "Trey Townsend",
+         "first": "Trey",
+         "last": "Townsend",
+         "ascii_first": "Trey",
+         "ascii_last": "Townsend"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10649"
+       },
+       {
+        "status": "NA",
+        "status_full": "Not Active"
+       },
+       {
+        "editorial_player_key": "nba.p.10649"
+       },
+       {
+        "editorial_team_key": "nba.t.30"
+       },
+       {
+        "editorial_team_full_name": "Charlotte Hornets"
+       },
+       {
+        "editorial_team_abbr": "CHA"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/charlotte/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": ""
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "12": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10519"
+       },
+       {
+        "player_id": "10519"
+       },
+       {
+        "name": {
+         "full": "Arthur Kaluma",
+         "first": "Arthur",
+         "last": "Kaluma",
+         "ascii_first": "Arthur",
+         "ascii_last": "Kaluma"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10519"
+       },
+       {
+        "editorial_player_key": "nba.p.10519"
+       },
+       {
+        "editorial_team_key": "nba.t.13"
+       },
+       {
+        "editorial_team_full_name": "Los Angeles Lakers"
+       },
+       {
+        "editorial_team_abbr": "LAL"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/la-lakers/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "47"
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "13": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.6729"
+       },
+       {
+        "player_id": "6729"
+       },
+       {
+        "name": {
+         "full": "Khalifa Diop",
+         "first": "Khalifa",
+         "last": "Diop",
+         "ascii_first": "Khalifa",
+         "ascii_last": "Diop"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/6729"
+       },
+       {
+        "editorial_player_key": "nba.p.6729"
+       },
+       {
+        "editorial_team_key": "nba.t.5"
+       },
+       {
+        "editorial_team_full_name": "Cleveland Cavaliers"
+       },
+       {
+        "editorial_team_abbr": "CLE"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/cleveland/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "18"
+       },
+       {
+        "display_position": "C"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "C"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "14": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10613"
+       },
+       {
+        "player_id": "10613"
+       },
+       {
+        "name": {
+         "full": "Jaron Pierre Jr.",
+         "first": "Jaron",
+         "last": "Pierre Jr.",
+         "ascii_first": "Jaron",
+         "ascii_last": "Pierre Jr."
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10613"
+       },
+       {
+        "editorial_player_key": "nba.p.10613"
+       },
+       {
+        "editorial_team_key": "nba.t.3"
+       },
+       {
+        "editorial_team_full_name": "New Orleans Pelicans"
+       },
+       {
+        "editorial_team_abbr": "NOP"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/new-orleans/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "10"
+       },
+       {
+        "display_position": "SG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "15": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10631"
+       },
+       {
+        "player_id": "10631"
+       },
+       {
+        "name": {
+         "full": "Isaiah Evans",
+         "first": "Isaiah",
+         "last": "Evans",
+         "ascii_first": "Isaiah",
+         "ascii_last": "Evans"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10631"
+       },
+       {
+        "editorial_player_key": "nba.p.10631"
+       },
+       {
+        "editorial_team_key": "nba.t.16"
+       },
+       {
+        "editorial_team_full_name": "Minnesota Timberwolves"
+       },
+       {
+        "editorial_team_abbr": "MIN"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/minnesota/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "33"
+       },
+       {
+        "display_position": "SG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "16": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10591"
+       },
+       {
+        "player_id": "10591"
+       },
+       {
+        "name": {
+         "full": "Karim Lopez",
+         "first": "Karim",
+         "last": "Lopez",
+         "ascii_first": "Karim",
+         "ascii_last": "Lopez"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10591"
+       },
+       {
+        "status": "Q",
+        "status_full": "Questionable"
+       },
+       {
+        "injury_note": "Undisclosed"
+       },
+       {
+        "editorial_player_key": "nba.p.10591"
+       },
+       {
+        "editorial_team_key": "nba.t.29"
+       },
+       {
+        "editorial_team_full_name": "Memphis Grizzlies"
+       },
+       {
+        "editorial_team_abbr": "MEM"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/memphis/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "35"
+       },
+       {
+        "display_position": "SF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/j10HZU.XM9wjgeDFvQ92Nw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMzM2O2NyPTE7Y3c9MTc5MDtkeD04NTc7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/09222026/10591.1.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/j10HZU.XM9wjgeDFvQ92Nw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMzM2O2NyPTE7Y3c9MTc5MDtkeD04NTc7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/09222026/10591.1.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "17": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10581"
+       },
+       {
+        "player_id": "10581"
+       },
+       {
+        "name": {
+         "full": "Nate Ament",
+         "first": "Nate",
+         "last": "Ament",
+         "ascii_first": "Nate",
+         "ascii_last": "Ament"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10581"
+       },
+       {
+        "editorial_player_key": "nba.p.10581"
+       },
+       {
+        "editorial_team_key": "nba.t.15"
+       },
+       {
+        "editorial_team_full_name": "Milwaukee Bucks"
+       },
+       {
+        "editorial_team_abbr": "MIL"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/milwaukee/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "15"
+       },
+       {
+        "display_position": "SF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "18": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10634"
+       },
+       {
+        "player_id": "10634"
+       },
+       {
+        "name": {
+         "full": "Peter Suder",
+         "first": "Peter",
+         "last": "Suder",
+         "ascii_first": "Peter",
+         "ascii_last": "Suder"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10634"
+       },
+       {
+        "editorial_player_key": "nba.p.10634"
+       },
+       {
+        "editorial_team_key": "nba.t.4"
+       },
+       {
+        "editorial_team_full_name": "Chicago Bulls"
+       },
+       {
+        "editorial_team_abbr": "CHI"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/chicago/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "15"
+       },
+       {
+        "display_position": "SG"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SG"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       {
+        "player_notes_last_timestamp": 1790117159
+       }
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "19": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10580"
+       },
+       {
+        "player_id": "10580"
+       },
+       {
+        "name": {
+         "full": "Dailyn Swain",
+         "first": "Dailyn",
+         "last": "Swain",
+         "ascii_first": "Dailyn",
+         "ascii_last": "Swain"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10580"
+       },
+       {
+        "status": "Q",
+        "status_full": "Questionable"
+       },
+       {
+        "injury_note": "Wrist"
+       },
+       {
+        "editorial_player_key": "nba.p.10580"
+       },
+       {
+        "editorial_team_key": "nba.t.4"
+       },
+       {
+        "editorial_team_full_name": "Chicago Bulls"
+       },
+       {
+        "editorial_team_abbr": "CHI"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/chicago/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "5"
+       },
+       {
+        "display_position": "SF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "20": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10605"
+       },
+       {
+        "player_id": "10605"
+       },
+       {
+        "name": {
+         "full": "Tyler Bilodeau",
+         "first": "Tyler",
+         "last": "Bilodeau",
+         "ascii_first": "Tyler",
+         "ascii_last": "Bilodeau"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10605"
+       },
+       {
+        "editorial_player_key": "nba.p.10605"
+       },
+       {
+        "editorial_team_key": "nba.t.17"
+       },
+       {
+        "editorial_team_full_name": "Brooklyn Nets"
+       },
+       {
+        "editorial_team_abbr": "BKN"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/brooklyn/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "34"
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "21": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10394"
+       },
+       {
+        "player_id": "10394"
+       },
+       {
+        "name": {
+         "full": "Jamarion Sharp",
+         "first": "Jamarion",
+         "last": "Sharp",
+         "ascii_first": "Jamarion",
+         "ascii_last": "Sharp"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10394"
+       },
+       {
+        "status": "NA",
+        "status_full": "Not Active"
+       },
+       {
+        "editorial_player_key": "nba.p.10394"
+       },
+       {
+        "editorial_team_key": "nba.t.12"
+       },
+       {
+        "editorial_team_full_name": "LA Clippers"
+       },
+       {
+        "editorial_team_abbr": "LAC"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/la-clippers/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "33"
+       },
+       {
+        "display_position": "C"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/IgIuuLDfO21nIuXUv0KMlQ--~C/YXBwaWQ9eXNwb3J0cztjaD0yMzM2O2NyPTE7Y3c9MTc5MDtkeD04NTc7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/10252024/10394.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/IgIuuLDfO21nIuXUv0KMlQ--~C/YXBwaWQ9eXNwb3J0cztjaD0yMzM2O2NyPTE7Y3c9MTc5MDtkeD04NTc7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/10252024/10394.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "C"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       {
+        "has_player_notes": 1
+       },
+       [],
+       {
+        "player_notes_last_timestamp": 1790367335
+       }
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "22": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10477"
+       },
+       {
+        "player_id": "10477"
+       },
+       {
+        "name": {
+         "full": "Bogoljub Marković",
+         "first": "Bogoljub",
+         "last": "Marković",
+         "ascii_first": "Bogoljub",
+         "ascii_last": "Marković"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10477"
+       },
+       {
+        "editorial_player_key": "nba.p.10477"
+       },
+       {
+        "editorial_team_key": "nba.t.15"
+       },
+       {
+        "editorial_team_full_name": "Milwaukee Bucks"
+       },
+       {
+        "editorial_team_abbr": "MIL"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/milwaukee/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "23"
+       },
+       {
+        "display_position": "PF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "PF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "23": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10644"
+       },
+       {
+        "player_id": "10644"
+       },
+       {
+        "name": {
+         "full": "Alpha Diallo",
+         "first": "Alpha",
+         "last": "Diallo",
+         "ascii_first": "Alpha",
+         "ascii_last": "Diallo"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10644"
+       },
+       {
+        "editorial_player_key": "nba.p.10644"
+       },
+       {
+        "editorial_team_key": "nba.t.7"
+       },
+       {
+        "editorial_team_full_name": "Denver Nuggets"
+       },
+       {
+        "editorial_team_abbr": "DEN"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/denver/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "11"
+       },
+       {
+        "display_position": "SF"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "SF"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "24": {
+     "player": [
+      [
+       {
+        "player_key": "478.p.10608"
+       },
+       {
+        "player_id": "10608"
+       },
+       {
+        "name": {
+         "full": "Felix Okpara",
+         "first": "Felix",
+         "last": "Okpara",
+         "ascii_first": "Felix",
+         "ascii_last": "Okpara"
+        }
+       },
+       {
+        "url": "https://sports.yahoo.com/nba/players/10608"
+       },
+       {
+        "editorial_player_key": "nba.p.10608"
+       },
+       {
+        "editorial_team_key": "nba.t.27"
+       },
+       {
+        "editorial_team_full_name": "Washington Wizards"
+       },
+       {
+        "editorial_team_abbr": "WAS"
+       },
+       {
+        "editorial_team_url": "https://sports.yahoo.com/nba/teams/washington/"
+       },
+       {
+        "is_keeper": {
+         "status": false,
+         "cost": false,
+         "kept": false
+        }
+       },
+       {
+        "uniform_number": "34"
+       },
+       {
+        "display_position": "C"
+       },
+       {
+        "headshot": {
+         "url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png",
+         "size": "small"
+        },
+        "image_url": "https://s.yimg.com/iu/api/res/1.2/TcM85WhJ.fAOHWf2QKLjIw--~C/YXBwaWQ9eXNwb3J0cztjaD0yMDA7Y3I9MTtjdz0xNTM7ZHg9NzQ7ZHk9MDtmaT11bGNyb3A7aD02MDtxPTEwMDt3PTQ2/https://s.yimg.com/dh/ap/default/140828/silhouette@2x.png"
+       },
+       {
+        "is_undroppable": "0"
+       },
+       {
+        "position_type": "P"
+       },
+       [],
+       {
+        "eligible_positions": [
+         {
+          "position": "C"
+         }
+        ]
+       },
+       {
+        "eligible_positions_to_add": []
+       },
+       [],
+       [],
+       [],
+       [],
+       []
+      ],
+      {
+       "draft_analysis": [
+        {
+         "average_pick": "-"
+        },
+        {
+         "average_round": "-"
+        },
+        {
+         "average_cost": "-"
+        },
+        {
+         "percent_drafted": "-"
+        },
+        {
+         "preseason_average_pick": "-"
+        },
+        {
+         "preseason_average_round": "-"
+        },
+        {
+         "preseason_average_cost": "-"
+        },
+        {
+         "preseason_percent_drafted": "-"
+        }
+       ]
+      }
+     ]
+    },
+    "count": 25
+   }
+  }
+ ],
+ "time": "41.121006011963ms",
+ "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+ "refresh_rate": "30"
+}
