@@ -41,6 +41,27 @@ after adding packages.
 
 `yahoo_oauth` persists OAuth tokens to a JSON file on disk — never commit those (see `.gitignore`).
 
+## Architecture
+
+Python package `yahoo_fantasy/` (installed editable), with offline scripts in `scripts/` and data in `data/`.
+
+- `paths.py` — `PROJECT_ROOT`/`DATA_DIR`, resolved from the package, never the working directory.
+- `io.py` — atomic file writes (temp file + rename).
+- `yahoo_client.py` — Yahoo OAuth session (`private.json`), retried `fantasy_json(path)`, JSON-shape helpers,
+  `iter_game_players()`.
+- `nba_client.py` — `nba_frame()`: rate-limited (0.6s), retried `nba_api` calls.
+- `id_map/` — Yahoo→NBA player ID map. `sources.py` is the only network code; `match.py`/`report.py` are pure.
+  Output `data/player_id_map.csv` (committed; also the draftable player pool). Hand fixes go in
+  `data/id_overrides.csv` (committed).
+
+## Commands
+
+```
+python -m pytest                                   # unit tests (no network)
+python scripts/build_id_map.py                     # rebuild the Yahoo->NBA ID map, print report
+python scripts/record_yahoo.py "<api path>" <out>  # save a raw Yahoo response as a test fixture
+```
+
 ## Permissions
 
 Bash execution is pre-approved for this project via `.claude/settings.json` (`permissions.allow: ["Bash"]`) — Claude

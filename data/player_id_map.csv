@@ -1,0 +1,686 @@
+yahoo_player_id,yahoo_name,yahoo_team,yahoo_jersey,yahoo_position,nba_player_id,nba_name,nba_team,nba_jersey,match_method
+3704,LeBron James,PHI,23,"SF,PF",2544,LeBron James,PHI,23,name
+4244,Kevin Durant,HOU,7,"SG,SF,PF",201142,Kevin Durant,HOU,7,name
+4245,Al Horford,GSW,20,"PF,C",201143,Al Horford,GSW,20,name
+4246,Mike Conley,BOS,45,PG,201144,Mike Conley,BOS,44,name
+4247,Jeff Green,HOU,32,"PF,C",201145,Jeff Green,,,name
+4390,Russell Westbrook,SAC,18,"PG,SG",201566,Russell Westbrook,,,name
+4391,Kevin Love,UTA,42,"PF,C",201567,Kevin Love,,,name
+4469,Eric Gordon,MEM,23,"SG,SF",201569,Eric Gordon,,,name
+4472,Brook Lopez,LAC,11,C,201572,Brook Lopez,LAC,11,name
+4487,Nicolas Batum,LAC,33,"SF,PF",201587,Nicolas Batum,,,name
+4497,DeAndre Jordan,NOP,6,C,201599,DeAndre Jordan,NOP,6,name
+4563,James Harden,CLE,1,"PG,SG",201935,James Harden,CLE,1,name
+4612,Stephen Curry,GSW,30,PG,201939,Stephen Curry,GSW,30,name
+4614,DeMar DeRozan,DEN,10,"SF,PF",201942,DeMar DeRozan,DEN,10,name
+4621,James Johnson,IND,16,PF,201949,James Johnson,IND,16,name
+4622,Jrue Holiday,POR,5,"PG,SG",201950,Jrue Holiday,POR,5,name
+4631,Taj Gibson,MEM,67,C,201959,Taj Gibson,,,name
+4682,Garrett Temple,TOR,17,"PG,SG",202066,Garrett Temple,,,name
+4725,Paul George,BOS,13,"SF,PF",202331,Paul George,BOS,8,name
+4840,Kyrie Irving,DAL,11,PG,202681,Kyrie Irving,DAL,11,name
+4886,Jonas Valančiūnas,DEN,17,C,202685,Jonas Valanciunas,,,name
+4888,Bismack Biyombo,SAS,18,C,202687,Bismack Biyombo,,,name
+4892,Klay Thompson,MIA,11,"SG,SF",202691,Klay Thompson,MIA,11,name
+4896,Kawhi Leonard,TOR,2,"SG,SF,PF",202695,Kawhi Leonard,TOR,2,name
+4897,Nikola Vučević,ORL,9,C,202696,Nikola Vučević,ORL,9,name
+4901,Tobias Harris,SAS,23,PF,202699,Tobias Harris,SAS,23,name
+4912,Jimmy Butler III,GSW,10,"SF,PF",202710,Jimmy Butler III,GSW,10,name
+5007,Anthony Davis,WAS,23,"PF,C",203076,Anthony Davis,WAS,23,name
+5009,Bradley Beal,LAC,3,"SG,SF",203078,Bradley Beal,LAC,0,name
+5012,Damian Lillard,POR,0,PG,203081,Damian Lillard,POR,0,name
+5013,Harrison Barnes,SAS,40,PF,203084,Harrison Barnes,SAS,40,name
+5015,Andre Drummond,NYK,0,C,203083,Andre Drummond,NYK,0,name
+5069,Draymond Green,GSW,23,"PF,C",203110,Draymond Green,GSW,23,name
+5073,Khris Middleton,WAS,22,"SF,PF",203114,Khris Middleton,WAS,20,name
+5159,Kentavious Caldwell-Pope,PHI,1,"SG,SF",203484,Kentavious Caldwell-Pope,PHI,3,name
+5161,CJ McCollum,ATL,3,"PG,SG",203468,CJ McCollum,ATL,3,name
+5163,Steven Adams,HOU,12,C,203500,Steven Adams,HOU,12,name
+5164,Kelly Olynyk,SAS,8,"PF,C",203482,Kelly Olynyk,,,name
+5185,Giannis Antetokounmpo,MIA,7,"PF,C",203507,Giannis Antetokounmpo,MIA,7,name
+5187,Dennis Schröder,CHA,8,"PG,SG",203471,Dennis Schröder,CHA,8,name
+5192,Mason Plumlee,SAS,45,C,203486,Mason Plumlee,,,name
+5194,Tim Hardaway Jr.,MIA,10,"SG,SF",203501,Tim Hardaway Jr.,MIA,10,name+active
+5197,Rudy Gobert,MIN,27,C,203497,Rudy Gobert,MIN,27,name
+5245,Seth Curry,GSW,31,"PG,SG",203552,Seth Curry,,,name
+5292,Andrew Wiggins,MIA,22,"SG,SF,PF",203952,Andrew Wiggins,MIA,22,name
+5294,Joel Embiid,PHI,21,C,203954,Joel Embiid,PHI,21,name
+5295,Aaron Gordon,DEN,32,"PF,C",203932,Aaron Gordon,DEN,32,name
+5317,Marcus Smart,HOU,36,"PG,SG",203935,Marcus Smart,HOU,36,name
+5318,Julius Randle,BKN,30,PF,203944,Julius Randle,BKN,30,name
+5321,Elfrid Payton,SAC,22,PG,203901,Elfrid Payton,SAC,4,name
+5322,Doug McDermott,SAC,7,"SF,PF",203926,Doug McDermott,,,name
+5323,Dario Šarić,DET,20,"PF,C",203967,Dario Saric,,,name
+5324,Zach LaVine,SAC,8,"PG,SG,SF",203897,Zach LaVine,SAC,8,name
+5327,Jusuf Nurkić,UTA,30,C,203994,Jusuf Nurkić,UTA,30,name
+5330,Gary Harris,DET,13,"SG,SF",203914,Gary Harris,DET,11,name
+5336,Clint Capela,HOU,30,C,203991,Clint Capela,HOU,30,name
+5338,Bogdan Bogdanović,HOU,31,"PG,SG,SF",203992,Bogdan Bogdanović,HOU,31,name
+5341,Kyle Anderson,TOR,13,"SF,PF",203937,Kyle Anderson,TOR,12,name
+5350,Jerami Grant,MEM,9,"SF,PF",203924,Jerami Grant,MEM,9,name
+5352,Nikola Jokić,DEN,15,C,203999,Nikola Jokić,DEN,15,name
+5356,Dwight Powell,DAL,7,C,203939,Dwight Powell,DAL,7,name
+5357,Jordan Clarkson,NYK,00,"SG,SF",203903,Jordan Clarkson,NYK,00,name
+5362,Thanasis Antetokounmpo,MIL,43,PF,203648,Thanasis Antetokounmpo,,,name
+5393,Joe Ingles,MIN,7,"SF,PF",204060,Joe Ingles,,,name
+5432,Karl-Anthony Towns,NYK,32,"PF,C",1626157,Karl-Anthony Towns,NYK,32,name
+5433,D'Angelo Russell,MEM,5,"PG,SG",1626156,D'Angelo Russell,,,name
+5464,Kristaps Porziņģis,GSW,7,C,204001,Kristaps Porziņģis,GSW,7,name
+5465,Mario Hezonja,CLE,33,"SF,PF",1626209,Mario Hezonja,CLE,33,name
+5471,Myles Turner,MIL,3,C,1626167,Myles Turner,MIL,3,name
+5472,Trey Lyles,MIN,41,PF,1626168,Trey Lyles,MIN,41,name
+5473,Devin Booker,PHX,15,"PG,SG",1626164,Devin Booker,PHX,15,name
+5474,Cameron Payne,PHI,20,"PG,SG",1626166,Cameron Payne,,,name
+5475,Kelly Oubre Jr.,IND,10,"SF,PF",1626162,Kelly Oubre Jr.,IND,10,name
+5482,Bobby Portis,MIA,95,"PF,C",1626171,Bobby Portis Jr.,MIA,95,name
+5484,Tyus Jones,DEN,5,PG,1626145,Tyus Jones,DEN,5,name
+5487,Larry Nance Jr.,IND,22,"PF,C",1626204,Larry Nance Jr.,IND,22,name+active
+5490,Kevon Looney,LAL,55,"PF,C",1626172,Kevon Looney,LAL,55,name
+5501,Pat Connaughton,CHA,21,"SG,SF",1626192,Pat Connaughton,CHA,21,name
+5506,Norman Powell,CHI,24,"SG,SF",1626181,Norman Powell,CHI,24,name
+5582,T.J. McConnell,IND,9,PG,204456,T.J. McConnell,IND,9,name
+5600,Ben Simmons,SAC,25,PG,1627732,Ben Simmons,SAC,25,name
+5601,Brandon Ingram,LAC,3,"SG,SF,PF",1627742,Brandon Ingram,LAC,3,name
+5602,Jaylen Brown,PHI,7,"SG,SF,PF",1627759,Jaylen Brown,PHI,7,name
+5636,Kris Dunn,LAC,8,"PG,SG",1627739,Kris Dunn,LAC,8,name
+5637,Buddy Hield,CHA,8,"SG,SF",1627741,Buddy Hield,CHA,8,name
+5638,Jamal Murray,DEN,27,PG,1627750,Jamal Murray,DEN,27,name
+5640,Jakob Poeltl,TOR,19,C,1627751,Jakob Poeltl,TOR,19,name
+5642,Domantas Sabonis,SAC,11,"PF,C",1627734,Domantas Sabonis,SAC,11,name
+5643,Taurean Prince,DET,12,"SF,PF",1627752,Taurean Prince,DET,12,name
+5647,Guerschon Yabusele,CHI,28,"PF,C",1627824,Guerschon Yabusele,,,name
+5651,Caris LeVert,MIL,12,"SG,SF",1627747,Caris LeVert,MIL,8,name
+5658,Pascal Siakam,IND,43,"PF,C",1627783,Pascal Siakam,IND,43,name
+5659,Skal Labissière,WAS,17,C,1627746,Skal Labissiere,,,name
+5660,Dejounte Murray,NOP,5,PG,1627749,Dejounte Murray,NOP,5,name
+5663,Ivica Zubac,IND,40,C,1627826,Ivica Zubac,IND,40,name
+5681,Georges Niang,GSW,32,PF,1627777,Georges Niang,GSW,32,name
+5693,Dorian Finney-Smith,ATL,8,"SF,PF",1627827,Dorian Finney-Smith,ATL,2,name
+5727,Fred VanVleet,HOU,5,PG,1627832,Fred VanVleet,HOU,5,name
+5739,Gary Payton II,GSW,0,"SG,SF",1627780,Gary Payton II,GSW,0,name+active
+5747,Derrick Jones Jr.,LAC,5,"SF,PF",1627884,Derrick Jones Jr.,LAC,5,name
+5754,Alex Caruso,OKC,9,"SG,SF",1627936,Alex Caruso,OKC,9,name
+5763,Markelle Fultz,TOR,20,"PG,SG",1628365,Markelle Fultz,,,name
+5764,Lonzo Ball,CLE,2,"PG,SG",1628366,Lonzo Ball,,,name
+5765,Jayson Tatum,BOS,0,"SF,PF",1628369,Jayson Tatum,BOS,0,name
+5767,De'Aaron Fox,SAS,4,PG,1628368,De'Aaron Fox,SAS,4,name
+5768,Jonathan Isaac,ORL,1,"PF,C",1628371,Jonathan Isaac,ORL,1,name
+5769,Lauri Markkanen,UTA,23,"SF,PF",1628374,Lauri Markkanen,UTA,23,name
+5823,Zach Collins,CHI,12,C,1628380,Zach Collins,CHI,12,name
+5824,Malik Monk,SAC,0,"PG,SG",1628370,Malik Monk,SAC,0,name
+5825,Luke Kennard,PHX,8,"SG,SF",1628379,Luke Kennard,PHX,10,name
+5826,Donovan Mitchell,CLE,45,"PG,SG",1628378,Donovan Mitchell,CLE,45,name
+5827,Bam Adebayo,MIA,13,"PF,C",1628389,Bam Adebayo,MIA,13,name
+5832,John Collins,DET,20,"PF,C",1628381,John Collins,DET,20,name
+5835,Jarrett Allen,CLE,31,C,1628386,Jarrett Allen,CLE,31,name
+5836,OG Anunoby,NYK,8,"SF,PF",1628384,OG Anunoby,NYK,8,name
+5840,Kyle Kuzma,MIL,18,"SF,PF",1628398,Kyle Kuzma,MIL,18,name
+5841,Tony Bradley,ATL,13,C,1628396,Tony Bradley,,,name
+5842,Derrick White,BOS,9,"PG,SG",1628401,Derrick White,BOS,9,name
+5843,Josh Hart,NYK,3,"SG,SF",1628404,Josh Hart,NYK,3,name
+5855,Thomas Bryant,CLE,3,C,1628418,Thomas Bryant,CLE,3,name
+5856,Isaiah Hartenstein,OKC,55,C,1628392,Isaiah Hartenstein,OKC,55,name
+5858,Dillon Brooks,PHX,3,"SF,PF",1628415,Dillon Brooks,PHX,3,name
+5864,Monté Morris,IND,3,"PG,SG",1628420,Monte Morris,,,name
+5892,Maxi Kleber,LAL,14,"PF,C",1628467,Maxi Kleber,,,name
+5894,Chris Boucher,UTA,99,"PF,C",1628449,Chris Boucher,,,name
+5903,Luke Kornet,SAS,7,C,1628436,Luke Kornet,SAS,7,name
+5905,Royce O'Neale,CHA,00,"SF,PF",1626220,Royce O'Neale,CHA,00,name
+5908,Nigel Hayes-Davis,MIL,21,PF,1628502,Nigel Hayes-Davis,,,name
+5958,Deandre Ayton,WAS,8,C,1629028,Deandre Ayton,WAS,5,name
+5959,Marvin Bagley III,DEN,3,"PF,C",1628963,Marvin Bagley III,DEN,35,name
+6014,Luka Dončić,LAL,77,"PG,SG",1629029,Luka Dončić,LAL,77,name
+6015,Jaren Jackson Jr.,UTA,20,"PF,C",1628991,Jaren Jackson Jr.,UTA,20,name+active
+6016,Trae Young,WAS,3,PG,1629027,Trae Young,WAS,3,name
+6017,Mo Bamba,UTA,44,C,1628964,Mo Bamba,UTA,11,name
+6018,Wendell Carter Jr.,ORL,34,C,1628976,Wendell Carter Jr.,ORL,34,name
+6019,Collin Sexton,LAL,10,"PG,SG",1629012,Collin Sexton,LAL,10,name
+6020,Kevin Knox II,ORL,24,SF,1628995,Kevin Knox II,ORL,31,name
+6021,Mikal Bridges,NYK,25,"SF,PF",1628969,Mikal Bridges,NYK,25,name
+6022,Shai Gilgeous-Alexander,OKC,2,PG,1628983,Shai Gilgeous-Alexander,OKC,2,name
+6023,Miles Bridges,PHX,22,PF,1628970,Miles Bridges,PHX,0,name
+6025,Michael Porter Jr.,BKN,17,"SF,PF",1629008,Michael Porter Jr.,BKN,17,name
+6028,Donte DiVincenzo,MIN,0,"SG,SF",1628978,Donte DiVincenzo,MIN,0,name
+6029,Lonnie Walker IV,DEN,4,SG,1629022,Lonnie Walker IV,DEN,16,name
+6030,Kevin Huerter,DET,27,"SG,SF",1628989,Kevin Huerter,DET,27,name
+6031,Josh Okogie,UTA,21,"SG,SF",1629006,Josh Okogie,UTA,20,name
+6032,Grayson Allen,CHA,8,"SG,SF",1628960,Grayson Allen,CHA,8,name
+6034,Aaron Holiday,HOU,0,PG,1628988,Aaron Holiday,,,name
+6035,Anfernee Simons,PHI,5,"PG,SG",1629014,Anfernee Simons,PHI,22,name
+6036,Moritz Wagner,BKN,13,C,1629021,Moritz Wagner,BKN,13,name
+6037,Landry Shamet,NYK,44,"SG,SF",1629013,Landry Shamet,NYK,44,name
+6038,Robert Williams III,POR,35,C,1629057,Robert Williams III,POR,35,name
+6043,Jevon Carter,ORL,2,"PG,SG",1628975,Jevon Carter,ORL,2,name
+6044,Jalen Brunson,NYK,11,PG,1628973,Jalen Brunson,NYK,11,name
+6047,Mitchell Robinson,BOS,4,C,1629011,Mitchell Robinson,BOS,4,name
+6048,Gary Trent Jr.,MIL,5,"SG,SF",1629018,Gary Trent Jr.,MIL,5,name+active
+6052,Jarred Vanderbilt,LAL,2,"PF,C",1629020,Jarred Vanderbilt,LAL,2,name
+6053,Bruce Brown,NYK,11,"PG,SG",1628971,Bruce Brown,NYK,11,name
+6057,De'Anthony Melton,GSW,8,"PG,SG",1629001,De'Anthony Melton,GSW,8,name
+6058,Svi Mykhailiuk,UTA,10,"SG,SF",1629004,Svi Mykhailiuk,UTA,10,name
+6073,Duncan Robinson,DET,55,"SG,SF",1629130,Duncan Robinson,DET,55,name
+6076,Kenrich Williams,OKC,34,"PF,C",1629026,Kenrich Williams,OKC,34,name
+6109,Drew Eubanks,NYK,19,C,1629234,Drew Eubanks,NYK,19,name
+6133,Jordan McLaughlin,SAS,0,"PG,SG",1629162,Jordan McLaughlin,SAS,0,name
+6155,Haywood Highsmith,PHX,19,"SF,PF",1629312,Haywood Highsmith,PHX,7,name
+6163,Zion Williamson,NOP,1,"PF,C",1629627,Zion Williamson,NOP,1,name
+6164,Ja Morant,POR,1,PG,1629630,Ja Morant,POR,12,name
+6165,RJ Barrett,TOR,9,"SG,SF,PF",1629628,RJ Barrett,TOR,9,name
+6166,De'Andre Hunter,SAC,15,"SF,PF",1629631,De'Andre Hunter,SAC,15,name
+6167,Darius Garland,LAC,10,PG,1629636,Darius Garland,LAC,10,name
+6169,Coby White,CHA,3,"PG,SG",1629632,Coby White,CHA,3,name
+6170,Jaxson Hayes,UTA,11,C,1629637,Jaxson Hayes,UTA,11,name
+6171,Rui Hachimura,LAC,28,"SF,PF",1629060,Rui Hachimura,LAC,28,name
+6173,Cameron Johnson,DEN,23,"SF,PF",1629661,Cameron Johnson,DEN,23,name
+6174,P.J. Washington,DAL,25,"PF,C",1629023,P.J. Washington,DAL,25,name
+6175,Tyler Herro,MIL,11,"PG,SG",1629639,Tyler Herro,MIL,11,name
+6205,Nickeil Alexander-Walker,ATL,7,"PG,SG",1629638,Nickeil Alexander-Walker,ATL,7,name
+6206,Goga Bitadze,ORL,35,C,1629048,Goga Bitadze,ORL,35,name
+6208,Matisse Thybulle,LAL,26,"SG,SF",1629680,Matisse Thybulle,LAL,4,name
+6210,Grant Williams,CHA,2,"PF,C",1629684,Grant Williams,CHA,2,name
+6212,Ty Jerome,MEM,2,"PG,SG",1629660,Ty Jerome,MEM,2,name
+6216,Jordan Poole,NOP,3,"PG,SG",1629673,Jordan Poole,NOP,3,name
+6217,Keldon Johnson,SAS,3,"SF,PF",1629640,Keldon Johnson,SAS,3,name
+6218,Kevin Porter Jr.,MIL,7,"PG,SG",1629645,Kevin Porter Jr.,MIL,7,name+active
+6219,Nic Claxton,CHI,9,C,1629651,Nic Claxton,CHI,9,name
+6224,Cody Martin,IND,11,"SG,SF",1628998,Cody Martin,,,name
+6226,Daniel Gafford,DAL,21,C,1629655,Daniel Gafford,DAL,21,name
+6236,Terance Mann,BKN,14,"SG,SF",1629611,Terance Mann,BKN,14,name
+6253,Naz Reid,CHA,0,"PF,C",1629675,Naz Reid,CHA,11,name
+6254,Luguentz Dort,ATL,0,"SG,SF",1629652,Luguentz Dort,ATL,5,name
+6255,John Konchar,NYK,14,"SG,SF",1629723,John Konchar,NYK,55,name
+6256,Dean Wade,PHI,45,"SF,PF",1629731,Dean Wade,PHI,32,name
+6259,Garrison Mathews,IND,24,"SG,SF",1629726,Garrison Mathews,,,name
+6267,Max Strus,LAC,2,"SF,PF",1629622,Max Strus,LAC,2,name
+6269,Javonte Green,DET,31,"SG,SF",1629750,Javonte Green,DET,31,name
+6275,Caleb Martin,DAL,16,"SF,PF",1628997,Caleb Martin,DAL,16,name
+6276,DaQuan Jeffries,SAC,25,"SG,SF",1629610,DaQuan Jeffries,,,name
+6315,Amir Coffey,PHX,2,"SG,SF",1629599,Amir Coffey,,,name
+6353,Gabe Vincent,ATL,4,"PG,SG",1629216,Gabe Vincent,,,name
+6355,Anthony Edwards,MIN,5,"PG,SG",1630162,Anthony Edwards,MIN,5,name
+6356,James Wiseman,NYK,11,C,1630164,James Wiseman,NYK,11,name
+6395,LaMelo Ball,MIN,1,PG,1630163,LaMelo Ball,MIN,1,name
+6396,Patrick Williams,CHI,44,"SF,PF",1630172,Patrick Williams,CHI,44,name
+6397,Isaac Okoro,CHI,35,"SG,SF",1630171,Isaac Okoro,CHI,35,name
+6398,Onyeka Okongwu,ATL,17,C,1630168,Onyeka Okongwu,ATL,17,name
+6399,Killian Hayes,SAC,3,"PG,SG",1630165,Killian Hayes,,,name
+6400,Obi Toppin,IND,1,"SF,PF",1630167,Obi Toppin,IND,1,name
+6401,Deni Avdija,POR,8,"SG,SF,PF",1630166,Deni Avdija,POR,8,name
+6402,Jalen Smith,CHI,25,"PF,C",1630188,Jalen Smith,CHI,25,name
+6403,Devin Vassell,SAS,24,"SG,SF",1630170,Devin Vassell,SAS,24,name
+6404,Tyrese Haliburton,IND,0,"PG,SG",1630169,Tyrese Haliburton,IND,0,name
+6406,Aaron Nesmith,IND,23,"SG,SF",1630174,Aaron Nesmith,IND,23,name
+6407,Cole Anthony,PHX,50,PG,1630175,Cole Anthony,,,name
+6408,Isaiah Stewart,MEM,28,"PF,C",1630191,Isaiah Stewart,MEM,28,name
+6410,Josh Green,UTA,5,"SG,SF",1630182,Josh Green,UTA,10,name
+6411,Saddiq Bey,NOP,41,"SF,PF",1630180,Saddiq Bey,NOP,41,name
+6412,Precious Achiuwa,SAC,9,"PF,C",1630173,Precious Achiuwa,SAC,9,name
+6413,Tyrese Maxey,PHI,0,PG,1630178,Tyrese Maxey,PHI,0,name
+6414,Zeke Nnaji,DEN,22,"PF,C",1630192,Zeke Nnaji,DEN,22,name
+6417,Immanuel Quickley,TOR,5,"PG,SG",1630193,Immanuel Quickley,TOR,5,name
+6418,Payton Pritchard,BOS,11,PG,1630202,Payton Pritchard,BOS,11,name
+6420,Jaden McDaniels,MIN,3,SF,1630183,Jaden McDaniels,MIN,3,name
+6422,Desmond Bane,ORL,3,"SG,SF",1630217,Desmond Bane,ORL,3,name
+6427,Xavier Tillman,CHA,26,"PF,C",1630214,Xavier Tillman,,,name
+6429,Vít Krejčí,POR,27,"SG,SF",1630249,Vít Krejčí,POR,27,name
+6433,Tre Jones,CHI,30,"PG,SG",1630200,Tre Jones,CHI,30,name
+6434,Nick Richards,MIA,8,C,1630208,Nick Richards,MIA,8,name
+6441,Isaiah Joe,DET,11,"SG,SF",1630198,Isaiah Joe,DET,11,name
+6450,Paul Reed,DET,7,"PF,C",1630194,Paul Reed,DET,7,name
+6452,Sam Merrill,CLE,5,"SG,SF",1630241,Sam Merrill,CLE,5,name
+6463,Jae'Sean Tate,HOU,8,"SG,SF,PF",1630256,Jae'Sean Tate,HOU,8,name
+6471,Anthony Gill,WAS,16,"PF,C",1630264,Anthony Gill,WAS,16,name
+6499,Naji Marshall,DAL,3,"SG,SF,PF",1630230,Naji Marshall,DAL,3,name
+6511,Ömer Yurtseven,GSW,77,C,1630209,Omer Yurtseven,,,name
+6512,Cade Cunningham,DET,2,"PG,SG",1630595,Cade Cunningham,DET,2,name
+6513,Jalen Green,PHX,4,"SG,SF",1630224,Jalen Green,PHX,4,name
+6514,Evan Mobley,CLE,4,"PF,C",1630596,Evan Mobley,CLE,4,name
+6515,Scottie Barnes,TOR,4,"SF,PF,C",1630567,Scottie Barnes,TOR,4,name
+6516,Jalen Suggs,ORL,4,"PG,SG",1630591,Jalen Suggs,ORL,4,name
+6548,Josh Giddey,CHI,3,"PG,SG",1630581,Josh Giddey,CHI,3,name
+6549,Jonathan Kuminga,MIN,24,"SF,PF",1630228,Jonathan Kuminga,MIN,24,name
+6550,Franz Wagner,ORL,22,"SF,PF",1630532,Franz Wagner,ORL,22,name
+6551,Davion Mitchell,MIA,2,PG,1630558,Davion Mitchell,MIA,2,name
+6552,Ziaire Williams,LAL,11,"SG,SF",1630533,Ziaire Williams,LAL,11,name
+6556,Moses Moody,GSW,4,"SG,SF,PF",1630541,Moses Moody,GSW,4,name
+6557,Corey Kispert,ATL,24,"SG,SF",1630557,Corey Kispert,ATL,24,name
+6558,Alperen Şengün,HOU,28,"PF,C",1630578,Alperen Sengun,HOU,28,name
+6559,Trey Murphy III,NOP,25,"SG,SF",1630530,Trey Murphy III,NOP,25,name
+6560,Tre Mann,WAS,1,"PG,SG",1630544,Tre Mann,WAS,23,name
+6562,Jalen Johnson,ATL,1,"SF,PF",1630552,Jalen Johnson,ATL,1,name
+6564,Isaiah Jackson,LAC,23,C,1630543,Isaiah Jackson,LAC,23,name
+6567,Quentin Grimes,LAL,5,"SG,SF",1629656,Quentin Grimes,LAL,5,name
+6568,Bones Hyland,MIN,8,"PG,SG",1630538,Bones Hyland,MIN,8,name
+6569,Cam Thomas,MIL,24,"PG,SG",1630560,Cam Thomas,,,name
+6571,Day'Ron Sharpe,BKN,20,C,1630549,Day'Ron Sharpe,BKN,20,name
+6572,Santi Aldama,DAL,34,PF,1630583,Santi Aldama,DAL,34,name
+6574,Jeremiah Robinson-Earl,DAL,23,PF,1630526,Jeremiah Robinson-Earl,,,name
+6577,Herbert Jones,NOP,2,"SG,SF",1630529,Herbert Jones,NOP,2,name
+6578,Miles McBride,NYK,2,"PG,SG",1630540,Miles McBride,NYK,2,name
+6580,Ayo Dosunmu,MIN,13,"PG,SG",1630245,Ayo Dosunmu,MIN,13,name
+6581,Neemias Queta,BOS,88,C,1629674,Neemias Queta,BOS,88,name
+6584,Isaiah Livers,PHX,18,"SF,PF",1630587,Isaiah Livers,,,name
+6588,Dalano Banton,BOS,45,"PG,SG",1630625,Dalano Banton,,,name
+6590,Sharife Cooper,WAS,13,PG,1630536,Sharife Cooper,,,name
+6594,Luka Garza,BOS,52,C,1630568,Luka Garza,BOS,52,name
+6595,Charles Bassey,GSW,28,C,1629646,Charles Bassey,GSW,28,name
+6596,Sandro Mamukelashvili,LAL,54,"PF,C",1630572,Sandro Mamukelashvili,LAL,54,name
+6597,Aaron Wiggins,ATL,2,"SG,SF",1630598,Aaron Wiggins,ATL,21,name
+6600,Jericho Sims,MIL,00,"PF,C",1630579,Jericho Sims,MIL,00,name
+6603,A.J. Lawson,TOR,0,"SG,SF",1630639,A.J. Lawson,,,name
+6604,Trendon Watford,NOP,9,PF,1630570,Trendon Watford,NOP,9,name
+6606,Austin Reaves,LAL,15,"PG,SG,SF",1630559,Austin Reaves,LAL,15,name
+6613,Jose Alvarado,NYK,5,PG,1630631,Jose Alvarado,NYK,5,name
+6614,Jock Landale,ATL,31,C,1629111,Jock Landale,ATL,31,name
+6616,Jordan Goodwin,PHX,23,"PG,SG",1630692,Jordan Goodwin,PHX,23,name
+6617,Jay Huff,IND,32,C,1630643,Jay Huff,IND,32,name
+6619,Sam Hauser,BOS,30,"SF,PF",1630573,Sam Hauser,BOS,30,name
+6621,DeJon Jarreau,MEM,77,SG,1630610,DeJon Jarreau,,,name
+6628,Mac McClung,CHI,5,"PG,SG",1630644,Mac McClung,,,name
+6632,Justin Champagnie,WAS,9,"SF,PF",1630551,Justin Champagnie,WAS,9,name
+6637,Ethan Thompson,IND,55,"PG,SG",1630679,Ethan Thompson,,,name
+6652,Dru Smith,MIA,12,"PG,SG",1630696,Dru Smith,MIA,12,name
+6655,Micah Potter,POR,9,"PF,C",1630695,Micah Potter,POR,11,name
+6673,Olivier Sarr,CLE,33,C,1630846,Olivier Sarr,,,name
+6679,Brandon Williams,GSW,12,PG,1630314,Brandon Williams,GSW,12,name+active
+6687,Lindy Waters III,SAS,43,"SG,SF",1630322,Lindy Waters III,,,name
+6691,Paolo Banchero,ORL,5,PF,1631094,Paolo Banchero,ORL,5,name
+6692,Chet Holmgren,OKC,7,"PF,C",1631096,Chet Holmgren,OKC,7,name
+6693,Jabari Smith Jr.,HOU,10,"PF,C",1631095,Jabari Smith Jr.,HOU,10,name+active
+6694,Keegan Murray,SAC,13,"SF,PF",1631099,Keegan Murray,SAC,13,name
+6695,Jaden Ivey,CHI,31,"PG,SG",1631093,Jaden Ivey,,,name
+6696,Bennedict Mathurin,NOP,24,"SG,SF",1631097,Bennedict Mathurin,NOP,9,name
+6697,Shaedon Sharpe,POR,17,"PG,SG",1631101,Shaedon Sharpe,POR,17,name
+6698,Dyson Daniels,ATL,5,"SG,SF",1630700,Dyson Daniels,ATL,5,name
+6699,Jeremy Sochan,POR,4,"PF,C",1631110,Jeremy Sochan,POR,20,name
+6701,Ousmane Dieng,MIL,21,"SF,PF",1631172,Ousmane Dieng,MIL,21,name
+6702,Jalen Williams,OKC,8,"SF,PF",1631114,Jalen Williams,OKC,8,name
+6703,Jalen Duren,DET,0,C,1631105,Jalen Duren,DET,0,name
+6704,Ochai Agbaji,NYK,30,"SG,SF",1630534,Ochai Agbaji,NYK,30,name
+6705,Mark Williams,PHX,25,C,1631109,Mark Williams,PHX,15,name
+6707,Tari Eason,HOU,17,"SG,SF,PF",1631106,Tari Eason,HOU,17,name
+6708,Dalen Terry,GSW,21,"SG,SF",1631207,Dalen Terry,GSW,21,name
+6709,Jake LaRavia,LAL,12,"SF,PF",1631222,Jake LaRavia,LAL,12,name
+6710,Malaki Branham,ORL,12,"SG,SF",1631103,Malaki Branham,ORL,12,name
+6711,Christian Braun,DEN,0,"SG,SF,PF",1631128,Christian Braun,DEN,0,name
+6712,Walker Kessler,LAL,14,C,1631117,Walker Kessler,LAL,14,name
+6713,David Roddy,DEN,45,"SF,PF",1631223,David Roddy,,,name
+6714,MarJon Beauchamp,PHI,16,"SG,SF",1630699,MarJon Beauchamp,,,name
+6715,Blake Wesley,POR,1,"PG,SG",1631104,Blake Wesley,,,name
+6716,Wendell Moore Jr.,DET,14,"SG,SF",1631111,Wendell Moore Jr.,,,name
+6717,Nikola Jović,MIA,5,"PF,C",1631107,Nikola Jović,MIA,5,name
+6718,Patrick Baldwin Jr.,SAC,23,PF,1631116,Patrick Baldwin Jr.,,,name
+6719,TyTy Washington Jr.,LAC,15,"PG,SG",1631102,TyTy Washington Jr.,,,name
+6720,Peyton Watson,CLE,8,"SF,PF",1631212,Peyton Watson,CLE,8,name
+6721,Andrew Nembhard,IND,2,"PG,SG",1629614,Andrew Nembhard,IND,2,name
+6722,Caleb Houstan,NOP,33,SF,1631216,Caleb Houstan,NOP,33,name
+6723,Christian Koloko,NOP,35,C,1631132,Christian Koloko,NOP,35,name
+6724,Jaylin Williams,OKC,6,"PF,C",1631119,Jaylin Williams,OKC,6,name
+6725,Max Christie,DAL,0,"SG,SF",1631108,Max Christie,DAL,0,name
+6727,Jaden Hardy,LAL,7,"PG,SG,SF",1630702,Jaden Hardy,LAL,7,name
+6728,Kennedy Chandler,PHX,0,PG,1631113,Kennedy Chandler,PHX,0,name
+6729,Khalifa Diop,CLE,18,C,1631215,Khalifa Diop,CLE,18,name
+6730,Bryce McGowens,NOP,11,"SG,SF",1631121,Bryce McGowens,NOP,11,name
+6731,E.J. Liddell,BKN,9,"PF,C",1630604,E.J. Liddell,,,name
+6732,Trevor Keels,MIA,8,SG,1631211,Trevor Keels,,,name
+6733,Moussa Diabaté,CHA,14,C,1631217,Moussa Diabaté,CHA,14,name
+6734,Ryan Rollins,MIL,13,"PG,SG",1631157,Ryan Rollins,MIL,13,name
+6735,Josh Minott,BKN,00,"SF,PF",1631169,Josh Minott,BKN,00,name
+6737,Vince Williams Jr.,UTA,0,"PG,SG",1631246,Vince Williams Jr.,,,name
+6741,Tyrese Martin,PHI,23,"SG,SF",1631213,Tyrese Martin,,,name
+6742,Karlo Matković,NOP,17,"PF,C",1631255,Karlo Matković,NOP,17,name
+6743,JD Davison,ORL,20,"PG,SG",1631120,JD Davison,ORL,4,name
+6745,Gui Santos,GSW,15,"SF,PF",1630611,Gui Santos,GSW,15,name
+6746,Luke Travers,CLE,33,SF,1631247,Luke Travers,,,name
+6747,Jabari Walker,PHI,33,PF,1631133,Jabari Walker,PHI,33,name
+6749,Alondes Williams,WAS,31,"SG,SF",1631214,Alondes Williams,,,name
+6751,Collin Gillespie,PHX,12,"PG,SG",1631221,Collin Gillespie,PHX,12,name
+6752,Buddy Boeheim,OKC,14,SF,1631205,Buddy Boeheim,,,name
+6753,Keon Ellis,BKN,1,"SG,SF",1631165,Keon Ellis,BKN,1,name
+6754,Julian Champagnie,SAS,30,"SF,PF",1630577,Julian Champagnie,SAS,30,name
+6755,AJ Green,MIL,20,"PG,SG,SF",1631260,AJ Green,MIL,20,name
+6757,Scotty Pippen Jr.,MEM,1,PG,1630590,Scotty Pippen Jr.,MEM,1,name
+6761,Ron Harper Jr.,BOS,8,SF,1631199,Ron Harper Jr.,BOS,13,name+active
+6762,Johnny Juzang,MIN,9,"SG,SF",1630548,Johnny Juzang,,,name
+6766,Simone Fontecchio,MIA,0,"SF,PF",1631323,Simone Fontecchio,MIA,0,name
+6772,Pat Spencer,PHX,61,"PG,SG",1630311,Pat Spencer,PHX,61,name
+6773,Mouhamadou Gueye,CHA,16,PF,1631338,Mouhamadou Gueye,,,name
+6776,Quenton Jackson,IND,29,"PG,SG",1631245,Quenton Jackson,IND,29,name
+6782,Stanley Umude,SAS,17,SG,1630649,Stanley Umude,,,name
+6784,John Butler Jr.,MIL,19,C,1631219,John Butler Jr.,MIL,19,name
+6785,Tyson Etienne,BKN,10,PG,1630623,Tyson Etienne,,,name
+6786,Daeqwon Plowden,SAC,29,"SG,SF",1631342,Daeqwon Plowden,SAC,29,name
+6791,Dominick Barlow,PHI,25,"PF,C",1631230,Dominick Barlow,PHI,25,name
+6797,Lucas Williamson,MEM,55,SG,1631351,Lucas Williamson,,,name
+6800,Jamaree Bouyea,PHX,17,PG,1631123,Jamaree Bouyea,PHX,17,name
+6801,Jamal Cain,ORL,8,"SG,SF",1631288,Jamal Cain,ORL,8,name
+6802,Orlando Robinson,CHI,00,C,1631115,Orlando Robinson,CHI,7,name
+6806,Nate Williams,GSW,19,SF,1631466,Nate Williams,,,override
+10048,Scoot Henderson,POR,00,PG,1630703,Scoot Henderson,POR,00,name
+10050,Leonard Miller,CHI,11,"SF,PF",1631159,Leonard Miller,CHI,11,name
+10051,Sidy Cissoko,POR,91,"SF,PF",1631321,Sidy Cissoko,POR,91,name
+10053,Keaton Wallace,ATL,2,PG,1630811,Keaton Wallace,,,name
+10064,Rayan Rupert,PHI,12,"SG,SF",1641712,Rayan Rupert,PHI,21,name
+10065,Toumani Camara,POR,33,"SF,PF",1641739,Toumani Camara,POR,33,name
+10067,Hunter Tyson,BKN,5,PF,1641816,Hunter Tyson,,,name
+10069,Mouhamed Gueye,ATL,18,"PF,C",1631243,Mouhamed Gueye,ATL,18,name
+10070,GG Jackson,MEM,45,"SF,PF,C",1641713,GG Jackson,MEM,45,name
+10074,Jalen Pickett,LAC,24,"PG,SG",1629618,Jalen Pickett,LAC,24,name
+10075,Jordan Walsh,BOS,27,"SF,PF",1641775,Jordan Walsh,BOS,27,name
+10077,Jalen Wilson,ATL,22,"SF,PF",1630592,Jalen Wilson,ATL,22,name
+10078,Tristan Vukcevic,WAS,00,C,1641774,Tristan Vukcevic,WAS,00,name
+10080,Trayce Jackson-Davis,TOR,32,C,1631218,Trayce Jackson-Davis,TOR,32,name
+10082,Andre Jackson Jr.,TOR,44,"SG,SF",1641748,Andre Jackson Jr.,TOR,44,name
+10083,Julian Phillips,HOU,3,"SF,PF",1641763,Julian Phillips,HOU,4,name
+10084,Jordan Miller,LAC,22,"SG,SF",1641757,Jordan Miller,LAC,22,name
+10085,Tarik Biberovic,DAL,13,SF,1641844,Tarik Biberovic,DAL,,name
+10086,Jaylen Clark,MIN,7,"SG,SF",1641740,Jaylen Clark,MIN,7,name
+10087,Colby Jones,DET,00,"SG,SF",1641732,Colby Jones,,,name
+10088,Chris Livingston,CLE,8,SF,1641753,Chris Livingston,,,name
+10089,Jalen Slawson,IND,18,"SF,PF",1641771,Jalen Slawson,IND,18,name
+10092,Jaime Jaquez Jr.,MIL,24,"SG,SF,PF",1631170,Jaime Jaquez Jr.,MIL,24,name
+10094,Victor Wembanyama,SAS,1,C,1641705,Victor Wembanyama,SAS,1,name
+10095,Anthony Black,ORL,0,"PG,SG,SF",1641710,Anthony Black,ORL,0,name
+10096,Ausar Thompson,DET,9,"SG,SF,PF",1641709,Ausar Thompson,DET,9,name
+10097,Dereck Lively II,DAL,2,C,1641726,Dereck Lively II,DAL,2,name
+10098,Jordan Hawkins,MEM,24,"SG,SF",1641722,Jordan Hawkins,MEM,24,name
+10099,Bilal Coulibaly,WAS,0,"SG,SF",1641731,Bilal Coulibaly,WAS,0,name
+10100,Keyonte George,UTA,3,"PG,SG",1641718,Keyonte George,UTA,3,name
+10101,Gradey Dick,LAC,1,"SG,SF",1641711,Gradey Dick,LAC,1,name
+10103,Jarace Walker,IND,5,"SF,PF",1641716,Jarace Walker,IND,5,name
+10104,Brandon Miller,CHA,24,"SF,PF",1641706,Brandon Miller,CHA,24,name
+10105,Kobe Bufkin,NOP,44,"PG,SG",1641723,Kobe Bufkin,NOP,4,name
+10106,Jett Howard,DAL,9,"SG,SF",1641724,Jett Howard,DAL,13,name
+10107,Cason Wallace,OKC,22,"PG,SG,SF",1641717,Cason Wallace,OKC,22,name
+10108,Amen Thompson,HOU,1,"PG,SG",1641708,Amen Thompson,HOU,1,name
+10110,Taylor Hendricks,MEM,22,"PF,C",1641707,Taylor Hendricks,MEM,22,name
+10111,Dariq Whitehead,MEM,00,PF,1641727,Dariq Whitehead,,,name
+10112,Julian Strawther,DEN,1,"SG,SF",1631124,Julian Strawther,DEN,3,name
+10113,Ben Sheppard,IND,26,"SG,SF",1641767,Ben Sheppard,IND,26,name
+10114,Marcus Sasser,DAL,8,PG,1631204,Marcus Sasser,DAL,8,name
+10115,Brandin Podziemski,GSW,2,"PG,SG",1641764,Brandin Podziemski,GSW,2,name
+10116,Olivier-Maxence Prosper,MEM,18,"SF,PF,C",1641765,Olivier-Maxence Prosper,MEM,18,name
+10117,Kobe Brown,IND,24,"SF,PF",1641738,Kobe Brown,IND,24,name
+10118,Cam Whitmore,DEN,00,"SF,PF",1641715,Cam Whitmore,DEN,1,name
+10119,Kris Murray,MEM,17,"SG,SF",1631200,Kris Murray,MEM,24,name
+10120,Nick Smith Jr.,LAL,20,"PG,SG",1641733,Nick Smith Jr.,,,name
+10121,Noah Clowney,BKN,21,"PF,C",1641730,Noah Clowney,BKN,21,name
+10122,Brice Sensabaugh,UTA,28,"SG,SF,PF",1641729,Brice Sensabaugh,UTA,28,name
+10127,Oscar Tshiebwe,HOU,9,"PF,C",1631131,Oscar Tshiebwe,HOU,34,name
+10129,Jacob Toppin,ATL,0,SF,1631210,Jacob Toppin,,,name
+10141,Drew Timme,MIN,17,"PF,C",1631166,Drew Timme,MIN,17,name
+10145,Craig Porter Jr.,CLE,9,"PG,SG",1641854,Craig Porter Jr.,CLE,9,name
+10147,Colin Castleton,ORL,14,"PF,C",1630658,Colin Castleton,ORL,14,name
+10152,Leaky Black,SAC,14,"SF,PF",1641778,Leaky Black,SAC,12,name
+10160,Alex Antetokounmpo,MIL,29,"SF,PF",1630828,Alex Antetokounmpo,,,name
+10161,Javonte Cooke,POR,18,SG,1631451,Javonte Cooke,,,name
+10164,Duop Reath,PHX,26,"PF,C",1641871,Duop Reath,PHX,26,name
+10168,Pete Nance,MIL,35,"SF,PF",1631250,Pete Nance,MIL,35,name
+10169,Alex Morales,ORL,30,SG,1631457,Alex Morales,ORL,30,name
+10199,Tosan Evbuomwan,CHA,8,"SF,PF",1641787,Tosan Evbuomwan,,,name
+10206,Drew Peterson,CHI,21,"SF,PF",1641809,Drew Peterson,CHI,9,name
+10220,Trey Jemison III,TOR,50,"PF,C",1641998,Trey Jemison III,TOR,50,name
+10227,Liam Robbins,NYK,15,C,1641857,Liam Robbins,,,name
+10244,Adam Flagler,SAC,20,"PG,SG",1641745,Adam Flagler,SAC,14,name
+10251,Jake Stephens,MIL,8,C,1641868,Jake Stephens,MIL,,name
+10252,Malachi Smith,TOR,18,SG,1641869,Malachi Smith,TOR,18,name
+10262,Tyler Smith,DAL,23,PF,1641890,Tyler Smith,,,name
+10263,Ronald Holland II,DET,5,"SF,PF",1641842,Ronald Holland II,DET,5,name
+10265,Matas Buzelis,CHI,14,"SF,PF",1641824,Matas Buzelis,CHI,14,name
+10272,Kyshawn George,WAS,18,"SG,SF,PF",1642273,Kyshawn George,WAS,18,name
+10273,Bub Carrington,WAS,7,"PG,SG",1642267,Bub Carrington,WAS,7,name
+10274,Kel'el Ware,MIL,9,C,1642276,Kel'el Ware,MIL,9,name
+10275,Tristan da Silva,ORL,23,"SF,PF",1641783,Tristan da Silva,ORL,23,name
+10276,Jared McCain,OKC,3,"PG,SG",1642272,Jared McCain,OKC,3,name
+10277,Baylor Scheierman,BOS,55,"SG,SF",1631248,Baylor Scheierman,BOS,55,name
+10278,Ja'Kobe Walter,TOR,14,"PG,SG",1642266,Ja'Kobe Walter,TOR,14,name
+10279,Jaylon Tyson,CLE,20,"SG,SF,PF",1642281,Jaylon Tyson,CLE,20,name
+10280,Terrence Shannon Jr.,MIN,4,"SG,SF",1630545,Terrence Shannon Jr,MIN,4,name
+10281,Rob Dillingham,CHI,7,"PG,SG",1642265,Rob Dillingham,CHI,7,name
+10282,Isaiah Collier,UTA,8,"PG,SG",1642268,Isaiah Collier,UTA,8,name
+10283,Cody Williams,MIN,9,"SG,SF",1642262,Cody Williams,MIN,9,name
+10284,Dillon Jones,PHI,1,SF,1641794,Dillon Jones,PHI,,name
+10285,Donovan Clingan,POR,23,C,1642270,Donovan Clingan,POR,23,name
+10286,DaRon Holmes II,DEN,14,"PF,C",1641747,DaRon Holmes II,DEN,14,name
+10287,Zach Edey,MEM,14,C,1641744,Zach Edey,MEM,14,name
+10288,Reed Sheppard,HOU,15,"PG,SG",1642263,Reed Sheppard,HOU,15,name
+10289,Yves Missi,NOP,21,C,1642274,Yves Missi,NOP,21,name
+10290,Stephon Castle,SAS,5,"PG,SG",1642264,Stephon Castle,SAS,5,name
+10291,Dalton Knecht,LAL,4,"SG,SF",1642261,Dalton Knecht,LAL,4,name
+10292,Ryan Dunn,PHX,0,"SF,PF",1642346,Ryan Dunn,PHX,0,name
+10293,Devin Carter,BOS,22,"PG,SG",1642269,Devin Carter,BOS,22,name
+10294,Alex Sarr,WAS,20,C,1642259,Alex Sarr,WAS,20,name
+10295,Tidjane Salaün,CHA,31,"PF,C",1642275,Tidjane Salaün,CHA,31,name
+10296,Zaccharie Risacher,DAL,10,"SF,PF",1642258,Zaccharie Risacher,DAL,10,name
+10297,Pacôme Dadiet,NYK,4,"SG,SF",1642359,Pacôme Dadiet,NYK,4,name
+10300,AJ Johnson,NOP,14,"PG,SG",1642358,AJ Johnson,NOP,8,name
+10301,Nikola Topić,OKC,44,PG,1642260,Nikola Topić,OKC,44,name
+10303,Kevin McCullar Jr.,NYK,9,"SF,PF",1641755,Kevin McCullar Jr.,,,name
+10304,Ajay Mitchell,OKC,25,"PG,SG",1642349,Ajay Mitchell,OKC,25,name
+10305,Johnny Furphy,IND,12,"SG,SF",1642277,Johnny Furphy,IND,12,name
+10307,Blake Hinson,UTA,25,"PF,C",1642396,Blake Hinson,UTA,2,name
+10308,Quinten Post,MEM,21,C,1642366,Quinten Post,MEM,21,name
+10310,Justin Edwards,PHI,11,"SF,PF",1642348,Justin Edwards,PHI,11,name
+10311,Keshad Johnson,MIA,16,"SF,PF",1642352,Keshad Johnson,MIA,16,name
+10312,Pelle Larsson,MIA,9,"SG,SF",1641796,Pelle Larsson,MIA,9,name
+10313,Oso Ighodaro,PHX,11,C,1642345,Oso Ighodaro,PHX,11,name
+10314,Tyler Kolek,NYK,13,"PG,SG",1642278,Tyler Kolek,NYK,13,name
+10315,Kyle Filipowski,UTA,2,"PF,C",1642271,Kyle Filipowski,UTA,2,name
+10316,Daniss Jenkins,DET,24,"PG,SG",1642450,Daniss Jenkins,DET,24,name
+10317,Ariel Hukporti,PHI,55,C,1630574,Ariel Hukporti,PHI,55,name
+10318,Tristen Newton,SAC,00,"SG,SF",1641803,Tristen Newton,SAC,13,name
+10320,Isaiah Crawford,HOU,27,"SF,PF",1642384,Isaiah Crawford,HOU,27,name
+10323,KJ Simpson,DEN,25,"PG,SG",1642354,KJ Simpson,DEN,25,name
+10324,Enrique Freeman,MIN,25,PF,1642402,Enrique Freeman,MIN,25,name
+10327,Cam Spencer,MEM,24,"PG,SG",1642285,Cam Spencer,MEM,24,name
+10328,N'Faly Dante,ATL,12,C,1642368,N'Faly Dante,,,name
+10329,PJ Hall,CHA,16,C,1641790,PJ Hall,CHA,16,name
+10330,Jonathan Mogbo,SAC,22,"PF,C",1642367,Jonathan Mogbo,SAC,2,name
+10331,Bobi Klintman,DET,34,PF,1641752,Bobi Klintman,,,name
+10333,Jamal Shead,TOR,1,PG,1642347,Jamal Shead,TOR,23,name
+10335,Adem Bona,PHI,30,C,1641737,Adem Bona,PHI,30,name
+10336,Harrison Ingram,UTA,55,SF,1631127,Harrison Ingram,UTA,55,name
+10337,Cam Christie,LAC,24,"SG,SF",1642353,Cam Christie,LAC,24,name
+10338,Antonio Reeves,CHA,12,"SG,SF",1641810,Antonio Reeves,MIN,12,name
+10339,Bronny James,LAL,9,"PG,SG",1642355,Bronny James,LAL,9,name
+10340,Jaylen Wells,MEM,0,"SG,SF",1642377,Jaylen Wells,MEM,0,name
+10341,Isaac Jones,DET,3,"PF,C",1642403,Isaac Jones,DET,3,name
+10342,Branden Carlson,POR,10,C,1642382,Branden Carlson,POR,15,name
+10344,Zyon Pullin,MIN,15,"PG,SG",1642389,Zyon Pullin,MIN,15,name
+10367,Riley Minix,CLE,12,SF,1642434,Riley Minix,CLE,12,name
+10372,David Jones Garcia,SAS,25,SG,1642357,David Jones Garcia,SAS,25,name
+10385,Trey Alexander,UTA,15,"PG,SG",1641725,Trey Alexander,UTA,23,name
+10391,Jamison Battle,TOR,77,"SF,PF",1642419,Jamison Battle,TOR,77,name
+10392,Tristan Enaruna,CLE,21,SF,1642400,Tristan Enaruna,CLE,21,name
+10393,Spencer Jones,DEN,21,"SF,PF",1642461,Spencer Jones,DEN,21,name
+10394,Jamarion Sharp,LAC,33,C,,,,,unmatched
+10395,Trentyn Flowers,CHI,00,SF,1642280,Trentyn Flowers,,,name
+10397,Nae'Qwan Tomlin,CLE,35,"SF,PF",1641772,Nae'Qwan Tomlin,CLE,35,name
+10402,Jahmir Young,MIA,17,PG,1642443,Jahmir Young,,,name
+10411,Malevy Leons,GSW,33,PF,1642502,Malevy Leons,GSW,33,name
+10412,Cormac Ryan,MIL,30,"PG,SG",1642504,Cormac Ryan,MIL,30,name
+10415,Yuki Kawamura,LAC,17,PG,1642530,Yuki Kawamura,LAC,8,name
+10416,RayJ Dennis,ATL,10,PG,1642484,RayJ Dennis,ATL,00,name
+10418,Tolu Smith,DET,35,C,1642449,Tolu Smith,DET,35,name
+10423,Elijah Harkless,DET,16,"PG,SG",1641989,Elijah Harkless,DET,16,name
+10425,Josh Oduro,NOP,13,PF,1642490,Josh Oduro,,,name
+10440,Jeremiah Fears,NOP,0,"PG,SG",1642847,Jeremiah Fears,NOP,0,name
+10441,Yanic Konan Niederhäuser,LAC,14,C,1642949,Yanic Konan Niederhäuser,LAC,14,name
+10442,Noa Essengue,CHI,2,PF,1642855,Noa Essengue,CHI,24,name
+10443,Collin Murray-Boyles,TOR,30,"PF,C",1642867,Collin Murray-Boyles,TOR,30,name
+10444,Derik Queen,NOP,22,"PF,C",1642852,Derik Queen,NOP,22,name
+10445,Egor Dëmin,BKN,8,"PG,SG",1642856,Egor Dëmin,BKN,8,name
+10446,Liam McNeeley,CHA,33,SF,1642862,Liam McNeeley,CHA,33,name
+10447,Khaman Maluach,PHX,10,C,1642863,Khaman Maluach,PHX,10,name
+10448,Tre Johnson,WAS,12,"PG,SG,SF",1642848,Tre Johnson,WAS,12,name
+10449,Will Riley,WAS,27,"SF,PF",1642860,Will Riley,WAS,27,name
+10450,Kon Knueppel,CHA,7,"SG,SF",1642851,Kon Knueppel,CHA,7,name
+10451,Asa Newell,ATL,14,"PF,C",1642854,Asa Newell,ATL,14,name
+10452,Kasparas Jakučionis,MIL,25,"PG,SG",1642857,Kasparas Jakučionis,MIL,25,name
+10453,Jase Richardson,ORL,11,"PG,SG",1642859,Jase Richardson,ORL,11,name
+10454,VJ Edgecombe,PHI,77,"PG,SG",1642845,VJ Edgecombe,PHI,77,name
+10455,Nolan Traore,BKN,10,PG,1642849,Nolan Traore,BKN,10,name
+10456,Danny Wolf,BKN,2,"PF,C",1642874,Danny Wolf,BKN,2,name
+10457,Drake Powell,BKN,4,"PG,SG",1642962,Drake Powell,BKN,4,name
+10458,Ben Saraf,BKN,77,SG,1642879,Ben Saraf,BKN,77,name
+10459,Hugo González,BOS,28,"SG,SF",1642864,Hugo González,BOS,28,name
+10460,Joan Beringer,MIN,19,"PF,C",1642866,Joan Beringer,MIN,19,name
+10461,Walter Clayton Jr.,MEM,4,"PG,SG",1642383,Walter Clayton Jr.,MEM,4,name
+10462,Ace Bailey,UTA,19,"SF,PF",1642846,Ace Bailey,UTA,19,name
+10463,Thomas Sorber,OKC,12,C,1642850,Thomas Sorber,OKC,12,name
+10464,Yang Hansen,POR,16,C,1642905,Yang Hansen,POR,16,name
+10465,Cedric Coward,MEM,23,"SG,SF",1642907,Cedric Coward,MEM,23,name
+10466,Carter Bryant,SAS,11,"SF,PF",1642868,Carter Bryant,SAS,11,name
+10467,Dylan Harper,SAS,2,"PG,SG",1642844,Dylan Harper,SAS,2,name
+10468,Cooper Flagg,DAL,32,"SG,SF,PF",1642843,Cooper Flagg,DAL,32,name
+10469,Nique Clifford,SAC,10,"SG,SF",1642363,Nique Clifford,SAC,10,name
+10470,Kobe Sanders,LAC,4,"SG,SF",1642920,Kobe Sanders,LAC,4,name
+10471,Mohamed Diawara,NYK,51,PF,1642885,Mohamed Diawara,NYK,51,name
+10472,Tyrese Proctor,CLE,24,"PG,SG",1642878,Tyrese Proctor,CLE,24,name
+10473,Amari Williams,BOS,77,C,1642873,Amari Williams,BOS,77,name
+10474,Johni Broome,LAC,22,C,1641780,Johni Broome,,,name
+10475,Koby Brea,PHX,14,SG,1642886,Koby Brea,PHX,14,name
+10476,Ryan Kalkbrenner,CHA,11,C,1641750,Ryan Kalkbrenner,CHA,11,name
+10477,Bogoljub Marković,MIL,23,PF,1642881,Bogoljub Marković,MIL,23,name
+10478,Brooks Barnhizer,OKC,23,"SF,PF",1642964,Brooks Barnhizer,OKC,23,name
+10479,Noah Penda,ORL,93,"SF,PF",1642869,Noah Penda,ORL,93,name
+10480,Rocco Zikarsky,MIN,44,C,1642911,Rocco Zikarsky,MIN,44,name
+10482,Lachlan Olbrich,CHI,47,"PF,C",1642950,Lachlan Olbrich,,,name
+10483,Max Shulga,BOS,44,SG,1642917,Max Shulga,,,name
+10484,Alex Toohey,GSW,22,PF,1642893,Alex Toohey,GSW,22,name
+10485,Will Richard,GSW,3,"SG,SF",1642954,Will Richard,GSW,3,name
+10486,Chaz Lanier,DET,8,SG,1642404,Chaz Lanier,DET,20,name
+10487,Kam Jones,MIL,19,"PG,SG,SF",1642880,Kam Jones,MIL,7,name
+10488,Adou Thiero,LAL,1,"SF,PF",1642876,Adou Thiero,LAL,1,name
+10489,Jamir Watkins,WAS,5,"SG,SF",1642364,Jamir Watkins,WAS,5,name
+10490,Alijah Martin,TOR,55,"PG,SG",1642918,Alijah Martin,TOR,55,name
+10491,Jahmai Mashack,MEM,21,"PG,SG,SF",1642942,Jahmai Mashack,MEM,,name
+10492,Taelon Peter,SAS,4,"PG,SG",1643007,Taelon Peter,SAS,4,name
+10493,John Tonje,POR,2,SG,1642910,John Tonje,POR,8,name
+10494,Javon Small,MEM,10,"PG,SG",1642914,Javon Small,MEM,10,name
+10495,Rasheer Fleming,PHX,20,"PF,C",1642853,Rasheer Fleming,PHX,20,name
+10496,Maxime Raynaud,SAC,42,C,1642875,Maxime Raynaud,SAC,42,name
+10497,Micah Peavy,MEM,14,"SF,PF",1642877,Micah Peavy,MEM,14,name
+10498,Sion James,CHA,4,"SG,SF",1642883,Sion James,CHA,4,name
+10499,Hunter Sallis,PHI,45,"PG,SG",1642282,Hunter Sallis,LAC,45,name
+10500,Mark Sears,MIL,19,PG,1641813,Mark Sears,,,name
+10501,Hunter Dickinson,NOP,4,C,1630621,Hunter Dickinson,,,name
+10504,Miles Kelly,DAL,14,SG,1642939,Miles Kelly,,,name
+10505,Vladislav Goldin,MIA,50,C,1642884,Vladislav Goldin,MIA,50,name
+10506,Chucky Hepburn,TOR,24,PG,1642935,Chucky Hepburn,TOR,24,name
+10508,Caleb Love,PHI,9,"PG,SG",1631126,Caleb Love,PHI,2,name
+10509,Tamar Bates,UTA,0,SG,1642926,Tamar Bates,UTA,7,name
+10510,Dylan Cardwell,SAC,32,"PF,C",1642928,Dylan Cardwell,SAC,32,name
+10511,Ryan Nembhard,CHA,19,PG,1642948,Ryan Nembhard,CHA,9,name
+10512,CJ Huntley,PHX,21,"SF,PF",1643047,CJ Huntley,PHX,22,name
+10515,Curtis Jones,CLE,14,"PG,SG",1642938,Curtis Jones,CLE,1,name
+10516,Chris Mañon,LAL,30,"SG,SF",1643024,Chris Mañon,LAL,30,name
+10517,Myron Gardner,MIA,15,"SG,SF",1642066,Myron Gardner,MIA,15,name
+10519,Arthur Kaluma,LAL,47,PF,1641751,Arthur Kaluma,LAL,,name
+10524,Moussa Cisse,DAL,30,C,1630619,Moussa Cisse,DAL,30,name
+10526,Norchad Omier,MIN,55,"PF,C",1641807,Norchad Omier,MIN,,name
+10527,Chaney Johnson,BKN,31,PF,1643052,Chaney Johnson,BKN,31,name
+10528,Lawson Lovering,MEM,34,C,1643133,Lawson Lovering,,,name
+10529,Tyler Burton,MEM,5,PF,1631174,Tyler Burton,,,name
+10530,Keshon Gilbert,ATL,51,SG,1642933,Keshon Gilbert,ATL,,name
+10532,John Poulakidas,DAL,1,"SG,SF",1642967,John Poulakidas,DAL,1,name
+10533,Jahmyl Telfort,LAC,19,SF,1643141,Jahmyl Telfort,,,name
+10536,Chris Youngblood,POR,11,SG,1642959,Chris Youngblood,POR,3,name
+10537,Igor Milicic Jr.,NYK,41,SF,,,,,unmatched
+10544,LJ Cryer,GSW,18,PG,1643018,LJ Cryer,GSW,18,name
+10545,Dain Dainja,BKN,42,PF,1643120,Dain Dainja,BKN,42,name
+10552,Deivon Smith,GSW,,PG,,,,,unmatched
+10554,Kadary Richmond,CLE,16,"SF,PF",1642955,Kadary Richmond,CLE,,name
+10556,Darius Brown,CLE,30,SG,1642468,Darius Brown II,,,name
+10559,Julian Reese,NOP,13,C,1642882,Julian Reese,NOP,,name
+10560,Sean Pedulla,HOU,0,PG,1642951,Sean Pedulla,HOU,,name
+10561,Grant Nelson,BKN,16,PF,1641761,Grant Nelson,BKN,16,name
+10562,Payton Sandfort,OKC,14,SF,1642362,Payton Sandfort,,,name
+10563,Jayson Kent,POR,29,SF,1643257,Jayson Kent,POR,,name
+10564,Andersson Garcia,UTA,0,"SF,PF",1643158,Andersson Garcia,,,name
+10565,Bez Mbeng,MIA,21,"PG,SG",1643016,Bez Mbeng,MIA,19,name
+10566,Adama Bal,MEM,72,SF,1642380,Adama Bal,,,name
+10567,Toby Okani,MEM,5,PF,1643253,Toby Okani,,,name
+10569,Hayden Gray,BOS,44,SG,1643060,Hayden Gray,BOS,,name
+10570,Allen Graves,TOR,22,PF,1643512,Allen Graves,TOR,22,name
+10571,Yaxel Lendeborg,GSW,1,PF,1642865,Yaxel Lendeborg,GSW,1,name
+10572,Morez Johnson Jr.,DAL,14,PF,1643516,Morez Johnson Jr.,DAL,14,name
+10573,Bennett Stirtz,OKC,14,PG,1642892,Bennett Stirtz,OKC,14,name
+10574,Kingston Flemings,ATL,4,PG,1643412,Kingston Flemings,ATL,4,name
+10575,Christian Anderson Jr.,CHA,5,PG,1643515,Christian Anderson,CHA,5,name
+10576,Brayden Burries,MIL,0,SG,1643415,Brayden Burries,MIL,0,name
+10577,Hannes Steinbach,CHA,22,PF,1643419,Hannes Steinbach,CHA,22,name
+10578,Ebuka Okorie,DET,23,PG,1643536,Ebuka Okorie,DET,,name
+10579,Aday Mara,OKC,15,C,1643530,Aday Mara,OKC,15,name
+10580,Dailyn Swain,CHI,5,SF,1643517,Dailyn Swain,CHI,5,name
+10581,Nate Ament,MIL,15,SF,1643417,Nate Ament,MIL,,name
+10582,Darius Acuff Jr.,SAC,5,PG,1643411,Darius Acuff Jr.,SAC,5,name
+10583,Alex Karaban,SAC,33,SF,1642284,Alex Karaban,SAC,33,name
+10584,Koa Peat,PHX,18,PF,1643520,Koa Peat,PHX,18,name
+10585,Keaton Wagler,LAC,1,SG,1643413,Keaton Wagler,LAC,1,name
+10586,Sergio De Larrea,DAL,55,PG,1643547,Sergio de Larrea,DAL,55,name
+10587,Joshua Jefferson,BKN,9,PF,1643538,Joshua Jefferson,BKN,9,name
+10588,Mikel Brown Jr.,BKN,0,PG,1643414,Mikel Brown Jr.,BKN,0,name
+10589,Chris Cenac Jr.,BOS,12,PF,1643416,Chris Cenac Jr.,BOS,12,name
+10590,Darryn Peterson,UTA,22,SG,1643408,Darryn Peterson,UTA,22,name
+10591,Karim Lopez,MEM,35,SF,1643510,Karim Lopez,MEM,35,name
+10592,Cameron Boozer,MEM,27,PF,1643409,Cameron Boozer,MEM,27,name
+10593,Tarris Reed Jr.,SAS,10,C,1643542,Tarris Reed Jr.,SAS,10,name
+10594,Jayden Quaintance,SAS,22,PF,1643519,Jayden Quaintance,SAS,22,name
+10595,Caleb Wilson,CHI,8,PF,1643410,Caleb Wilson,CHI,8,name
+10596,Zuby Ejiofor,ATL,20,PF,1643544,Zuby Ejiofor,ATL,20,name
+10597,Cameron Carr,LAL,43,SG,1643418,Cameron Carr,LAL,43,name
+10598,Labaron Philon Jr.,PHI,00,PG,1642889,Labaron Philon,PHI,00,name
+10599,AJ Dybantsa,WAS,4,SF,1643407,AJ Dybantsa,WAS,4,name
+10600,Tre Donaldson,MIA,24,PG,1643621,Tre Donaldson,MIA,24,name
+10601,Tobi Lawal,DAL,33,PF,1643588,Tobi Lawal,DAL,33,name
+10602,Bruce Thornton,HOU,2,PG,1643570,Bruce Thornton,HOU,,name
+10603,Ja'Kobi Gillespie,SAS,17,PG,1643551,Ja'Kobi Gillespie,SAS,,name
+10604,Nick Martinelli,LAC,12,SF,1643568,Nick Martinelli,LAC,,name
+10605,Tyler Bilodeau,BKN,34,PF,1643548,Tyler Bilodeau,BKN,34,name
+10606,Jack Kayil,NYK,77,PG,,,,,unmatched
+10607,Trevon Brazile,DEN,7,PF,1642350,Trevon Brazile,DEN,,name
+10608,Felix Okpara,WAS,34,C,1643590,Felix Okpara,WAS,,name
+10609,Izaiyah Nelson,ORL,25,PF,1643593,Izaiyah Nelson,ORL,25,name
+10610,Ugonna Onyenso,DET,34,C,1642391,Ugonna Onyenso,DET,,name
+10611,Otega Oweh,OKC,13,SG,1642923,Otega Oweh,OKC,13,name
+10612,Maliq Brown,SAS,15,PF,1643576,Maliq Brown,SAS,,name
+10613,Jaron Pierre Jr.,NOP,10,SG,1643555,Jaron Pierre Jr.,NOP,10,name
+10614,Malique Lewis,MIL,19,PF,,,,,unmatched
+10615,Dillon Mitchell,BOS,20,SF,1641759,Dillon Mitchell,BOS,,name
+10616,Josh Dix,OKC,21,SG,1643717,Josh Dix,OKC,,name
+10617,Meleek Thomas,CLE,15,SG,1643509,Meleek Thomas,CLE,15,name
+10618,Bryce Hopkins,DEN,13,SF,1643624,Bryce Hopkins,DEN,,name
+10619,Lajae Jones,GSW,25,SF,,,,,unmatched
+10620,AK Okereke,LAL,31,PF,1643758,AK Okereke,LAL,31,name
+10621,Jaden Bradley,TOR,8,PG,1643558,Jaden Bradley,TOR,,name
+10622,Ryan Conwell,MIA,4,SG,1643553,Ryan Conwell,MIA,4,name
+10623,Baba Miller,LAC,18,PF,1642394,Baba Miller,LAC,,name
+10624,Braden Smith,IND,3,PG,1643552,Braden Smith,IND,3,name
+10625,Tyler Nickel,NYK,55,SF,,,,,unmatched
+10626,Henri Veesaar,ATL,13,C,1643539,Henri Veesaar,ATL,13,name
+10627,Vsevolod Ishchenko,DAL,13,SG,,,,,unmatched
+10628,Richie Saunders,MEM,5,SG,,,,,unmatched
+10629,Trey Kaufman-Renn,MIN,14,PF,,,,,unmatched
+10631,Isaiah Evans,MIN,33,SG,1642912,Isaiah Evans,MIN,33,name
+10632,Emanuel Sharp,SAC,34,SG,1643567,Emanuel Sharp,SAC,34,name
+10633,Quadir Copeland,HOU,25,PG,1643595,Quadir Copeland,HOU,,name
+10634,Peter Suder,CHI,15,SG,1643614,Peter Suder,CHI,35,name
+10635,Tobe Awaka,CHI,19,PF,1643591,Tobe Awaka,CHI,,name
+10636,Jaylin Sellers,CHI,22,SG,1643637,Jaylin Sellers,CHI,,name
+10637,Rafael Castro,HOU,00,C,1643572,Rafael Castro,HOU,,name
+10638,Carson Cooper,MEM,20,C,,,,,unmatched
+10639,Ernest Udeh Jr.,CLE,39,C,1643640,"Ernest Udeh, Jr.",CLE,39,name
+10640,Michael Ajayi,CHA,10,PF,1642369,Michael Ajayi,CHA,,name
+10641,Kylan Boswell,CHA,18,PG,1643573,Kylan Boswell,CHA,,name
+10644,Alpha Diallo,DEN,11,SF,1643813,Alpha Diallo,DEN,,name
+10646,Kobe Stewart,CHA,,SG,,,,,unmatched
+10648,Malik Dia,NOP,8,PF,1643738,Malik Dia,NOP,8,name
+10649,Trey Townsend,CHA,,PF,,,,,unmatched
+10654,Chance McMillian,GSW,,PG,,,,,unmatched
+10656,Sean McNeil,CLE,,SG,,,,,unmatched
+10658,Jayden Nunn,SAS,,SG,,,,,unmatched
+10659,Graham Ike,GSW,45,PF,1643633,Graham Ike,GSW,45,name
+10663,Boopie Miller,DEN,,PG,,,,,unmatched
+10665,Justin Harmon,UTA,,SG,,,,,unmatched
+10666,Ibrahima Diallo,UTA,,C,,,,,unmatched
