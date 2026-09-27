@@ -83,3 +83,12 @@ def test_load_context_reports_missing_files(tmp_path):
     assert "build_id_map.py" in ctx.need("id_map")["error"]
     assert "pull_stats.py" in ctx.need("id_map", "stats")["error"]
     assert make_context().need("id_map", "stats", "adp", "settings") is None
+
+
+def test_candidates_ranked_by_adp_with_total():
+    from tests.chat_fixtures import ADP
+    adp = ADP.copy()
+    adp.loc[adp["yahoo_player_id"] == 4, "average_pick"] = 5.0
+    row, err = lookup_player(make_context(adp=adp), "williams")
+    assert [c["player"] for c in err["candidates"]] == ["Jaylin Williams", "Jalen Williams"]
+    assert err["total"] == 2

@@ -4,6 +4,7 @@
 {room_id}.json  -- full snapshot (room metadata + every pick), rewritten atomically when anything changes.
 Mock rooms 400 within days of the draft, so these files are the only lasting record of a mock."""
 import json
+import logging
 from collections.abc import Callable, Mapping
 from pathlib import Path
 
@@ -12,6 +13,7 @@ from yahoo_fantasy.io import now_iso, write_json_atomic
 from yahoo_fantasy.paths import DATA_DIR
 
 DRAFTS_DIR = DATA_DIR / "drafts"
+log = logging.getLogger(__name__)
 
 
 class DraftStore:
@@ -28,9 +30,14 @@ class DraftStore:
         self._written_status: str | None = None
         if self.log_path.exists():
             for line in self.log_path.read_text().splitlines():
-                if line.strip():
+                if not line.strip():
+                    continue
+                try:
                     record = json.loads(line)
-                    self._records[record["pick"]] = record
+                except json.JSONDecodeError:  # partial line from a crash mid-append; the next fetch restores it
+                    log.warning("skipping unreadable line in %s: %r", self.log_path, line[:80])
+                    continue
+                self._records[record["pick"]] = record
         if self.snapshot_path.exists():
             snapshot = json.loads(self.snapshot_path.read_text())
             self._first_seen_at = snapshot.get("first_seen_at")
@@ -56,8 +63,10 @@ class DraftStore:
             new.append(record)
         if new:
             self.log_path.parent.mkdir(parents=True, exist_ok=True)
-            with self.log_path.open("a") as log:
-                log.writelines(json.dumps(r, ensure_ascii=False) + "\n" for r in new)
+            with self.log_path.open("a") as out:
+                if out.tell() and not self.log_path.read_text().endswith("\n"):
+                    out.write("\n")  # terminate a partial line left by a crash so new records stay parseable
+                out.writelines(json.dumps(r, ensure_ascii=False) + "\n" for r in new)
         if room.draft_status == "postdraft" and self._completed_at is None:
             self._completed_at = now
         if new or room.draft_status != self._written_status or not self.snapshot_path.exists():

@@ -43,8 +43,13 @@ def lookup_player(ctx: Context, name: str) -> tuple[pd.Series | None, dict | Non
         return hits.iloc[0], None
     if hits.empty:
         return None, {"error": f"no Yahoo player matching {name!r}"}
+    if ctx.adp is not None:  # most draftable first
+        hits = hits.merge(ctx.adp[["yahoo_player_id", "average_pick"]], on="yahoo_player_id", how="left")
+        hits = hits.sort_values("average_pick", na_position="last", kind="stable")
     candidates = hits[["yahoo_name", "yahoo_team", "yahoo_position"]].head(10).rename(columns=PLAYER_COLUMNS)
-    return None, {"candidates": to_records(candidates), "note": "several players match; ask which one"}
+    return None, {"candidates": to_records(candidates), "total": len(hits),
+                  "note": "several players match; ask which one" + (" (showing 10, most draftable first)"
+                                                                   if len(hits) > 10 else "")}
 
 
 def freshness(state: DraftState, now: datetime) -> dict:
@@ -129,7 +134,8 @@ def league_settings(ctx: Context) -> dict:
 DEFAULT_SEASON = "2025-26"
 ALL_POSITIONS = {"PG", "SG", "SF", "PF", "C"}
 SLOT_POSITIONS = {"G": {"PG", "SG"}, "F": {"SF", "PF"}, "UTIL": ALL_POSITIONS}
-ASCENDING = {"ADP", "TOV"}
+ASCENDING = {"ADP", "TOV", "DEF_RATING", "PF", "BLKA", "L"}  # lower is better
+DEFAULT_STAT_SORT_MIN_GP = 20  # stat sorts otherwise surface tiny samples (regular season only)
 NOT_SORTABLE = {"nba_player_id", "TEAM_ID"}
 
 
@@ -140,7 +146,7 @@ def eligible(positions: str, wanted: str) -> bool:
 
 def available_players(ctx: Context, state: DraftState | None, now: datetime, *, position: str | None = None,
                       sort_by: str = "ADP", season: str = DEFAULT_SEASON, season_type: str = REGULAR,
-                      min_gp: int = 0, limit: int = 25) -> dict:
+                      min_gp: int | None = None, limit: int = 25) -> dict:
     if state is None:
         return NO_ROOM
     if err := ctx.need("id_map", "stats", "settings"):
@@ -155,7 +161,15 @@ def available_players(ctx: Context, state: DraftState | None, now: datetime, *, 
     if sort_key not in ["ADP"] + stat_columns:
         return {"error": f"unknown sort_by {sort_by!r}", "valid_sort_by": ["ADP"] + stat_columns}
 
+    if position and position.strip().upper() not in ALL_POSITIONS | set(SLOT_POSITIONS):
+        return {"error": f"unknown position {position!r}; use one position or slot",
+                "valid_positions": sorted(ALL_POSITIONS) + sorted(SLOT_POSITIONS)}
+
     notes = []
+    if min_gp is None:
+        min_gp = DEFAULT_STAT_SORT_MIN_GP if sort_key != "ADP" and st == REGULAR else 0
+        if min_gp:
+            notes.append(f"min_gp defaulted to {min_gp} for a stat sort; pass min_gp=0 to include small samples")
     if sort_key == "ADP" and ctx.adp is None:
         sort_key = "PTS"
         notes.append("ADP not loaded (run python scripts/pull_adp.py); sorted by PTS instead")

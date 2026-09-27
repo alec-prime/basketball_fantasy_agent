@@ -74,3 +74,13 @@ def test_rooms_do_not_touch_each_other(tmp_path):
     assert len(lines(tmp_path / "123.jsonl")) == 2
     assert len(lines(tmp_path / "999.jsonl")) == 1
     assert json.loads((tmp_path / "999.json").read_text())["is_mock"] is False
+
+
+def test_truncated_last_log_line_does_not_block_resume(tmp_path):
+    DraftStore("123", NBA_IDS, drafts_dir=tmp_path).record(ROOM, Board(PICKS[:1], 20))
+    with (tmp_path / "123.jsonl").open("a") as log:
+        log.write('{"round": 1, "pick": 2, "team_')  # killed mid-append
+    resumed = DraftStore("123", NBA_IDS, drafts_dir=tmp_path)
+    new = resumed.record(ROOM, Board(PICKS, 20))
+    assert [r["pick"] for r in new] == [2]
+    assert [r["pick"] for r in resumed.records()] == [1, 2]

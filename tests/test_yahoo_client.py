@@ -94,3 +94,29 @@ def test_iter_game_players_stops_on_short_page_and_passes_subresource(monkeypatc
         "game/nba/players;start=0;count=25/draft_analysis",
         "game/nba/players;start=25;count=25/draft_analysis",
     ]
+
+
+def test_fantasy_json_refreshes_expired_token(monkeypatch):
+    class ExpiredSession:
+        access_token = "old"
+        refreshed = 0
+
+        def token_is_valid(self):
+            return self.access_token != "old"
+
+        def refresh_access_token(self):
+            type(self).refreshed += 1
+            self.access_token = "new"
+
+    session = ExpiredSession()
+    seen_tokens = []
+    monkeypatch.setattr(yahoo_client, "get_session", lambda: session)
+
+    def fake_get(url, headers, params, timeout):
+        seen_tokens.append(headers["Authorization"])
+        return FakeResp(200, {"fantasy_content": {"ok": True}})
+
+    monkeypatch.setattr(yahoo_client.requests, "get", fake_get)
+    assert yahoo_client.fantasy_json("game/nba", backoff=0) == {"ok": True}
+    assert ExpiredSession.refreshed == 1
+    assert seen_tokens == ["Bearer new"]

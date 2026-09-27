@@ -10,6 +10,7 @@ class FakePoller:
         self.room_id = room_id
         self._state = make_state(drafted=picks)
         self.stopped = False
+        self.running = True
 
     def state(self):
         return self._state
@@ -77,3 +78,12 @@ def test_initial_room_from_env_is_started():
     pollers = []
     server = build_server(make_context(), start_poller=factory(pollers), clock=lambda: T0, initial_room="777")
     assert pollers and call(server, "draft_status")["room_id"] == "777"
+
+
+def test_setting_the_same_room_again_keeps_the_running_poller():
+    pollers = []
+    server = build_server(make_context(), start_poller=factory(pollers), clock=lambda: T0)
+    call(server, "set_draft_room", room="777")
+    out = call(server, "set_draft_room", room="https://basketball.fantasysports.yahoo.com/draftclient/nba/777/3")
+    assert out["room_id"] == "777"
+    assert len(pollers) == 1 and not pollers[0].stopped

@@ -1,6 +1,7 @@
 """Yahoo Fantasy Sports API access: the OAuth session, a retried JSON GET, and helpers for Yahoo's
 list-of-single-key-dicts JSON shape. Call pattern proven in notebooks/draft_room_by_room_id.ipynb."""
 import logging
+import threading
 import time
 from collections.abc import Iterator
 
@@ -23,6 +24,7 @@ class YahooError(RuntimeError):
 
 
 _session: OAuth2 | None = None
+_token_lock = threading.Lock()  # the poller thread and tool threads share one session
 
 
 def get_session() -> OAuth2:
@@ -39,7 +41,10 @@ def fantasy_json(path: str, *, retries: int = 3, backoff: float = 1.0) -> dict:
         if attempt:
             time.sleep(backoff * 2 ** (attempt - 1))
         session = get_session()
-        session.token_is_valid()  # refreshes the access token if it has expired
+        with _token_lock:
+            # token_is_valid() only reports expiry (after ~59 min); yahoo_oauth refreshes only in OAuth2.__init__.
+            if not session.token_is_valid():
+                session.refresh_access_token()
         try:
             resp = requests.get(
                 f"{FANTASY_BASE}/{path}",

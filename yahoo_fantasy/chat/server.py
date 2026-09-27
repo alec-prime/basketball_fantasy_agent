@@ -5,6 +5,7 @@ Never print to stdout here: stdout is the MCP transport. Logging goes to stderr.
 import logging
 import os
 import sys
+import threading
 from collections.abc import Callable
 
 from dotenv import load_dotenv
@@ -30,6 +31,7 @@ def build_server(ctx: Context, *, start_poller: Callable[[str], DraftPoller], cl
                  initial_room: str | None = None) -> MCPServer:
     server = MCPServer("yahoo-draft", instructions=INSTRUCTIONS)
     current: dict[str, DraftPoller | None] = {"poller": None}
+    switching = threading.Lock()  # tools run on worker threads; never run two pollers for one room
 
     def state():
         poller = current["poller"]
@@ -44,13 +46,18 @@ def build_server(ctx: Context, *, start_poller: Callable[[str], DraftPoller], cl
             room_id = parse_room_id(room)
         except ValueError as exc:
             return {"error": str(exc)}
-        try:
-            poller = start_poller(room_id)
-        except Exception as exc:
-            return {"error": f"could not load room {room_id}: {exc}"}
-        previous, current["poller"] = current["poller"], poller
-        if previous is not None:
-            previous.stop()
+        with switching:
+            previous = current["poller"]
+            if previous is not None and previous.room_id == room_id and previous.running:
+                poller = previous  # already following this room
+            else:
+                try:
+                    poller = start_poller(room_id)
+                except Exception as exc:
+                    return {"error": f"could not load room {room_id}: {exc}"}
+                current["poller"] = poller
+                if previous is not None:
+                    previous.stop()
         s = poller.state()
         return {"room_id": room_id, "room": s.room.name, "is_mock": s.room.is_mock,
                 "draft_status": s.room.draft_status, "picks_made": len(s.picks), "total_picks": s.slots}
@@ -68,12 +75,13 @@ def build_server(ctx: Context, *, start_poller: Callable[[str], DraftPoller], cl
 
     @server.tool()
     def available_players(position: str | None = None, sort_by: str = "ADP", season: str = "2025-26",
-                          season_type: str = "Regular Season", min_gp: int = 0, limit: int = 25) -> dict:
+                          season_type: str = "Regular Season", min_gp: int | None = None, limit: int = 25) -> dict:
         """Undrafted players with Yahoo ADP and one season's per-game line in the league's categories.
         position: PG/SG/SF/PF/C or a slot (G, F, Util); matches any eligibility. sort_by: ADP (default,
         earliest first) or any stat column (PTS, BLK, FG_PCT, TS_PCT, USG_PCT, ...; TOV sorts ascending).
         season: 2023-24, 2024-25, 2025-26 (Regular Season) or 2026-27 (Pre Season). min_gp drops players
-        with fewer games; players with no NBA stats are still listed and counted under no_stats."""
+        with fewer games (defaults to 20 for regular-season stat sorts, else 0); players with no NBA stats are
+        still listed and counted under no_stats."""
         return tools.available_players(ctx, state(), clock(), position=position, sort_by=sort_by, season=season,
                                        season_type=season_type, min_gp=min_gp, limit=limit)
 

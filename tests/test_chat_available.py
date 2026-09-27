@@ -33,10 +33,10 @@ def test_position_filter_matches_any_eligibility_and_slots():
 
 
 def test_sort_by_stat_is_case_insensitive_and_tov_ascending():
-    out = available_players(make_context(), make_state(), T0, sort_by="blk")
+    out = available_players(make_context(), make_state(), T0, sort_by="blk", min_gp=0)
     assert names(out)[:2] == ["Jaren Jackson Jr.", "Jaylin Williams"]
     assert names(out)[-1] == "Rookie Guy"  # no stats sort last
-    out = available_players(make_context(), make_state(), T0, sort_by="TOV")
+    out = available_players(make_context(), make_state(), T0, sort_by="TOV", min_gp=0)
     assert names(out)[0] == "Jaylin Williams"
 
 
@@ -77,3 +77,20 @@ def test_draft_status():
     assert [p["pick"] for p in out["recent_picks"]] == [3, 2]
     assert out["recent_picks"][0]["team"] == "Team One"
     assert draft_status(None, T0) == NO_ROOM
+
+
+def test_stat_sort_defaults_to_min_gp_so_tiny_samples_do_not_lead():
+    out = available_players(make_context(), make_state(), T0, sort_by="TOV")
+    assert "Jaylin Williams" not in names(out)  # 12 GP
+    assert any("min_gp" in n for n in out["notes"])
+    assert "Jaylin Williams" in names(available_players(make_context(), make_state(), T0))  # ADP sort: no default
+
+
+def test_lower_is_better_columns_sort_ascending():
+    from yahoo_fantasy.chat.tools import ASCENDING
+    assert {"TOV", "DEF_RATING", "PF", "BLKA", "L"} <= ASCENDING
+
+
+def test_unknown_position_returns_error_with_valid_values():
+    out = available_players(make_context(), make_state(), T0, position="PG/SG")
+    assert "unknown position" in out["error"] and "G" in out["valid_positions"] and "PG" in out["valid_positions"]
