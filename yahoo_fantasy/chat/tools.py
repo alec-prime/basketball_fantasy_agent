@@ -124,3 +124,83 @@ def game_logs(ctx: Context, name: str, season_type: str = REGULAR, last_n: int =
 
 def league_settings(ctx: Context) -> dict:
     return ctx.need("settings") or ctx.settings
+
+
+DEFAULT_SEASON = "2025-26"
+ALL_POSITIONS = {"PG", "SG", "SF", "PF", "C"}
+SLOT_POSITIONS = {"G": {"PG", "SG"}, "F": {"SF", "PF"}, "UTIL": ALL_POSITIONS}
+ASCENDING = {"ADP", "TOV"}
+NOT_SORTABLE = {"nba_player_id", "TEAM_ID"}
+
+
+def eligible(positions: str, wanted: str) -> bool:
+    key = wanted.strip().upper()
+    return bool(set(positions.split(",")) & SLOT_POSITIONS.get(key, {key}))
+
+
+def available_players(ctx: Context, state: DraftState | None, now: datetime, *, position: str | None = None,
+                      sort_by: str = "ADP", season: str = DEFAULT_SEASON, season_type: str = REGULAR,
+                      min_gp: int = 0, limit: int = 25) -> dict:
+    if state is None:
+        return NO_ROOM
+    if err := ctx.need("id_map", "stats", "settings"):
+        return err
+    st = season_type_of(season_type)
+    if st is None:
+        return {"error": f"season_type must be 'Regular Season' or 'Pre Season', not {season_type!r}"}
+    all_lines = ctx.stats.season_lines
+    stat_columns = [c for c in all_lines.columns
+                    if c not in NOT_SORTABLE and pd.api.types.is_numeric_dtype(all_lines[c])]
+    sort_key = sort_by.strip().upper()
+    if sort_key not in ["ADP"] + stat_columns:
+        return {"error": f"unknown sort_by {sort_by!r}", "valid_sort_by": ["ADP"] + stat_columns}
+
+    notes = []
+    if sort_key == "ADP" and ctx.adp is None:
+        sort_key = "PTS"
+        notes.append("ADP not loaded (run python scripts/pull_adp.py); sorted by PTS instead")
+    lines = all_lines[(all_lines["SEASON"] == season) & (all_lines["SEASON_TYPE"] == st)]
+    if lines.empty:
+        pulled = ctx.stats.preseason_pulled_at("season_lines") if st == PRESEASON else None
+        have = sorted({f"{s} {t}" for s, t in zip(all_lines["SEASON"], all_lines["SEASON_TYPE"])})
+        notes.append(f"no {season} {st} stats in cache" + (f" (pulled at {pulled})" if pulled else "")
+                     + f"; cached: {', '.join(have)}")
+
+    pool = ctx.id_map[~ctx.id_map["yahoo_player_id"].isin(state.drafted_ids)]
+    if position:
+        pool = pool[pool["yahoo_position"].map(lambda p: eligible(p, position))]
+    adp = ctx.adp if ctx.adp is not None else pd.DataFrame({  # typed, so the merge on int64 IDs works
+        "yahoo_player_id": pd.Series(dtype="int64"), "average_pick": pd.Series(dtype="float64"),
+        "percent_drafted": pd.Series(dtype="float64")})
+    df = pool.merge(lines, on="nba_player_id", how="left")
+    df = df.merge(adp[["yahoo_player_id", "average_pick", "percent_drafted"]], on="yahoo_player_id", how="left")
+    if min_gp:
+        df = df[df["GP"].isna() | (df["GP"] >= min_gp)]
+    sort_column = "average_pick" if sort_key == "ADP" else sort_key
+    df = df.sort_values(sort_column, ascending=sort_key in ASCENDING, na_position="last", kind="stable")
+
+    categories = [c["column"] for c in ctx.settings["categories"]]
+    columns = ["yahoo_name", "yahoo_team", "yahoo_position", "average_pick", "percent_drafted", "GP", "MIN"] + categories
+    if sort_column not in columns:
+        columns.append(sort_column)
+    no_stats = df[df["GP"].isna()]
+    out = {"season": season, "season_type": st, "sort_by": sort_key, "position": position,
+           "available_count": len(df),
+           "players": to_records(df[columns].head(max(limit, 0)).rename(columns=PLAYER_COLUMNS)),
+           "no_stats": {"count": len(no_stats), "names": list(no_stats["yahoo_name"].head(10))},
+           "adp_pulled_at": ctx.adp_pulled_at}
+    if notes:
+        out["notes"] = notes
+    return out | freshness(state, now)
+
+
+def draft_status(state: DraftState | None, now: datetime, last_n: int = 10) -> dict:
+    if state is None:
+        return NO_ROOM
+    recent = state.picks[-last_n:] if last_n > 0 else []
+    return {
+        "room_id": state.room.room_id, "room": state.room.name, "is_mock": state.room.is_mock,
+        "draft_status": state.room.draft_status, "picks_made": len(state.picks), "total_picks": state.slots,
+        "recent_picks": [{"round": p.round, "pick": p.pick, "team": state.room.teams.get(p.team_key, p.team_key),
+                          "player": p.player_name} for p in reversed(recent)],
+    } | freshness(state, now)
