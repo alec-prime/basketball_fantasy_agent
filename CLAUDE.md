@@ -29,12 +29,15 @@ Python virtual environment lives at `fantasy_venv/` in the project root.
 ```
 source fantasy_venv/bin/activate
 pip install -r requirements.txt
+pip install -e .
 ```
 
 Baseline packages installed ahead of the final architecture (all likely needed regardless of what's chosen later):
 `requests`, `yahoo_fantasy_api` + `yahoo_oauth` (Yahoo Fantasy Sports API access), `pandas`/`numpy` (player
 valuation and stats work), `python-dotenv` (local config/secrets), `fastapi` + `uvicorn` (backend for the local web
-app), `pytest`. Re-run `pip freeze > requirements.txt` after adding packages.
+app), `pytest`, `nba_api`. The project itself is installed editable (`pip install -e .`) so `scripts/` and the MCP
+server can import `yahoo_fantasy` from any working directory. Re-run `pip freeze --exclude-editable > requirements.txt`
+after adding packages.
 
 `yahoo_oauth` persists OAuth tokens to a JSON file on disk — never commit those (see `.gitignore`).
 
