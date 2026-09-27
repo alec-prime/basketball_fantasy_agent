@@ -1,6 +1,7 @@
 """Atomic file writes: write to a temp file beside the target, then rename over it."""
 import json
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -19,3 +20,7 @@ def write_csv_atomic(df: pd.DataFrame, path: Path) -> None:
 
 def write_json_atomic(obj, path: Path) -> None:
     write_text_atomic(path, json.dumps(obj, indent=2, default=str) + "\n")
+
+
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
