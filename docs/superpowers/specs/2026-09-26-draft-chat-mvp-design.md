@@ -220,8 +220,34 @@ room is set. The thread keeps the draft state current, and tools read that state
 - **Freshness in answers:** every draft-aware tool response includes `as_of` (the age of the last
   successful poll) and, if it's set, `last_error`. If the state is more than 30s old, the response
   starts with a staleness warning.
-- **Pick log:** each new pick is appended to `data/drafts/{room_id}.jsonl` (gitignored) with the time
-  the poller first saw it. That gives a record of the draft and replayable fixtures for tests.
+- **Saved results:** see "Saved draft results" below. The poller writes them as picks arrive.
+
+### Saved draft results
+
+Every draft the poller watches, **mock or league**, is saved to disk and kept. Mock rooms return 400
+within days of the draft (probe above), so the saved copy is the only lasting record of a mock.
+
+`yahoo_fantasy/draft_store.py` writes two files per room in `data/drafts/`:
+
+- `{room_id}.jsonl` — append-only pick log. There's one line per pick, written the first time the poller
+  sees it: `round, pick, team_key, team_name, yahoo_player_id, nba_player_id, player_name, seen_at`.
+- `{room_id}.json` — snapshot of the whole draft: room name, `is_mock`, `num_teams`, team key → name,
+  `draft_status`, `first_seen_at`, `completed_at` (set when the draft reaches `postdraft`), and every
+  pick in order. It is rewritten atomically whenever the picks change, so it's always a complete,
+  valid file.
+
+Rules:
+
+- **Never deleted or overwritten by another draft.** A room ID is unique, so each draft gets its own
+  files. Nothing in the app removes them.
+- **Resume, don't duplicate.** If `set_draft_room` is called for a room that already has files (a
+  server restart mid-draft, or re-setting the room), the store loads them first. Picks already logged
+  keep their original `seen_at` and aren't appended again.
+- **Committed to git.** `data/drafts/` is not gitignored. The files are small and contain no secrets,
+  and committing them gives mock drafts a copy that survives the machine.
+- **After-the-fact save:** `scripts/save_draft.py ROOM` fetches a room's picks once and writes the same
+  two files, for a draft the poller wasn't watching. It works for league drafts at any time, and for
+  mocks only while the room still exists.
 
 The poller's loop logic, `poll_once(state, fetch) -> state`, is a pure step function, so tests drive
 it with a fake fetcher and no threads or network.
@@ -296,6 +322,9 @@ Unit tests (`pytest`, no network):
   roster slots above, and exactly the 9 scoring categories, with `FGM/A`/`FTM/A` excluded and each
   mapped to its column. An unmapped `stat_id` raises an error that names it. `parse_draft_analysis`
   handles normal rows and `"-"` (no data) rows.
+- `tests/test_draft_store.py` — covers several things in a temp directory. The snapshot has every pick
+  and the room metadata. Reopening a room with existing files adds no duplicate lines and keeps the
+  original `seen_at`. `completed_at` is set on `postdraft`. Two rooms never touch each other's files.
 - `tests/test_poller.py` — drives `poll_once` with a fake fetcher. New picks are added and logged once
   each. A failed fetch keeps the previous drafted set and records the error. 3 failures in a row
   switch to the 30s backoff, and a success resets it. `postdraft` stops the poller. The staleness flag
@@ -312,8 +341,9 @@ The fetchers and the server wrapper are validated live, not unit-tested:
 2. Register the server and call each tool once from Claude Code.
 3. **End-to-end check (sub-project 5):** join a Yahoo Live Standard NBA mock draft. Set the room from
    Claude and draft a few rounds. Confirm that "best available" drops players within about 5s of them
-   being picked, that `draft_status` shows the poller healthy, and that `data/drafts/{room}.jsonl`
-   records every pick.
+   being picked, that `draft_status` shows the poller healthy, and that `data/drafts/{room}.json`
+   / `.jsonl` hold every pick. Then restart the server mid-draft and confirm it resumes without
+   duplicates.
 
 ## Dependencies
 
