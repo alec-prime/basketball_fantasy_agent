@@ -27,8 +27,8 @@ ID_MAP = pd.DataFrame({
 
 def line(pid, season, season_type="Regular Season", **stats):
     base = dict(nba_player_id=pid, SEASON=season, SEASON_TYPE=season_type, PLAYER_NAME=f"p{pid}", TEAM_ID=1,
-                GP=70, MIN=34.0, FG_PCT=0.5, FT_PCT=0.8, FG3M=1.0, PTS=20.0, REB=8.0, AST=5.0, STL=1.0, BLK=1.0,
-                TOV=2.0, TS_PCT=0.6)
+                GP=70, MIN=34.0, FG_PCT=0.5, FT_PCT=0.8, FTM=4.0, FTA=5.0, FG3M=1.0, PTS=20.0, REB=8.0, AST=5.0,
+                STL=1.0, BLK=1.0, TOV=2.0, TS_PCT=0.6)
     return base | stats
 
 
