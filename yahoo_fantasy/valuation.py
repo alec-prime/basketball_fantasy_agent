@@ -13,6 +13,13 @@ def counting_categories(categories: list[str]) -> list[str]:
     return [c for c in categories if not c.endswith("_PCT") and c not in PUNTED]
 
 
+def games_by_season(lines: pd.DataFrame) -> dict[int, dict[str, int]]:
+    """GP per cached regular season, for every player with any regular-season line."""
+    regular = lines[lines["SEASON_TYPE"] == REGULAR].sort_values("SEASON")
+    return {int(pid): {season: int(gp) for season, gp in zip(g["SEASON"], g["GP"])}
+            for pid, g in regular.groupby("nba_player_id")}
+
+
 def player_values(lines: pd.DataFrame, categories: list[str], pool_size: int, season: str = SEASON) -> pd.DataFrame:
     """One row per player with a `season` regular-season line. Pool mean/std come from the top `pool_size`
     players by total minutes (about the rostered players); everyone else is scored against that pool."""
@@ -25,9 +32,8 @@ def player_values(lines: pd.DataFrame, categories: list[str], pool_size: int, se
         std = pool[cat].std(ddof=0)
         out[f"z_{cat}"] = (current[cat] - pool[cat].mean()) / std if std else 0.0
     out["z_per_game"] = out[[f"z_{c}" for c in cats]].sum(axis=1)
-    played = {pid: {season_: int(gp) for season_, gp in zip(g["SEASON"], g["GP"])}
-              for pid, g in regular.sort_values("SEASON").groupby("nba_player_id")}
-    out["gp_by_season"] = [played[pid] for pid in out["nba_player_id"]]
+    played = games_by_season(lines)
+    out["gp_by_season"] = [played[int(pid)] for pid in out["nba_player_id"]]
     out["games_factor"] = [sum(gp.values()) / len(gp) / FULL_SEASON_GAMES for gp in out["gp_by_season"]]
     out["value"] = out["z_per_game"] * out["games_factor"]
     pool_ft_pct = pool["FTM"].sum() / pool["FTA"].sum()

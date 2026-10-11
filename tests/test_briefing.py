@@ -136,3 +136,35 @@ def test_without_adp_candidates_follow_value(tmp_path):
     first = out["my_picks"][0]["candidates"]
     assert first[0]["player"] == "P14" and len(first) == 15 and "likely_gone" not in first[0]
     assert any("pull_adp.py" in n for n in out["notes"])
+
+
+def test_players_without_adp_fill_the_window_by_value(tmp_path):
+    # ADP only for P1..P10; P20 is the best of the no-ADP tail, so it outranks P11..P13 for the open spots
+    lines = pd.concat([LINES[LINES["nba_player_id"] != 120],
+                       pd.DataFrame([line(120, "2025-26", PTS=60.0)]).astype({"nba_player_id": "Int64"})])
+    adp = ADP[ADP["yahoo_player_id"] <= 10]
+    out = draft_briefing(ctx(tmp_path, adp=adp, stats=StatsCache(lines, pd.DataFrame(), {})), state(), T0)
+    first = {c["player"]: c for c in out["my_picks"][0]["candidates"]}  # ranks 1..13: P2..P10, then 4 by value
+    assert {"P20", "P14", "P11", "P12"} <= set(first) and "P13" not in first
+    assert first["P20"]["adp_rank"] is None and first["P20"]["likely_gone"] is False
+
+
+def test_missed_last_season_is_not_no_stats(tmp_path):
+    # P6 has only a 2024-25 line (missed 2025-26): flagged so Claude checks player_stats, with games shown
+    lines = pd.concat([LINES[LINES["nba_player_id"] != 106],
+                       pd.DataFrame([line(106, "2024-25", GP=75)]).astype({"nba_player_id": "Int64"})])
+    out = draft_briefing(ctx(tmp_path, stats=StatsCache(lines, pd.DataFrame(), {})), state(), T0)
+    cands = {c["player"]: c for c in out["my_picks"][0]["candidates"]}
+    assert cands["P6"]["no_2025_26_stats"] is True and "no_stats" not in cands["P6"]
+    assert cands["P6"]["gp_by_season"] == {"2024-25": 75} and cands["P6"]["value"] is None
+    assert cands["P5"]["no_stats"] is True and cands["P5"]["gp_by_season"] is None
+
+
+def test_unreadable_roles_sheet_is_a_note(tmp_path):
+    path = tmp_path / "team_roles.xlsx"
+    pd.DataFrame({"yahoo_player_id": [3]}).to_excel(path, sheet_name="Renamed", index=False)
+    out = draft_briefing(ctx(tmp_path, roles_path=path), state(), T0)
+    assert out["my_picks"] and any("roles sheet unreadable" in n for n in out["notes"])
+    (tmp_path / "broken.xlsx").write_text("not a spreadsheet")
+    out = draft_briefing(ctx(tmp_path, roles_path=tmp_path / "broken.xlsx"), state(), T0)
+    assert out["my_picks"] and any("roles sheet unreadable" in n for n in out["notes"])

@@ -1,5 +1,6 @@
 """draft_briefing: everything Claude needs to suggest my next picks, in one call. Pure: no MCP, no network.
 The live, keeper-aware pick schedule comes from my_next_pick so there's one source of truth for it."""
+import zipfile
 from datetime import datetime
 
 import pandas as pd
@@ -8,7 +9,7 @@ from yahoo_fantasy.chat.context import Context, text_or_none
 from yahoo_fantasy.chat.tools import NO_ROOM, Rehearsal, freshness, keepers_in_play, my_next_pick
 from yahoo_fantasy.poller import DraftState
 from yahoo_fantasy.stats.transform import REGULAR
-from yahoo_fantasy.valuation import SEASON, counting_categories, player_values
+from yahoo_fantasy.valuation import SEASON, counting_categories, games_by_season, player_values
 
 WINDOW_BEFORE, WINDOW_AFTER = 3, 12  # ADP ranks around my pick: a few that may slip, the rest likely there
 SCORING = {"headone": "one win per week: whoever wins more of the categories takes the week",
@@ -43,13 +44,18 @@ def candidate_pool(ctx: Context, state: DraftState, kept_ids: set, roles: pd.Dat
     categories = [c["column"] for c in ctx.settings["categories"]]
     df = ctx.id_map[~ctx.id_map["yahoo_player_id"].isin(state.drafted_ids | kept_ids)]
     df = df.merge(current[["nba_player_id"] + STAT_FIELDS], on="nba_player_id", how="left")
-    df = df.merge(player_values(lines, categories, pool_size(ctx.settings)), on="nba_player_id", how="left")
+    values = player_values(lines, categories, pool_size(ctx.settings)).drop(columns="gp_by_season")
+    df = df.merge(values, on="nba_player_id", how="left")
+    played = games_by_season(lines)  # also for players who missed 2025-26
+    df["gp_by_season"] = [None if pd.isna(pid) else played.get(int(pid)) for pid in df["nba_player_id"]]
     if roles is not None:
         df = df.merge(roles, on="yahoo_player_id", how="left")
     if ctx.adp is None:
         return df.sort_values("value", ascending=False, na_position="last", kind="stable").reset_index(drop=True)
     df = df.merge(ctx.adp[["yahoo_player_id", "average_pick"]], on="yahoo_player_id", how="left")
-    df = df.sort_values("average_pick", na_position="last", kind="stable").reset_index(drop=True)
+    # players without ADP follow by value, so late-round windows don't fill in ID-map order
+    df = df.sort_values(["average_pick", "value"], ascending=[True, False], na_position="last",
+                        kind="stable").reset_index(drop=True)
     return df.assign(adp_rank=range(1, len(df) + 1))
 
 
@@ -60,8 +66,9 @@ def candidate(r: dict, cats: list[str], has_adp: bool) -> dict:
            "adp": num(r.get("average_pick")), "adp_rank": int(r["adp_rank"]) if has_rank else None}
     if has_adp:
         out["likely_gone"] = bool(r["likely_gone"])
-    if pd.isna(r["GP"]):
-        out |= {"no_stats": True} | dict.fromkeys(VALUE_FIELDS)
+    if pd.isna(r["GP"]):  # earlier seasons only: Claude should check player_stats before writing him off
+        flag = "no_2025_26_stats" if r["gp_by_season"] else "no_stats"
+        out |= {flag: True} | dict.fromkeys(VALUE_FIELDS) | {"gp_by_season": r["gp_by_season"]}
     else:
         out |= {f: num(r[f], 3 if f.endswith("_PCT") else 1) for f in STAT_FIELDS}
         out |= {"z": {c: num(r[f"z_{c}"], 2) for c in cats}, "z_per_game": num(r["z_per_game"], 2),
@@ -79,7 +86,7 @@ def window(pool: pd.DataFrame, before: int, has_adp: bool) -> pd.DataFrame:
     if not has_adp:
         return pool.head(WINDOW_BEFORE + WINDOW_AFTER)
     rows = pool.iloc[max(before - WINDOW_BEFORE, 0): before + WINDOW_AFTER]
-    return rows.assign(likely_gone=rows["adp_rank"] <= before)
+    return rows.assign(likely_gone=rows["adp_rank"].le(before) & rows["average_pick"].notna())
 
 
 def draft_briefing(ctx: Context, state: DraftState | None, now: datetime, rounds: int = 4,
@@ -95,9 +102,13 @@ def draft_briefing(ctx: Context, state: DraftState | None, now: datetime, rounds
     preferences = ctx.read_preferences()
     if preferences is None:
         notes.append(f"draft preferences missing: {ctx.preferences_path}")
-    roles = ctx.read_roles()
-    if roles is None:
-        notes.append("roles sheet missing: run python scripts/build_roles.py")
+    try:
+        roles = ctx.read_roles()
+        if roles is None:
+            notes.append("roles sheet missing: run python scripts/build_roles.py")
+    except (OSError, ValueError, KeyError, zipfile.BadZipFile) as exc:  # hand-edited: renamed tab, bad save
+        roles = None
+        notes.append(f"roles sheet unreadable ({exc}): {ctx.roles_path}")
     has_adp = ctx.adp is not None
     if not has_adp:
         notes.append("ADP not loaded (run python scripts/pull_adp.py): candidates are the top players by value")
