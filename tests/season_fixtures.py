@@ -43,10 +43,11 @@ def games(pid, minutes, fga=None, start=0, team="LAC") -> list[dict]:
     return [glog(pid, day(start + i), team, m, f) for i, (m, f) in enumerate(zip(minutes, fga))]
 
 
-def snap(yid, name, owner="FA", snapshot_date=TODAY, pct=5.0, positions="SF", status="", waiver_date="") -> dict:
+def snap(yid, name, owner="FA", snapshot_date=TODAY, pct=5.0, positions="SF", status="", waiver_date="",
+         note="") -> dict:
     return dict(snapshot_date=snapshot_date, yahoo_player_id=yid, player_name=name, owner=owner,
                 waiver_date=waiver_date, percent_owned=pct, pct_owned_delta=0.0, positions=positions, status=status,
-                injury_note="")
+                injury_note=note)
 
 
 def snapshots(*rows) -> pd.DataFrame:

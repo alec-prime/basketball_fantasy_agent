@@ -166,6 +166,7 @@ PRODUCTION_FULL = 2.0  # per-game z above expectation at which production is ful
 OWNED_LOW = 50.0
 OWNED_RISE_FULL = 15.0
 URGENCY_LOOKBACK = 3  # daily snapshots
+TREND_SNAPSHOTS = URGENCY_LOOKBACK + 1  # % owned values reported: today and the lookback days before
 UNMATCHED_SHOWN = 10
 OPEN = {"FA", "W"}
 
@@ -181,6 +182,12 @@ def urgency(yid: int, snapshots: pd.DataFrame) -> float:
     now = float(rows["percent_owned"].iloc[-1])
     then = float(rows["percent_owned"].iloc[max(len(rows) - 1 - URGENCY_LOOKBACK, 0)])
     return round(0.5 * (1 - _clamp(now / OWNED_LOW)) + 0.5 * _clamp((now - then) / OWNED_RISE_FULL), 3)
+
+
+def owned_trend(yid: int, snapshots: pd.DataFrame) -> list[float]:
+    """His last TREND_SNAPSHOTS daily % owned values, oldest first."""
+    rows = snapshots[snapshots["yahoo_player_id"] == yid].sort_values("snapshot_date")
+    return [float(v) for v in rows["percent_owned"].tail(TREND_SNAPSHOTS)]
 
 
 def score(change: RoleChange, jump: float | None, urg: float, kind: str) -> int:
@@ -218,15 +225,19 @@ def scan(season, id_map: pd.DataFrame, roles_by_yid: dict[int, dict], valuer) ->
         jump = None if v5 is None or expected is None else round(float(v5) - float(expected), 2)
         urg = urgency(yid, season.snapshots)
         total = score(change, jump, urg, why["kind"])
+        status = r["status"] or ""
+        alertable = total >= ALERT_AT and change.games >= MIN_ALERT_GAMES and status not in OUT
         records.append({
             "yahoo_player_id": yid, "nba_player_id": nid, "name": r["player_name"], "owner": r["owner"],
-            "positions": r["positions"], "percent_owned": float(r["percent_owned"]), "team": team,
+            "positions": r["positions"], "percent_owned": float(r["percent_owned"]),
+            "percent_owned_trend": owned_trend(yid, season.snapshots), "team": team,
+            "status": status, "injury_note": r["injury_note"] or "",
             "games": int(change.games), "baseline": change.baseline, "minutes": asdict(change.minutes),
             "fga": asdict(change.fga),
             "production": {"value_5": v5, "value_10": v10, "expectation": expected, "expectation_source": source,
                            "jump": jump},
             "explanation": why, "urgency": urg, "score": total,
-            "level": "alert" if total >= ALERT_AT and change.games >= MIN_ALERT_GAMES else "watch"})
+            "level": "alert" if alertable else "watch"})  # an OUT candidate can't use the role yet
     records.sort(key=lambda rec: -rec["score"])
     top = [name for _, name in sorted(unmatched, key=lambda u: -u[0])[:UNMATCHED_SHOWN]]
     return {"candidates": records, "unmatched": {"count": len(unmatched), "top": top}}

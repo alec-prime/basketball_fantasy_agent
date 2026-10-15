@@ -45,6 +45,14 @@ def test_alert_text_reads_like_a_notification():
     assert "Kawhi Leonard O" in text and "drop Bench Guy" in text and "+2.1" in text
 
 
+def test_alert_text_shows_status_and_owned_trend():
+    text = alert_text(ALERT | {"status": "Q", "injury_note": "Ankle", "percent_owned_trend": [1.0, 2.0, 3.0, 4.0]})
+    assert text.startswith("Cam Middle (LAC, Q: Ankle) 82:")
+    assert "4% owned (+3 in 3 days)" in text
+    assert "1 day)" in alert_text(ALERT | {"percent_owned_trend": [1.0, 4.0]})
+    assert "4% owned. Add" in alert_text(ALERT | {"percent_owned_trend": [4.0]})  # one snapshot: no change to show
+
+
 def test_stdout_notifier_prints_json():
     buf = io.StringIO()
     StdoutNotifier(buf).send([ALERT], stale=None)

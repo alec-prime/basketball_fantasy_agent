@@ -12,12 +12,25 @@ class Notifier(Protocol):
     def send(self, alerts: list[dict], stale: str | None) -> None: ...
 
 
+def _owned(a: dict) -> str:
+    text = f"{a['percent_owned']:.0f}% owned"
+    trend = a.get("percent_owned_trend") or []
+    if len(trend) > 1:
+        days = len(trend) - 1
+        text += f" ({trend[-1] - trend[0]:+.0f} in {days} day{'s' if days > 1 else ''})"
+    return text
+
+
 def alert_text(a: dict) -> str:
     why = a["explanation"]
     reason = (f"{why['teammate']['name']} {why['teammate']['status']}" if why["kind"] == "opportunity"
               else "organic")
-    text = (f"{a['name']} ({a['team']}) {a['score']}: +{a['minutes']['delta']} min, +{a['fga']['delta']} FGA over "
-            f"{a['games']} games; {reason}; {a['percent_owned']:.0f}% owned")
+    status = a.get("status")
+    if status and a.get("injury_note"):
+        status = f"{status}: {a['injury_note']}"
+    where = f"{a['team']}, {status}" if status else a["team"]
+    text = (f"{a['name']} ({where}) {a['score']}: +{a['minutes']['delta']} min, +{a['fga']['delta']} FGA over "
+            f"{a['games']} games; {reason}; {_owned(a)}")
     move = a.get("move")
     if move:
         text += f". Add {move['day']}, drop {move['drop']}"
