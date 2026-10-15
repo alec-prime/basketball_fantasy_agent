@@ -1,0 +1,340 @@
+{
+ "xml:lang": "en-US",
+ "yahoo:uri": "/fantasy/v2/league/478.l.50556/transactions;types=add,drop;count=5",
+ "league": [
+  {
+   "league_key": "478.l.50556",
+   "league_id": "50556",
+   "name": "GLOBE93CORNER",
+   "url": "https://basketball.fantasysports.yahoo.com/nba/50556",
+   "logo_url": "https://s.yimg.com/ep/cx/blendr/v2/image-basketball-player-emoji-png_1721253814729.png",
+   "draft_status": "postdraft",
+   "num_teams": 14,
+   "max_teams": "14",
+   "edit_key": "2026-10-15",
+   "weekly_deadline": "",
+   "roster_type": "date",
+   "league_update_timestamp": null,
+   "scoring_type": "headone",
+   "scoring_label": "H2H Cat One",
+   "league_type": "private",
+   "renew": "466_80338",
+   "renewed": "",
+   "felo_tier": "silver",
+   "is_highscore": false,
+   "is_guillotine": "0",
+   "matchup_week": 1,
+   "iris_group_chat_id": "",
+   "allow_add_to_dl_extra_pos": 0,
+   "is_pro_league": "0",
+   "is_cash_league": "0",
+   "current_week": 1,
+   "start_week": "1",
+   "start_date": "2026-10-20",
+   "end_week": "23",
+   "end_date": "2027-04-11",
+   "current_date": "2026-10-20",
+   "is_plus_league": "0",
+   "game_code": "nba",
+   "season": "2026"
+  },
+  {
+   "transactions": {
+    "0": {
+     "transaction": [
+      {
+       "transaction_key": "478.l.50556.tr.15",
+       "transaction_id": "15",
+       "type": "add/drop",
+       "status": "successful",
+       "timestamp": "1791988563"
+      },
+      {
+       "players": {
+        "0": {
+         "player": [
+          [
+           {
+            "player_key": "478.p.6709"
+           },
+           {
+            "player_id": "6709"
+           },
+           {
+            "name": {
+             "full": "Jake LaRavia",
+             "first": "Jake",
+             "last": "LaRavia",
+             "ascii_first": "Jake",
+             "ascii_last": "LaRavia"
+            }
+           },
+           {
+            "editorial_team_abbr": "LAL"
+           },
+           {
+            "display_position": "SF,PF"
+           },
+           {
+            "position_type": "P"
+           }
+          ],
+          {
+           "transaction_data": [
+            {
+             "type": "add",
+             "source_type": "freeagents",
+             "destination_type": "team",
+             "destination_team_key": "478.l.50556.t.1",
+             "destination_team_name": "🗝️"
+            }
+           ]
+          }
+         ]
+        },
+        "1": {
+         "player": [
+          [
+           {
+            "player_key": "478.p.6166"
+           },
+           {
+            "player_id": "6166"
+           },
+           {
+            "name": {
+             "full": "De'Andre Hunter",
+             "first": "De'Andre",
+             "last": "Hunter",
+             "ascii_first": "De'Andre",
+             "ascii_last": "Hunter"
+            }
+           },
+           {
+            "editorial_team_abbr": "SAC"
+           },
+           {
+            "display_position": "SF,PF"
+           },
+           {
+            "position_type": "P"
+           }
+          ],
+          {
+           "transaction_data": {
+            "type": "drop",
+            "source_type": "team",
+            "source_team_key": "478.l.50556.t.1",
+            "source_team_name": "🗝️",
+            "destination_type": "waivers"
+           }
+          }
+         ]
+        },
+        "count": 2
+       }
+      }
+     ]
+    },
+    "1": {
+     "transaction": [
+      {
+       "transaction_key": "478.l.50556.tr.14",
+       "transaction_id": "14",
+       "type": "add/drop",
+       "status": "successful",
+       "timestamp": "1791964267",
+       "faab_bid": "0"
+      },
+      {
+       "players": {
+        "0": {
+         "player": [
+          [
+           {
+            "player_key": "478.p.6402"
+           },
+           {
+            "player_id": "6402"
+           },
+           {
+            "name": {
+             "full": "Jalen Smith",
+             "first": "Jalen",
+             "last": "Smith",
+             "ascii_first": "Jalen",
+             "ascii_last": "Smith"
+            }
+           },
+           {
+            "editorial_team_abbr": "CHI"
+           },
+           {
+            "display_position": "PF,C"
+           },
+           {
+            "position_type": "P"
+           }
+          ],
+          {
+           "transaction_data": [
+            {
+             "type": "add",
+             "source_type": "waivers",
+             "destination_type": "team",
+             "destination_team_key": "478.l.50556.t.14",
+             "destination_team_name": "Spider-Don 🕸️"
+            }
+           ]
+          }
+         ]
+        },
+        "1": {
+         "player": [
+          [
+           {
+            "player_key": "478.p.10316"
+           },
+           {
+            "player_id": "10316"
+           },
+           {
+            "name": {
+             "full": "Daniss Jenkins",
+             "first": "Daniss",
+             "last": "Jenkins",
+             "ascii_first": "Daniss",
+             "ascii_last": "Jenkins"
+            }
+           },
+           {
+            "editorial_team_abbr": "DET"
+           },
+           {
+            "display_position": "PG,SG"
+           },
+           {
+            "position_type": "P"
+           }
+          ],
+          {
+           "transaction_data": {
+            "type": "drop",
+            "source_type": "team",
+            "source_team_key": "478.l.50556.t.14",
+            "source_team_name": "Spider-Don 🕸️",
+            "destination_type": "waivers"
+           }
+          }
+         ]
+        },
+        "count": 2
+       }
+      }
+     ]
+    },
+    "2": {
+     "transaction": [
+      {
+       "transaction_key": "478.l.50556.tr.13",
+       "transaction_id": "13",
+       "type": "add/drop",
+       "status": "successful",
+       "timestamp": "1791964267",
+       "faab_bid": "1"
+      },
+      {
+       "players": {
+        "0": {
+         "player": [
+          [
+           {
+            "player_key": "478.p.10296"
+           },
+           {
+            "player_id": "10296"
+           },
+           {
+            "name": {
+             "full": "Zaccharie Risacher",
+             "first": "Zaccharie",
+             "last": "Risacher",
+             "ascii_first": "Zaccharie",
+             "ascii_last": "Risacher"
+            }
+           },
+           {
+            "editorial_team_abbr": "DAL"
+           },
+           {
+            "display_position": "SF,PF"
+           },
+           {
+            "position_type": "P"
+           }
+          ],
+          {
+           "transaction_data": [
+            {
+             "type": "add",
+             "source_type": "waivers",
+             "destination_type": "team",
+             "destination_team_key": "478.l.50556.t.11",
+             "destination_team_name": "💅"
+            }
+           ]
+          }
+         ]
+        },
+        "1": {
+         "player": [
+          [
+           {
+            "player_key": "478.p.10282"
+           },
+           {
+            "player_id": "10282"
+           },
+           {
+            "name": {
+             "full": "Isaiah Collier",
+             "first": "Isaiah",
+             "last": "Collier",
+             "ascii_first": "Isaiah",
+             "ascii_last": "Collier"
+            }
+           },
+           {
+            "editorial_team_abbr": "UTA"
+           },
+           {
+            "display_position": "PG,SG"
+           },
+           {
+            "position_type": "P"
+           }
+          ],
+          {
+           "transaction_data": {
+            "type": "drop",
+            "source_type": "team",
+            "source_team_key": "478.l.50556.t.11",
+            "source_team_name": "💅",
+            "destination_type": "waivers"
+           }
+          }
+         ]
+        },
+        "count": 2
+       }
+      }
+     ]
+    },
+    "count": 3
+   }
+  }
+ ],
+ "time": "49.108982086182ms",
+ "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+ "refresh_rate": "30"
+}
