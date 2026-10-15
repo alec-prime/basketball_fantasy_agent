@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 from yahoo_fantasy.paths import DATA_DIR
+from yahoo_fantasy.yahoo_client import collection_items, merge_fields
 
 SETTINGS_PATH = DATA_DIR / "league_settings.json"
 
@@ -22,6 +23,10 @@ CATEGORY_COLUMNS: dict[int, str] = {
 
 class UnmappedCategoryError(ValueError):
     pass
+
+
+def _int_or_none(value) -> int | None:
+    return int(value) if value not in (None, "") else None
 
 
 def parse_settings(content: dict) -> dict:
@@ -46,7 +51,19 @@ def parse_settings(content: dict) -> dict:
         "scoring_type": body["scoring_type"], "draft_type": body.get("draft_type"),
         "is_auction_draft": str(body.get("is_auction_draft")) == "1",
         "roster_slots": slots, "categories": categories,
+        "max_weekly_adds": _int_or_none(body.get("max_weekly_adds")),
+        "waiver_days": _int_or_none(body.get("waiver_time")),
+        "season_end": meta.get("end_date"),
     }
+
+
+def parse_my_team(content: dict) -> str | None:
+    """league/{key}/teams: the team owned by this OAuth login."""
+    for item in collection_items(content["league"][1]["teams"]):
+        fields = merge_fields(item["team"][0])
+        if str(fields.get("is_owned_by_current_login")) == "1":
+            return fields["team_key"]
+    return None
 
 
 def load_settings(path: Path = SETTINGS_PATH) -> dict:

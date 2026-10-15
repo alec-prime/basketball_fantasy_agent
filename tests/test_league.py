@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from yahoo_fantasy.league import UnmappedCategoryError, load_settings, parse_settings
+from yahoo_fantasy.league import UnmappedCategoryError, load_settings, parse_my_team, parse_settings
 from yahoo_fantasy.io import write_json_atomic
 
 FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "league_settings.json").read_text())
@@ -44,3 +44,27 @@ def test_load_settings_round_trip(tmp_path):
     assert load_settings(path) == {"name": "x"}
     with pytest.raises(FileNotFoundError):
         load_settings(tmp_path / "missing.json")
+
+
+def test_parse_settings_in_season_fields():
+    s = parse_settings(FIXTURE)
+    assert s["max_weekly_adds"] == 3
+    assert s["waiver_days"] == 2
+    assert s["season_end"] == FIXTURE["league"][0]["end_date"]
+
+
+def test_missing_in_season_fields_are_none():
+    content = copy.deepcopy(FIXTURE)
+    del content["league"][1]["settings"][0]["max_weekly_adds"]
+    assert parse_settings(content)["max_weekly_adds"] is None
+
+
+def teams_content(*teams):
+    coll = {str(i): {"team": [[{"team_key": k}, {"name": n}] + ([{"is_owned_by_current_login": 1}] if mine else [])]}
+            for i, (k, n, mine) in enumerate(teams)}
+    return {"league": [{"league_key": "478.l.50556"}, {"teams": coll | {"count": len(teams)}}]}
+
+
+def test_parse_my_team():
+    assert parse_my_team(teams_content(("478.l.50556.t.1", "A", False), ("478.l.50556.t.9", "Me", True))) == "478.l.50556.t.9"
+    assert parse_my_team(teams_content(("478.l.50556.t.1", "A", False))) is None
