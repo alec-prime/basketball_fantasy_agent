@@ -1,0 +1,50 @@
+"""Where breakout alerts go. stdout: JSON for the Claude scheduled task, which writes and pushes the notification.
+ntfy: a self-hostable push service, for scans on the home server."""
+import json
+import sys
+from collections.abc import Mapping
+from typing import Protocol
+
+import requests
+
+
+class Notifier(Protocol):
+    def send(self, alerts: list[dict], stale: str | None) -> None: ...
+
+
+def alert_text(a: dict) -> str:
+    why = a["explanation"]
+    reason = (f"{why['teammate']['name']} {why['teammate']['status']}" if why["kind"] == "opportunity"
+              else "organic")
+    text = (f"{a['name']} ({a['team']}) {a['score']}: +{a['minutes']['delta']} min, +{a['fga']['delta']} FGA over "
+            f"{a['games']} games; {reason}; {a['percent_owned']:.0f}% owned")
+    move = a.get("move")
+    if move:
+        text += f". Add {move['day']}, drop {move['drop']}"
+        if move.get("vs_weakest_planned") is not None:
+            text += f" ({move['vs_weakest_planned']:+.1f} vs weakest planned stream)"
+    return text
+
+
+class StdoutNotifier:
+    def __init__(self, stream=None):
+        self.stream = stream or sys.stdout
+
+    def send(self, alerts: list[dict], stale: str | None) -> None:
+        self.stream.write(json.dumps({"stale": stale, "new_alerts": alerts,
+                                      "texts": [alert_text(a) for a in alerts]}, default=str) + "\n")
+
+
+class NtfyNotifier:
+    def __init__(self, url: str, post=requests.post):
+        self.url, self.post = url, post
+
+    def send(self, alerts: list[dict], stale: str | None) -> None:
+        for a in alerts:
+            self.post(self.url, data=alert_text(a).encode(), timeout=10)
+
+
+def from_env(env: Mapping) -> Notifier:
+    if env.get("NOTIFIER", "stdout") == "ntfy":
+        return NtfyNotifier(env["NTFY_URL"])
+    return StdoutNotifier()
