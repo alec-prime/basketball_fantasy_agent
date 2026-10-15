@@ -1,5 +1,7 @@
 """Hand-built in-season data: LA Clippers with Kawhi out and CMB stepping in, a Milwaukee guard breaking out on his
-own, and a two-way player with no NBA ID. Team game i of the season is played on day(i), every other day."""
+own, and a two-way player with no NBA ID. Team game i of the season is played on day(i), every other day. Opt-in
+(snapshot rows not in the defaults): Dallas's VET, who missed 2025-26 and is valued from 2024-25, and GHOST, matched
+but with no stats at all."""
 from datetime import date, datetime, timedelta, timezone
 
 import pandas as pd
@@ -16,7 +18,7 @@ SEASON_START = date(2026, 10, 20)
 TODAY = "2026-11-10"  # a Tuesday in fantasy week 4 (Mon 11-09 .. Sun 11-15); team games 0..10 are played
 NOW = datetime(2026, 11, 10, 20, 0, tzinfo=timezone.utc)
 ME = "478.l.50556.t.9"
-CMB, KAWHI, ZUBAC, ROLLINS, TWO_WAY, STAR, BENCH = 101, 102, 103, 104, 105, 106, 107
+CMB, KAWHI, ZUBAC, ROLLINS, TWO_WAY, STAR, BENCH, VET, GHOST = 101, 102, 103, 104, 105, 106, 107, 108, 109
 
 
 def day(i: int) -> str:
@@ -52,25 +54,31 @@ def snapshots(*rows) -> pd.DataFrame:
 
 
 ID_MAP = prepare_id_map(pd.DataFrame({
-    "yahoo_player_id": [CMB, KAWHI, ZUBAC, ROLLINS, TWO_WAY, STAR, BENCH],
-    "yahoo_name": ["Cam Middle", "Kawhi Leonard", "Ivica Zubac", "Ryan Rollins", "Two Way", "Star Guy", "Bench Guy"],
-    "yahoo_team": ["LAC", "LAC", "LAC", "MIL", "LAC", "MIL", "MIL"],
-    "yahoo_jersey": [""] * 7,
-    "yahoo_position": ["SF,PF", "SF,PF", "C", "PG,SG", "SG", "C", "PF"],
-    "nba_player_id": pd.array([1001, 1002, 1003, 1004, None, 1006, 1007], dtype="Int64"),
-    "nba_name": ["Cam Middle", "Kawhi Leonard", "Ivica Zubac", "Ryan Rollins", "", "Star Guy", "Bench Guy"],
-    "nba_team": ["LAC", "LAC", "LAC", "MIL", "", "MIL", "MIL"],
-    "nba_jersey": [""] * 7,
-    "match_method": ["name"] * 4 + ["unmatched"] + ["name"] * 2,
+    "yahoo_player_id": [CMB, KAWHI, ZUBAC, ROLLINS, TWO_WAY, STAR, BENCH, VET, GHOST],
+    "yahoo_name": ["Cam Middle", "Kawhi Leonard", "Ivica Zubac", "Ryan Rollins", "Two Way", "Star Guy", "Bench Guy",
+                   "Vet Star", "Ghost Guy"],
+    "yahoo_team": ["LAC", "LAC", "LAC", "MIL", "LAC", "MIL", "MIL", "DAL", "DAL"],
+    "yahoo_jersey": [""] * 9,
+    "yahoo_position": ["SF,PF", "SF,PF", "C", "PG,SG", "SG", "C", "PF", "PG", "SG"],
+    "nba_player_id": pd.array([1001, 1002, 1003, 1004, None, 1006, 1007, 1008, 1009], dtype="Int64"),
+    "nba_name": ["Cam Middle", "Kawhi Leonard", "Ivica Zubac", "Ryan Rollins", "", "Star Guy", "Bench Guy",
+                 "Vet Star", "Ghost Guy"],
+    "nba_team": ["LAC", "LAC", "LAC", "MIL", "", "MIL", "MIL", "DAL", "DAL"],
+    "nba_jersey": [""] * 9,
+    "match_method": ["name"] * 4 + ["unmatched"] + ["name"] * 4,
 }))
 
 LINES = pd.DataFrame([line(1001, "2025-26", MIN=18.0, PTS=8.0), line(1002, "2025-26", MIN=33.0, PTS=24.0),
                       line(1003, "2025-26", MIN=30.0, PTS=14.0, REB=11.0), line(1004, "2025-26", MIN=16.0, PTS=6.0),
-                      line(1006, "2025-26", MIN=36.0, PTS=28.0), line(1007, "2025-26", MIN=12.0, PTS=4.0)])
+                      line(1006, "2025-26", MIN=36.0, PTS=28.0), line(1007, "2025-26", MIN=12.0, PTS=4.0),
+                      # 2024-25: a pool to score VET against (he missed 2025-26)
+                      line(1002, "2024-25", MIN=33.0, PTS=24.0), line(1003, "2024-25", MIN=30.0, PTS=14.0),
+                      line(1006, "2024-25", MIN=36.0, PTS=28.0), line(1007, "2024-25", MIN=12.0, PTS=4.0),
+                      line(1008, "2024-25", MIN=35.0, PTS=27.0, AST=8.0)])
 LINES["nba_player_id"] = LINES["nba_player_id"].astype("Int64")
 
 SCHEDULE = pd.DataFrame([{"game_date": day(i), "game_id": f"00226{i:05d}{t}", "home": t, "away": "OPP"}
-                         for i in range(80) for t in ("LAC", "MIL")])
+                         for i in range(80) for t in ("LAC", "MIL", "DAL")])
 WEEKS = pd.DataFrame({"week": [4], "start": ["2026-11-09"], "end": ["2026-11-15"]})
 SLOTS = [{"position": p, "count": c, "is_starting": p != "BN"}
          for p, c in [("PG", 1), ("SG", 1), ("G", 1), ("SF", 1), ("PF", 1), ("F", 1), ("C", 1), ("Util", 3), ("BN", 4)]]
@@ -86,16 +94,21 @@ def kawhi_logs() -> list[dict]:
             + games(1001, [18.0] * 6 + [30.0] * 5, fga=[7.0] * 6 + [12.0] * 5))
 
 
+def base_snaps() -> list[dict]:
+    """The default snapshot rows; tests add theirs with snapshots(*base_snaps(), snap(...))."""
+    return [snap(CMB, "Cam Middle", pct=1.0, snapshot_date="2026-11-07"),
+            snap(CMB, "Cam Middle", pct=4.0), snap(TWO_WAY, "Two Way", pct=2.0, positions="SG"),
+            snap(KAWHI, "Kawhi Leonard", owner="478.l.50556.t.2", pct=99.0, status="O"),
+            snap(ZUBAC, "Ivica Zubac", owner="478.l.50556.t.3", pct=90.0, positions="C"),
+            snap(STAR, "Star Guy", owner=ME, pct=99.0, positions="C"),
+            snap(BENCH, "Bench Guy", owner=ME, pct=20.0, positions="PF")]
+
+
 def season_data(**overrides) -> SeasonData:
     game_logs = logs(*kawhi_logs())
     fields = dict(
         schedule=SCHEDULE, weeks=WEEKS,
-        snapshots=snapshots(snap(CMB, "Cam Middle", pct=1.0, snapshot_date="2026-11-07"),
-                            snap(CMB, "Cam Middle", pct=4.0), snap(TWO_WAY, "Two Way", pct=2.0, positions="SG"),
-                            snap(KAWHI, "Kawhi Leonard", owner="478.l.50556.t.2", pct=99.0, status="O"),
-                            snap(ZUBAC, "Ivica Zubac", owner="478.l.50556.t.3", pct=90.0, positions="C"),
-                            snap(STAR, "Star Guy", owner=ME, pct=99.0, positions="C"),
-                            snap(BENCH, "Bench Guy", owner=ME, pct=20.0, positions="PF")),
+        snapshots=snapshots(*base_snaps()),
         transactions=pd.DataFrame(columns=TX_COLUMNS),
         stats=StatsCache(LINES, game_logs, {GAME_LOGS_KEY: {"pulled_at": "2026-11-10T12:00:00+00:00", "rows": 33}}),
         manifest={"players": {"pulled_at": "2026-11-10T12:00:00+00:00", "rows": 7, "error": None}})

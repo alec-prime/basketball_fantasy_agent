@@ -1,12 +1,12 @@
 import pandas as pd
 import pytest
 
-from tests.chat_fixtures import CATS, LINES, LOGS
+from tests.chat_fixtures import CATS, LINES, LOGS, line
 from tests.season_fixtures import glog, logs
 from yahoo_fantasy.season.value import Valuer, game_z, make_valuer
 from yahoo_fantasy.stats.cache import StatsCache
 from yahoo_fantasy.stats.transform import PRESEASON
-from yahoo_fantasy.valuation import pool_stats
+from yahoo_fantasy.valuation import player_values, pool_stats
 
 
 def test_pool_stats_over_top_minutes():
@@ -22,7 +22,7 @@ def test_game_z_skips_zero_std():
 
 def valuer(rows, z_2025=None):
     df = logs(*rows)
-    return Valuer(df.assign(z=df["PTS"]), z_2025 or {}, {}, offset=5.0)  # z = PTS keeps the arithmetic visible
+    return Valuer(df.assign(z=df["PTS"]), {"2025-26": z_2025 or {}}, {}, offset=5.0)  # z = PTS keeps the arithmetic visible
 
 
 def test_projection_blends_toward_this_season():
@@ -35,9 +35,34 @@ def test_projection_blends_toward_this_season():
 def test_expectation_falls_back_to_preseason_then_none():
     v = valuer([glog(8, "2026-10-05", season_type=PRESEASON, PTS=0.5)])
     assert v.expectation(8) == (0.5, "preseason")
-    assert v.expectation(9) == (None, "none") and v.projection(9) is None and v.worth(9) == 0.0
+    assert v.expectation(9) == (None, "none") and v.projection(9) is None and v.worth(9) is None
 
 
 def test_make_valuer_adds_z_and_offset():
     v = make_valuer(StatsCache(LINES, LOGS, {}), CATS, pool=4)
-    assert "z" in v.logs and v.offset > 0 and 10 in v.z_2025
+    assert "z" in v.logs and v.offset > 0 and 10 in v.z_by_season["2025-26"]
+
+
+def lines(*rows) -> pd.DataFrame:
+    df = pd.DataFrame(list(rows))
+    df["nba_player_id"] = df["nba_player_id"].astype("Int64")
+    return df
+
+
+SEASONS = lines(line(1, "2025-26"), line(2, "2025-26", PTS=10.0), line(3, "2025-26", PTS=15.0),
+                line(1, "2024-25"), line(2, "2024-25", PTS=10.0), line(3, "2024-25", PTS=15.0),
+                line(5, "2024-25", PTS=27.0),  # missed 2025-26 (a star back from injury)
+                line(6, "2025-26", GP=12, PTS=30.0), line(6, "2024-25", PTS=25.0),  # 12 games is too few
+                line(7, "2023-24", PTS=22.0), line(1, "2023-24"), line(2, "2023-24", PTS=10.0),
+                line(8, "2025-26", GP=12, PTS=30.0))  # only a short season, no preseason
+
+
+def test_expectation_falls_back_to_the_latest_season_with_20_games():
+    v = make_valuer(StatsCache(SEASONS, LOGS, {}), CATS, pool=3)
+    z_2024 = player_values(SEASONS, CATS, 3, season="2024-25").set_index("nba_player_id")["z_per_game"]
+    assert v.expectation(1)[1] == "2025-26"
+    assert v.expectation(5) == (round(z_2024[5], 3), "2024-25") and v.expectation(5)[0] > 0
+    assert v.expectation(6)[1] == "2024-25"
+    assert v.expectation(7)[1] == "2023-24"
+    assert v.expectation(8) == (None, "none") and v.worth(8) is None
+    assert v.worth(5) > v.worth(2)

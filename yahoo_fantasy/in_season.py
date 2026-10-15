@@ -61,13 +61,15 @@ def week_inputs(season: SeasonData, settings: dict, id_map: pd.DataFrame, valuer
         if nid is None:
             return None
         team = current_team(logs[logs["nba_player_id"] == nid]) or (map_team.get(yid) or None)
-        value = valuer.worth(nid)
+        worth = valuer.worth(nid)
+        value = 0.0 if worth is None else worth
         later = sum(week["end"] < d <= season_end for d in dates.get(team, ()))
         if r["owner"] == "W":
             start = _plus(r["waiver_date"], 1) if r["waiver_date"] else _plus(today, waiver_days)
         else:
             start = _plus(today, FA_DELAY_DAYS)
-        return Player(yid, r["player_name"], r["positions"], team, r["status"], value, round(value * later, 2), start)
+        return Player(yid, r["player_name"], r["positions"], team, r["status"], value, round(value * later, 2), start,
+                      protected=worth is None)
 
     latest = season.latest
     mine = [(player(r), r) for _, r in latest[latest["owner"] == me].iterrows()]
@@ -75,7 +77,15 @@ def week_inputs(season: SeasonData, settings: dict, id_map: pd.DataFrame, valuer
     left_out = [r["player_name"] for p, r in mine if p is None]
     if left_out:
         notes.append(f"no NBA stats for {', '.join(left_out)} on my roster; left out of the lineup")
+    for p in roster:
+        if p.protected:
+            notes.append(f"no stats to value {p.name}; never suggested as a drop")
     pairs = [(player(r), r) for _, r in latest[latest["owner"].isin(OPEN)].iterrows()]
+    unvalued = [p.name for p, _ in pairs if p and p.protected]
+    if unvalued:
+        notes.append(f"no stats to value {len(unvalued)} free agent(s) ({', '.join(unvalued[:UNMATCHED_SHOWN])}); "
+                     "not considered as adds")
+    pairs = [(p, r) for p, r in pairs if not (p and p.protected)]
     candidates = [p for p, _ in pairs if p]  # unmatched free agents have no stats to plan with
     unmatched = sorted(((float(r["percent_owned"]), r["player_name"]) for p, r in pairs if p is None), key=lambda u: -u[0])
     replacement = max((p.ros for p, r in pairs if p and r["owner"] == "FA"), default=0.0)

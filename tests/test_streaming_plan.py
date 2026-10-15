@@ -48,3 +48,12 @@ def test_full_size_week_plans_quickly():
     t0 = time.perf_counter()
     plan = plan_week(roster, cands, 3, w)
     assert time.perf_counter() - t0 < 15 and plan["gain"] >= 0
+
+
+def test_protected_players_are_never_dropped():
+    unknown = Player(9, "Unknown", "C", "ZZZ", value=0.0, protected=True)
+    a = Player(4, "A", "C", "AAA", value=2.0)
+    w = week({"AAA": set(DAYS)})
+    assert plan_week([unknown], [a], 2, w)["moves"] == []
+    assert best_move_for(a, [unknown], w) is None
+    assert [m.drop.name for m in plan_week([unknown, BENCH], [a], 1, w)["moves"]] == ["Bench"]

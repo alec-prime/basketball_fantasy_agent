@@ -22,6 +22,7 @@ class Player:
     value: float = 0.0  # counting-stat worth per game (Valuer.worth)
     ros: float = 0.0  # value x his team's games after this fantasy week
     available_from: str = ""  # first day an add counts (candidates only)
+    protected: bool = False  # no stats to value him: never suggested as a drop
 
 
 @dataclass(frozen=True)
@@ -145,7 +146,8 @@ def plan_week(roster: list[Player], candidates: list[Player], adds_left: int, we
     a later move may drop a player an earlier move added."""
     cache: dict = {}
     pool = sorted(candidates, key=lambda p: -p.value)[:TOP_CANDIDATES]
-    droppable = {p.yahoo_player_id for p in sorted(roster, key=lambda p: _drop_cost(p, week))[:DROP_CANDIDATES]}
+    droppable = {p.yahoo_player_id for p in sorted((p for p in roster if not p.protected),
+                                                    key=lambda p: _drop_cost(p, week))[:DROP_CANDIDATES]}
     beam: list[tuple[Move, ...]] = [()]
     best: tuple[tuple[Move, ...], float] = ((), 0.0)
     for _ in range(max(adds_left, 0)):
@@ -181,7 +183,9 @@ def best_move_for(add: Player, roster: list[Player], week: Week) -> dict | None:
     days = add_days(add, week, week.today)
     if not days:
         return None
-    options = [(plan_gain(roster, [Move(add, drop, days[0])], week, cache), drop) for drop in roster]
+    options = [(plan_gain(roster, [Move(add, drop, days[0])], week, cache), drop) for drop in roster if not drop.protected]
+    if not options:
+        return None
     gain, drop = max(options, key=lambda o: o[0])
     if gain <= 0:
         return None
