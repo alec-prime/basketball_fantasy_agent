@@ -25,12 +25,28 @@ def games_by_season(lines: pd.DataFrame) -> dict[int, dict[str, int]]:
             for pid, g in regular.groupby("nba_player_id")}
 
 
+def _current(lines: pd.DataFrame, season: str) -> pd.DataFrame:
+    regular = lines[lines["SEASON_TYPE"] == REGULAR]
+    return regular[regular["SEASON"] == season].drop_duplicates("nba_player_id").reset_index(drop=True)
+
+
+def _pool(current: pd.DataFrame, pool_size: int) -> pd.DataFrame:
+    return current.assign(total_min=current["MIN"] * current["GP"]).nlargest(pool_size, "total_min")
+
+
+def pool_stats(lines: pd.DataFrame, categories: list[str], pool_size: int, season: str = SEASON) -> pd.DataFrame:
+    """Mean and std (ddof=0) of each counting category over the pool, for z-scoring single games."""
+    pool = _pool(_current(lines, season), pool_size)
+    cats = counting_categories(categories)
+    return pd.DataFrame({"mean": [pool[c].mean() for c in cats], "std": [pool[c].std(ddof=0) for c in cats]},
+                        index=cats)
+
+
 def player_values(lines: pd.DataFrame, categories: list[str], pool_size: int, season: str = SEASON) -> pd.DataFrame:
     """One row per player with a `season` regular-season line. Pool mean/std come from the top `pool_size`
     players by total minutes (about the rostered players); everyone else is scored against that pool."""
-    regular = lines[lines["SEASON_TYPE"] == REGULAR]
-    current = regular[regular["SEASON"] == season].drop_duplicates("nba_player_id").reset_index(drop=True)
-    pool = current.assign(total_min=current["MIN"] * current["GP"]).nlargest(pool_size, "total_min")
+    current = _current(lines, season)
+    pool = _pool(current, pool_size)
     cats = counting_categories(categories)
     out = current[["nba_player_id"]].copy()
     for cat in cats:
