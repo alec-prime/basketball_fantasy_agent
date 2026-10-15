@@ -124,3 +124,72 @@ def plan_gain(roster: list[Player], moves: list[Move], week: Week, cache: dict |
 def usable_games(player: Player, roster: list[Player], moves: list[Move], week: Week, cache: dict | None = None) -> int:
     return sum(any(p.yahoo_player_id == player.yahoo_player_id
                    for p in day_lineup(roster_on(roster, moves, d), d, week, cache)) for d in week.days)
+
+
+BEAM = 20
+TOP_CANDIDATES = 15
+DROP_CANDIDATES = 6  # cheapest drops on my starting roster, plus anyone the plan itself added
+
+
+def add_days(candidate: Player, week: Week, after: str) -> list[str]:
+    first = max(candidate.available_from or week.today, after)
+    return [d for d in week.days if d >= first and plays(candidate, d, week)]
+
+
+def _drop_cost(p: Player, week: Week) -> float:
+    return max(0.0, p.ros - week.replacement) + p.value * sum(plays(p, d, week) for d in week.days)
+
+
+def plan_week(roster: list[Player], candidates: list[Player], adds_left: int, week: Week) -> dict:
+    """Beam search over (add, drop, day) sequences, at most adds_left moves, days non-decreasing. Chains allowed:
+    a later move may drop a player an earlier move added."""
+    cache: dict = {}
+    pool = sorted(candidates, key=lambda p: -p.value)[:TOP_CANDIDATES]
+    droppable = {p.yahoo_player_id for p in sorted(roster, key=lambda p: _drop_cost(p, week))[:DROP_CANDIDATES]}
+    beam: list[tuple[Move, ...]] = [()]
+    best: tuple[tuple[Move, ...], float] = ((), 0.0)
+    for _ in range(max(adds_left, 0)):
+        expanded: dict[tuple, tuple[tuple[Move, ...], float]] = {}
+        for moves in beam:
+            after = moves[-1].day if moves else week.today
+            now = roster_on(roster, list(moves), END)
+            on = {p.yahoo_player_id for p in now}
+            added = {m.add.yahoo_player_id for m in moves}
+            drops = [p for p in now if p.yahoo_player_id in droppable | added]
+            for cand in pool:
+                if cand.yahoo_player_id in on or cand.yahoo_player_id in added:
+                    continue
+                for day in add_days(cand, week, after):
+                    for drop in drops:
+                        plan = moves + (Move(cand, drop, day),)
+                        key = tuple((m.add.yahoo_player_id, m.drop.yahoo_player_id, m.day) for m in plan)
+                        expanded[key] = (plan, plan_gain(roster, list(plan), week, cache))
+        if not expanded:
+            break
+        ranked = sorted(expanded.values(), key=lambda pg: -pg[1])
+        beam = [plan for plan, _ in ranked[:BEAM]]
+        if ranked[0][1] > best[1]:
+            best = ranked[0]
+    moves = list(best[0])
+    increments = [round(plan_gain(roster, moves[:i + 1], week, cache) - plan_gain(roster, moves[:i], week, cache), 3)
+                  for i in range(len(moves))]
+    return {"moves": moves, "gain": best[1], "increments": increments}
+
+
+def best_move_for(add: Player, roster: list[Player], week: Week) -> dict | None:
+    cache: dict = {}
+    days = add_days(add, week, week.today)
+    if not days:
+        return None
+    options = [(plan_gain(roster, [Move(add, drop, days[0])], week, cache), drop) for drop in roster]
+    gain, drop = max(options, key=lambda o: o[0])
+    if gain <= 0:
+        return None
+    return {"drop": drop, "day": days[0], "gain": gain,
+            "usable_games": usable_games(add, roster, [Move(add, drop, days[0])], week, cache)}
+
+
+def move_summary(move: Move, roster: list[Player], moves: list[Move], week: Week, cache: dict | None = None) -> dict:
+    return {"add": move.add.name, "add_id": move.add.yahoo_player_id, "drop": move.drop.name,
+            "drop_id": move.drop.yahoo_player_id, "day": move.day,
+            "usable_games": usable_games(move.add, roster, moves, week, cache)}
