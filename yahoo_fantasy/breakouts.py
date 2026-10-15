@@ -1,7 +1,7 @@
 """Breakout finder: free agents whose role is changing (sustained rises in minutes and shot attempts), explained
 by a role-mate's absence or as organic, confirmed by production, scored 0-100 and diffed against past alerts.
 Pure: no I/O. Spec: docs/superpowers/specs/2026-10-14-free-agent-picker-design.md"""
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 
 import pandas as pd
 
@@ -153,3 +153,98 @@ def explain(cand: dict, change: RoleChange, all_logs: pd.DataFrame, latest: pd.D
     top = max(aligned, key=lambda a: minutes_2025.get(a["nba_player_id"], 0.0))
     return {"kind": "opportunity", "note": RETURN_NOTE,
             "teammate": {k: top[k] for k in ("yahoo_player_id", "name", "status", "games_missed", "since")}}
+
+
+ALERT_AT = 70
+REALERT_JUMP = 15
+MIN_ALERT_GAMES = 3
+WEIGHTS = {"role": 50, "production": 30, "urgency": 20}
+ORGANIC_BONUS = 5  # organic roles last; injury roles end when he's back
+ROLE_Z_FULL = 4.0  # summed minutes + FGA z at which the role component is full
+PRODUCTION_FULL = 2.0  # per-game z above expectation at which production is full
+OWNED_LOW = 50.0
+OWNED_RISE_FULL = 15.0
+URGENCY_LOOKBACK = 3  # daily snapshots
+UNMATCHED_SHOWN = 10
+OPEN = {"FA", "W"}
+
+
+def _clamp(x: float) -> float:
+    return max(0.0, min(1.0, x))
+
+
+def urgency(yid: int, snapshots: pd.DataFrame) -> float:
+    rows = snapshots[snapshots["yahoo_player_id"] == yid].sort_values("snapshot_date")
+    if rows.empty:
+        return 0.0
+    now = float(rows["percent_owned"].iloc[-1])
+    then = float(rows["percent_owned"].iloc[max(len(rows) - 1 - URGENCY_LOOKBACK, 0)])
+    return round(0.5 * (1 - _clamp(now / OWNED_LOW)) + 0.5 * _clamp((now - then) / OWNED_RISE_FULL), 3)
+
+
+def score(change: RoleChange, jump: float | None, urg: float, kind: str) -> int:
+    role = _clamp((max(change.minutes.z, 0) + max(change.fga.z, 0)) / ROLE_Z_FULL)
+    production = _clamp((jump or 0.0) / PRODUCTION_FULL)
+    total = (WEIGHTS["role"] * role + WEIGHTS["production"] * production + WEIGHTS["urgency"] * urg
+             + (ORGANIC_BONUS if kind == "organic" else 0))
+    return int(round(min(total, 100)))
+
+
+def scan(season, id_map: pd.DataFrame, roles_by_yid: dict[int, dict], valuer) -> dict:
+    latest = season.latest
+    pool = latest[latest["owner"].isin(OPEN)]
+    nba = {int(y): (None if pd.isna(n) else int(n)) for y, n in zip(id_map["yahoo_player_id"], id_map["nba_player_id"])}
+    all_logs = season.stats.game_logs
+    lines = season.stats.season_lines
+    last = lines[(lines["SEASON"] == LAST) & (lines["SEASON_TYPE"] == REGULAR)]
+    minutes_2025 = dict(zip(last["nba_player_id"].astype(int), last["MIN"]))
+    records, unmatched = [], []
+    for _, r in pool.iterrows():
+        yid, nid = int(r["yahoo_player_id"]), nba.get(int(r["yahoo_player_id"]))
+        if nid is None:
+            unmatched.append((float(r["percent_owned"]), r["player_name"]))
+            continue
+        mine = all_logs[all_logs["nba_player_id"] == nid]
+        change = role_change(mine)
+        if change is None or not change.qualifies:
+            continue
+        team = current_team(mine)
+        cand = {"yahoo_player_id": yid, "nba_player_id": nid, "team": team, "positions": r["positions"]}
+        why = explain(cand, change, all_logs, latest, id_map, roles_by_yid, minutes_2025)
+        v5, _ = valuer.window(nid, 5)
+        v10, _ = valuer.window(nid, 10)
+        expected, source = valuer.expectation(nid)
+        jump = None if v5 is None or expected is None else round(float(v5) - float(expected), 2)
+        urg = urgency(yid, season.snapshots)
+        total = score(change, jump, urg, why["kind"])
+        records.append({
+            "yahoo_player_id": yid, "nba_player_id": nid, "name": r["player_name"], "owner": r["owner"],
+            "positions": r["positions"], "percent_owned": float(r["percent_owned"]), "team": team,
+            "games": int(change.games), "baseline": change.baseline, "minutes": asdict(change.minutes),
+            "fga": asdict(change.fga),
+            "production": {"value_5": v5, "value_10": v10, "expectation": expected, "expectation_source": source,
+                           "jump": jump},
+            "explanation": why, "urgency": urg, "score": total,
+            "level": "alert" if total >= ALERT_AT and change.games >= MIN_ALERT_GAMES else "watch"})
+    records.sort(key=lambda rec: -rec["score"])
+    top = [name for _, name in sorted(unmatched, key=lambda u: -u[0])[:UNMATCHED_SHOWN]]
+    return {"candidates": records, "unmatched": {"count": len(unmatched), "top": top}}
+
+
+def alert_kind(record: dict) -> str:
+    why = record["explanation"]
+    return "organic" if why["kind"] == "organic" else f"opportunity:{why['teammate']['name']}"
+
+
+def new_alerts(records: list[dict], state: dict, now_iso: str) -> tuple[list[dict], dict]:
+    state = dict(state)
+    fresh = []
+    for rec in records:
+        if rec["level"] != "alert":
+            continue
+        key, kind = str(rec["yahoo_player_id"]), alert_kind(rec)
+        prev = state.get(key)
+        if prev is None or rec["score"] - prev["score"] >= REALERT_JUMP or prev["kind"] != kind:
+            fresh.append(rec)
+            state[key] = {"score": rec["score"], "kind": kind, "alerted_at": now_iso}
+    return fresh, state
