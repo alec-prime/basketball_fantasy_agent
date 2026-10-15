@@ -1,4 +1,5 @@
 """Everything the chat tools read, loaded once at server start. Missing files become messages, not crashes."""
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from yahoo_fantasy.id_map.store import read_map
 from yahoo_fantasy.keepers import league_id, load_keepers
 from yahoo_fantasy.league import load_settings
 from yahoo_fantasy.paths import DATA_DIR, PROJECT_ROOT
+from yahoo_fantasy.season.data import SeasonData, load_season
 from yahoo_fantasy.stats.cache import StatsCache, load_cache
 
 FIX = {
@@ -59,6 +61,7 @@ class Context:
     problems: dict[str, str] = field(default_factory=dict)
     preferences_path: Path = PREFERENCES_PATH  # read per call: hand edits show up without a restart
     roles_path: Path = ROLES_PATH  # read per call: the 2026-27 columns are filled by hand
+    season_loader: Callable[[], SeasonData] | None = None  # in-season data, read per call
 
     def need(self, *parts: str) -> dict | None:
         missing = [self.problems.get(p, f"{p} missing: {FIX[p]}") for p in parts if getattr(self, p) is None]
@@ -89,6 +92,9 @@ class Context:
         except FileNotFoundError:
             return None
 
+    def read_season(self) -> SeasonData:
+        return self.season_loader() if self.season_loader else SeasonData()
+
     def read_roles(self) -> pd.DataFrame | None:
         try:
             return roles_table(pd.read_excel(self.roles_path, sheet_name=ROLES_SHEET))
@@ -107,6 +113,7 @@ def prepare_id_map(df: pd.DataFrame) -> pd.DataFrame:
 def load_context(data_dir: Path = DATA_DIR) -> Context:
     ctx = Context()
     ctx.roles_path = data_dir / "roles" / "team_roles.xlsx"
+    ctx.season_loader = lambda: load_season(data_dir)
     loaders = {
         "id_map": lambda: prepare_id_map(read_map(data_dir / "player_id_map.csv")),
         "stats": lambda: load_cache(data_dir / "stats"),
