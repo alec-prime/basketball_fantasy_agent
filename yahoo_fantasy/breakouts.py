@@ -5,6 +5,7 @@ from dataclasses import asdict, dataclass
 
 import pandas as pd
 
+from yahoo_fantasy.season import OUT
 from yahoo_fantasy.stats.transform import PRESEASON, REGULAR
 
 CURRENT, LAST = "2026-27", "2025-26"
@@ -75,7 +76,7 @@ def role_change(player_logs: pd.DataFrame) -> RoleChange | None:
                       indicator("MIN", window, baseline), indicator("FGA", window, baseline))
 
 
-ABSENT = {"O", "INJ"}
+ABSENT = OUT
 ALIGN_GAMES = 2  # the change must start within this many team games of the absence
 RETURN_NOTE = "role may last only until he returns"
 

@@ -6,9 +6,8 @@ from functools import lru_cache
 
 from yahoo_fantasy.chat.team import NOT_STARTING
 from yahoo_fantasy.chat.tools import eligible
+from yahoo_fantasy.season import GTD, OUT
 
-OUT = {"O", "INJ"}
-GTD = {"GTD", "DTD"}
 GTD_FACTOR = 0.5
 
 
