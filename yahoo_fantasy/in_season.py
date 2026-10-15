@@ -4,7 +4,7 @@ from datetime import date, timedelta
 
 import pandas as pd
 
-from yahoo_fantasy.breakouts import current_team
+from yahoo_fantasy.breakouts import UNMATCHED_SHOWN, current_team
 from yahoo_fantasy.season.data import SeasonData
 from yahoo_fantasy.season.schedule import team_dates, week_of
 from yahoo_fantasy.season.transactions import adds_in_week
@@ -70,10 +70,15 @@ def week_inputs(season: SeasonData, settings: dict, id_map: pd.DataFrame, valuer
         return Player(yid, r["player_name"], r["positions"], team, r["status"], value, round(value * later, 2), start)
 
     latest = season.latest
-    roster = [p for p in (player(r) for _, r in latest[latest["owner"] == me].iterrows()) if p]
-    pairs = [(player(r), r["owner"]) for _, r in latest[latest["owner"].isin(OPEN)].iterrows()]
+    mine = [(player(r), r) for _, r in latest[latest["owner"] == me].iterrows()]
+    roster = [p for p, _ in mine if p]
+    left_out = [r["player_name"] for p, r in mine if p is None]
+    if left_out:
+        notes.append(f"no NBA stats for {', '.join(left_out)} on my roster; left out of the lineup")
+    pairs = [(player(r), r) for _, r in latest[latest["owner"].isin(OPEN)].iterrows()]
     candidates = [p for p, _ in pairs if p]  # unmatched free agents have no stats to plan with
-    replacement = max((p.ros for p, owner in pairs if p and owner == "FA"), default=0.0)
+    unmatched = sorted(((float(r["percent_owned"]), r["player_name"]) for p, r in pairs if p is None), key=lambda u: -u[0])
+    replacement = max((p.ros for p, r in pairs if p and r["owner"] == "FA"), default=0.0)
 
     limit = settings.get("max_weekly_adds")
     if limit is None:
@@ -86,7 +91,8 @@ def week_inputs(season: SeasonData, settings: dict, id_map: pd.DataFrame, valuer
         used = adds_in_week(season.transactions, me, week["start"], week["end"])
     w = Week(_days(today, week["end"]), tuple(starting_slots(settings)), dates, today, replacement)
     return {"week": week, "roster": roster, "candidates": candidates, "by_id": {p.yahoo_player_id: p for p in candidates},
-            "adds_left": max(limit - used, 0), "adds_used": used, "Week": w, "notes": notes}
+            "adds_left": max(limit - used, 0), "adds_used": used, "Week": w, "notes": notes,
+            "unmatched": {"count": len(unmatched), "top": [n for _, n in unmatched[:UNMATCHED_SHOWN]]}}
 
 
 def attach_moves(records: list[dict], inputs: dict) -> list[dict]:

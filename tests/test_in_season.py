@@ -1,6 +1,6 @@
 import pandas as pd
 
-from tests.season_fixtures import BENCH, CMB, ID_MAP, ME, SETTINGS, STAR, TODAY, TWO_WAY, season_data
+from tests.season_fixtures import BENCH, CMB, ID_MAP, ME, SETTINGS, STAR, TODAY, TWO_WAY, season_data, snap, snapshots
 from yahoo_fantasy.in_season import attach_moves, build_valuer, week_inputs
 from yahoo_fantasy.season.transactions import TX_COLUMNS
 
@@ -40,3 +40,16 @@ def test_attach_moves_prices_against_the_plan():
     out = inputs()
     [rec] = attach_moves([{"yahoo_player_id": CMB}], out)
     assert rec["move"] is None or {"drop", "day", "gain", "usable_games", "vs_weakest_planned"} <= set(rec["move"])
+
+
+def test_unmatched_free_agents_are_listed():
+    assert inputs()["unmatched"] == {"count": 1, "top": ["Two Way"]}
+
+
+def test_unmatched_player_on_my_roster_gets_a_note():
+    snaps = snapshots(snap(CMB, "Cam Middle"), snap(TWO_WAY, "Two Way", owner=ME, pct=2.0, positions="SG"),
+                      snap(STAR, "Star Guy", owner=ME, pct=99.0, positions="C"))
+    out = inputs(snapshots=snaps)
+    assert out["unmatched"] == {"count": 0, "top": []}
+    assert {p.yahoo_player_id for p in out["roster"]} == {STAR}
+    assert any("Two Way" in n and "my roster" in n for n in out["notes"])
