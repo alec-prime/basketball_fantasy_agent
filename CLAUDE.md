@@ -73,18 +73,22 @@ Python package `yahoo_fantasy/` (installed editable), with offline scripts in `s
   briefing's `auto_refresh` command); it watches the poller's `data/drafts/{room}.json` and exits 4 live picks
   before my next pick, which wakes Claude to re-brief unprompted.
 - `season/` — in-season data layer → `data/season/` (gitignored): NBA schedule (games with no team tricodes, i.e.
-  TBD, are dropped) + Yahoo fantasy weeks (US Eastern; week 1 runs Tue 2026-10-20 to Sun 10-25), daily league-wide
+  TBD, are dropped) + fantasy weeks (from Yahoo, `game/nba/game_weeks`; US Eastern), daily league-wide
   player snapshots (owner, % owned, positions, injury status), league transactions, and a per-source
-  `manifest.json`. `data.py` `load_season()` is read per call. `value.py` `Valuer`: per-game z-value (draft
-  categories), 2026-27/2025-26 blend, `worth()` for streaming.
+  `manifest.json`. `__init__.py` holds the one Yahoo status map (`OUT` = O/INJ/NA/SUSP/IL, `GTD` = GTD/DTD/Q).
+  `data.py` `load_season()` is read per call. `value.py` `Valuer`: per-game z-value (draft categories),
+  expectation from the latest of 2025-26/2024-25/2023-24 with 20+ GP (then preseason), blended with 2026-27;
+  `worth()` is None with no stats (such roster players are never suggested as drops); no 2025-26 lines → named
+  error.
 - `breakouts.py` — role change (minutes/FGA, last 5 vs baseline, sustained) → explanation (aligned role-mate
   absence or organic) → score 0-100 → alert diff (`data/season/alerts.json`).
 - `streaming.py` — per-day lineup (greedy over the slot matching), plan value (started games + ROS above
   replacement), beam search over chained add/drop/day moves; also lists free agents it couldn't match.
   `in_season.py` glues SeasonData to both engines.
 - `scan.py` / `notify.py` — headless breakout scan for `scripts/scan_breakouts.py`: reports "stale" and raises no
-  alerts when 2026-27 game logs are over 36 h old or have no rows yet. Notifier stdout (Claude scheduled task) or
-  ntfy (home server).
+  alerts when 2026-27 game logs or player snapshots are over 36 h old, or logs have no rows yet. Sends first, then
+  saves `alerts.json` (a failed send is retried next scan). Notifier stdout (Claude scheduled task) or ntfy (home
+  server).
 - `chat/` — `context.py` loads data once (preferences doc and roles sheet are re-read per call); `tools.py` pure
   tool logic; `team.py` `my_team` (my roster's category z totals ranked against every team in the room, open
   positions, needs; rehearsals map mock slots to league teams); `briefing.py` `draft_briefing` (keeper-aware candidate windows for my next picks with value and
