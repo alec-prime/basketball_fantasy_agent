@@ -3,7 +3,7 @@ import pytest
 
 from tests.chat_fixtures import CATS, LINES, LOGS, line
 from tests.season_fixtures import glog, logs
-from yahoo_fantasy.season.value import Valuer, game_z, make_valuer
+from yahoo_fantasy.season.value import StatsMissing, Valuer, game_z, make_valuer
 from yahoo_fantasy.stats.cache import StatsCache
 from yahoo_fantasy.stats.transform import PRESEASON
 from yahoo_fantasy.valuation import player_values, pool_stats
@@ -66,3 +66,15 @@ def test_expectation_falls_back_to_the_latest_season_with_20_games():
     assert v.expectation(7)[1] == "2023-24"
     assert v.expectation(8) == (None, "none") and v.worth(8) is None
     assert v.worth(5) > v.worth(2)
+
+
+def test_game_z_skips_nan_std():
+    stats = pd.DataFrame({"mean": [10.0, float("nan")], "std": [5.0, float("nan")]}, index=["PTS", "REB"])
+    assert list(game_z(pd.DataFrame({"PTS": [20.0], "REB": [9.0]}), stats)) == [2.0]
+
+
+@pytest.mark.parametrize("season_lines", [LINES[LINES["SEASON"] != "2025-26"],
+                                          pd.DataFrame(columns=["nba_player_id", "SEASON", "SEASON_TYPE"])])
+def test_missing_2025_26_lines_are_a_named_error(season_lines):
+    with pytest.raises(StatsMissing, match=r"stats 2025-26 missing: run python scripts/pull_stats.py"):
+        make_valuer(StatsCache(season_lines, LOGS, {}), CATS, pool=4)

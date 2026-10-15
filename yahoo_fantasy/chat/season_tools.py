@@ -8,6 +8,7 @@ from yahoo_fantasy.chat.context import Context
 from yahoo_fantasy.chat.tools import lookup_player, to_records
 from yahoo_fantasy.in_season import attach_moves, build_valuer, roles_by_yid, week_inputs
 from yahoo_fantasy.season import league_day
+from yahoo_fantasy.season.value import StatsMissing
 from yahoo_fantasy.streaming import Move, add_days, day_lineup, move_summary, plan_gain, plan_week, usable_games
 
 TREND_COLUMNS = ["GAME_DATE", "TEAM_ABBREVIATION", "MATCHUP", "MIN", "FGA", "PTS", "REB", "AST", "STL", "BLK", "FG3M"]
@@ -21,7 +22,10 @@ def _setup(ctx: Context, now: datetime, *parts: str):
     err = season.need(*parts)
     if err:
         return err, None, None
-    return None, season, build_valuer(season, ctx.settings)
+    try:
+        return None, season, build_valuer(season, ctx.settings)
+    except StatsMissing as exc:
+        return {"error": str(exc)}, None, None
 
 
 def breakouts(ctx: Context, now: datetime, include_watchlist: bool = True) -> dict:

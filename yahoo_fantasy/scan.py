@@ -10,6 +10,7 @@ from yahoo_fantasy.in_season import attach_moves, build_valuer, roles_by_yid, we
 from yahoo_fantasy.io import write_json_atomic
 from yahoo_fantasy.season import league_day
 from yahoo_fantasy.season.data import GAME_LOGS_KEY, SeasonData
+from yahoo_fantasy.season.value import StatsMissing
 
 STALE_HOURS = 36
 ALERTS_FILE = "alerts.json"
@@ -27,7 +28,10 @@ def run_scan(ctx: Context, season: SeasonData, state_path: Path, now: datetime) 
         shown = "never pulled" if age is None else f"{age} h old"
         return {"stale": f"2026-27 game logs {shown} (> {STALE_HOURS} h): run scripts/refresh_season.py",
                 "new_alerts": [], "watchlist": 0}
-    valuer = build_valuer(season, ctx.settings)
+    try:
+        valuer = build_valuer(season, ctx.settings)
+    except StatsMissing as exc:
+        return {"stale": str(exc), "new_alerts": [], "watchlist": 0}
     result = breakouts.scan(season, ctx.id_map, roles_by_yid(ctx.read_roles()), valuer)
     state = json.loads(state_path.read_text()) if state_path.exists() else {}
     fresh, state = breakouts.new_alerts(result["candidates"], state, now.isoformat(timespec="seconds"))

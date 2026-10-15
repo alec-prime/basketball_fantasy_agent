@@ -9,6 +9,11 @@ FULL_SEASON_GAMES = 82
 PUNTED = {"TOV"}  # plus every percentage category
 
 
+def usable_std(std) -> bool:
+    """A category scores only with a real spread: a zero or NaN (empty pool) std is skipped."""
+    return bool(pd.notna(std) and std)
+
+
 def pool_size(settings: dict) -> int:
     """About the number of rostered players: teams x roster slots."""
     return settings["num_teams"] * sum(s["count"] for s in settings["roster_slots"])
@@ -51,7 +56,7 @@ def player_values(lines: pd.DataFrame, categories: list[str], pool_size: int, se
     out = current[["nba_player_id"]].copy()
     for cat in cats:
         std = pool[cat].std(ddof=0)
-        out[f"z_{cat}"] = (current[cat] - pool[cat].mean()) / std if std else 0.0
+        out[f"z_{cat}"] = (current[cat] - pool[cat].mean()) / std if usable_std(std) else 0.0
     out["z_per_game"] = out[[f"z_{c}" for c in cats]].sum(axis=1)
     played = games_by_season(lines)
     out["gp_by_season"] = [played[int(pid)] for pid in out["nba_player_id"]]

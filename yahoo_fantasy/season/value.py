@@ -6,18 +6,23 @@ import pandas as pd
 
 from yahoo_fantasy.stats.cache import StatsCache
 from yahoo_fantasy.stats.transform import PRESEASON, REGULAR
-from yahoo_fantasy.valuation import player_values, pool_stats
+from yahoo_fantasy.valuation import SEASON, player_values, pool_stats, usable_std
 
 CURRENT = "2026-27"
 BLEND_FULL_AT = 20  # 2026-27 games after which the projection is all 2026-27
 EXPECTATION_SEASONS = ("2025-26", "2024-25", "2023-24")  # most recent first
 MIN_EXPECTATION_GP = 20  # fewer games than this (a season lost to injury) doesn't set his expectation
+STATS_MISSING = f"stats {SEASON} missing: run python scripts/pull_stats.py"
+
+
+class StatsMissing(Exception):
+    """No 2025-26 regular-season lines: nothing to set the per-game scale."""
 
 
 def game_z(logs: pd.DataFrame, stats: pd.DataFrame) -> pd.Series:
     total = pd.Series(0.0, index=logs.index)
     for cat, row in stats.iterrows():
-        if row["std"]:
+        if usable_std(row["std"]):
             total += (logs[cat].astype(float) - row["mean"]) / row["std"]
     return total
 
@@ -61,9 +66,12 @@ class Valuer:
         return None if p is None else round(max(0.0, p + self.offset), 3)
 
 
+def _has_season(lines: pd.DataFrame, season: str) -> bool:
+    return not lines[(lines["SEASON"] == season) & (lines["SEASON_TYPE"] == REGULAR)].empty
+
+
 def _season_z(lines: pd.DataFrame, categories: list[str], pool: int, season: str) -> dict[int, float]:
-    regular = lines[(lines["SEASON"] == season) & (lines["SEASON_TYPE"] == REGULAR)]
-    if regular.empty:
+    if not _has_season(lines, season):
         return {}
     values = player_values(lines, categories, pool, season=season)
     return {int(pid): float(z) for pid, z, gp in zip(values["nba_player_id"], values["z_per_game"], values["gp_by_season"])
@@ -71,10 +79,12 @@ def _season_z(lines: pd.DataFrame, categories: list[str], pool: int, season: str
 
 
 def make_valuer(cache: StatsCache, categories: list[str], pool: int) -> Valuer:
+    if not _has_season(cache.season_lines, SEASON):
+        raise StatsMissing(STATS_MISSING)
     stats = pool_stats(cache.season_lines, categories, pool)
     values = player_values(cache.season_lines, categories, pool)
     ids = values["nba_player_id"].astype(int)
-    offset = float(sum(row["mean"] / row["std"] for _, row in stats.iterrows() if row["std"]))
+    offset = float(sum(row["mean"] / row["std"] for _, row in stats.iterrows() if usable_std(row["std"])))
     z_by_season = {s: _season_z(cache.season_lines, categories, pool, s) for s in EXPECTATION_SEASONS}
     return Valuer(cache.game_logs.assign(z=game_z(cache.game_logs, stats)), z_by_season,
                   dict(zip(ids, values["ft_impact"])), offset)

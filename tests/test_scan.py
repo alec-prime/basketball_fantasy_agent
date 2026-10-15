@@ -77,3 +77,11 @@ def test_empty_game_logs_are_not_scanned(tmp_path):
                               {GAME_LOGS_KEY: {"pulled_at": "2026-11-10T19:00:00+00:00", "rows": 0}})
     out = run_scan(ctx(), season, tmp_path / "alerts.json", NOW)
     assert out["new_alerts"] == [] and "no rows" in out["stale"]
+
+
+def test_missing_2025_26_stats_are_reported_stale(tmp_path):
+    season = season_data()
+    lines = season.stats.season_lines
+    season.stats = StatsCache(lines[lines["SEASON"] != "2025-26"], season.stats.game_logs, season.stats.manifest)
+    out = run_scan(ctx(), season, tmp_path / "alerts.json", NOW)
+    assert out["new_alerts"] == [] and out["stale"] == "stats 2025-26 missing: run python scripts/pull_stats.py"

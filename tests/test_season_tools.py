@@ -3,6 +3,7 @@ from pathlib import Path
 
 from tests.chat_fixtures import make_context
 from tests.season_fixtures import CMB, ID_MAP, NOW, SETTINGS, season_data
+from yahoo_fantasy.stats.cache import StatsCache
 from yahoo_fantasy.chat import season_tools
 
 
@@ -61,3 +62,11 @@ def test_player_trend_without_snapshots_names_the_gap():
     assert len(out["games"]) == 3 and out["teammates_out"] == [] and out["now"] is None
     assert any("snapshots missing" in n and "refresh_season.py" in n for n in out["notes"])
     json.dumps(out)
+
+
+def test_missing_2025_26_stats_are_a_named_error():
+    stats = season_data().stats
+    no_2025 = StatsCache(stats.season_lines[stats.season_lines["SEASON"] != "2025-26"], stats.game_logs, stats.manifest)
+    c = ctx(stats=no_2025)
+    for tool in (season_tools.breakouts, season_tools.stream_plan, season_tools.week_grid):
+        assert tool(c, NOW) == {"error": "stats 2025-26 missing: run python scripts/pull_stats.py"}
