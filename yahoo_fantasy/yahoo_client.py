@@ -1,9 +1,11 @@
 """Yahoo Fantasy Sports API access: the OAuth session, a retried JSON GET, and helpers for Yahoo's
 list-of-single-key-dicts JSON shape. Call pattern proven in notebooks/draft_room_by_room_id.ipynb."""
 import logging
+import os
 import threading
 import time
-from collections.abc import Iterator
+from collections.abc import Iterator, Mapping
+from pathlib import Path
 
 import requests
 from yahoo_oauth import OAuth2
@@ -12,6 +14,12 @@ from yahoo_fantasy.paths import PROJECT_ROOT
 
 FANTASY_BASE = "https://fantasysports.yahooapis.com/fantasy/v2"
 NO_RETRY_STATUSES = {401, 403, 404}
+
+
+def oauth_file(env: Mapping) -> Path:
+    """yahoo_oauth's token file: YAHOO_OAUTH_FILE in .env, else private.json in the project root."""
+    return Path(env["YAHOO_OAUTH_FILE"]).expanduser() if env.get("YAHOO_OAUTH_FILE") else PROJECT_ROOT / "private.json"
+
 
 # yahoo_oauth logs every token check at DEBUG to stderr; keep only warnings.
 logging.getLogger("yahoo_oauth").setLevel(logging.WARNING)
@@ -30,7 +38,7 @@ _token_lock = threading.Lock()  # the poller thread and tool threads share one s
 def get_session() -> OAuth2:
     global _session
     if _session is None:
-        _session = OAuth2(None, None, from_file=str(PROJECT_ROOT / "private.json"))
+        _session = OAuth2(None, None, from_file=str(oauth_file(os.environ)))
     return _session
 
 
