@@ -9,7 +9,8 @@ from yahoo_fantasy.chat.tools import lookup_player, to_records
 from yahoo_fantasy.in_season import attach_moves, build_valuer, roles_by_yid, week_inputs
 from yahoo_fantasy.season import league_day
 from yahoo_fantasy.season.value import StatsMissing
-from yahoo_fantasy.streaming import Move, add_days, day_lineup, move_summary, plan_gain, plan_week, usable_games
+from yahoo_fantasy.streaming import (Move, add_days, day_lineup, move_summary, plan_gain, plan_week, plays,
+                                     usable_games)
 
 TREND_COLUMNS = ["GAME_DATE", "TEAM_ABBREVIATION", "MATCHUP", "MIN", "FGA", "PTS", "REB", "AST", "STL", "BLK", "FG3M"]
 
@@ -114,10 +115,11 @@ def week_grid(ctx: Context, now: datetime) -> dict:
     days = []
     for d in w.days:
         started = day_lineup(inputs["roster"], d, w)
-        playing = [p.name for p in inputs["roster"] if p.team and d in w.team_dates.get(p.team, set())]
+        playing = [p.name for p in inputs["roster"] if plays(p, d, w)]
         days.append({"day": d, "playing": playing, "started": [p.name for p in started],
                      "open_slots": len(w.slots) - len(started)})
-    return {"week": inputs["week"], "days": days, "freshness": season.freshness(now)}
+    return {"week": inputs["week"], "days": days, "notes": inputs["notes"], "unmatched": inputs["unmatched"],
+            "freshness": season.freshness(now)}
 
 
 def compare_moves(ctx: Context, add: str, drop: str, now: datetime) -> dict:

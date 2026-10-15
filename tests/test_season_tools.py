@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from tests.chat_fixtures import make_context
-from tests.season_fixtures import CMB, ID_MAP, NOW, SETTINGS, season_data
+from tests.season_fixtures import CMB, ID_MAP, ME, NOW, SETTINGS, STAR, base_snaps, season_data, snap, snapshots
 from yahoo_fantasy.stats.cache import StatsCache
 from yahoo_fantasy.chat import season_tools
 
@@ -70,3 +70,14 @@ def test_missing_2025_26_stats_are_a_named_error():
     c = ctx(stats=no_2025)
     for tool in (season_tools.breakouts, season_tools.stream_plan, season_tools.week_grid):
         assert tool(c, NOW) == {"error": "stats 2025-26 missing: run python scripts/pull_stats.py"}
+
+
+def test_week_grid_names_notes_and_keeps_out_players_off_the_playing_list():
+    rows = [r for r in base_snaps() if r["yahoo_player_id"] != STAR]
+    hurt = snapshots(*rows, snap(STAR, "Star Guy", owner=ME, pct=99.0, positions="C", status="O"))
+    grid = season_tools.week_grid(ctx(snapshots=hurt, transactions=None), NOW)
+    assert all("Star Guy" not in d["playing"] for d in grid["days"])
+    assert any("Bench Guy" in d["playing"] for d in grid["days"])
+    assert any("transactions unavailable" in n for n in grid["notes"])
+    assert grid["unmatched"] == {"count": 1, "top": ["Two Way"]}
+    json.dumps(grid)
