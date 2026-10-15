@@ -54,3 +54,10 @@ def test_compare_moves_scores_one_pair():
 
 def test_missing_season_data_is_an_error():
     assert "refresh_season.py" in season_tools.stream_plan(ctx(snapshots=None), NOW)["error"]
+
+
+def test_player_trend_without_snapshots_names_the_gap():
+    out = season_tools.player_trend(ctx(snapshots=None), "Cam Middle", NOW, last_n=3)
+    assert len(out["games"]) == 3 and out["teammates_out"] == [] and out["now"] is None
+    assert any("snapshots missing" in n and "refresh_season.py" in n for n in out["notes"])
+    json.dumps(out)

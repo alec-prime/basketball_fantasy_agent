@@ -53,21 +53,26 @@ def player_trend(ctx: Context, name: str, now: datetime, last_n: int = 15) -> di
     out = games[TREND_COLUMNS].assign(value=games["z"].round(2), GAME_DATE=games["GAME_DATE"].str[:10])
     logs = season.stats.game_logs
     team = current_team(logs[logs["nba_player_id"] == nid])
-    status, out_now = None, []
+    status, out_now, notes = None, [], []
     latest = season.latest
-    if latest is not None:
+    if latest is None:
+        notes.append("teammate and ownership status unavailable: player snapshots missing "
+                     "(run python scripts/refresh_season.py)")
+    else:
         hit = latest[latest["yahoo_player_id"] == int(row["yahoo_player_id"])]
         if not hit.empty:
             h = hit.iloc[0]
             status = {"owner": h["owner"], "status": h["status"], "injury_note": h["injury_note"],
                       "percent_owned": float(h["percent_owned"])}
-        if team:
+        if not team:
+            notes.append("teammate status unavailable: no 2026-27 games to tell his team")
+        else:
             found, _ = absences(team, logs, latest, ctx.id_map)
             out_now = [{k: a[k] for k in ("name", "status", "games_missed", "since")}
                        for a in found if a["nba_player_id"] != nid]
     expected, source = valuer.expectation(nid)
     return {"player": row["yahoo_name"], "team": team, "now": status, "teammates_out": out_now,
-            "games": to_records(out), "expectation": {"value": expected, "source": source},
+            "notes": notes, "games": to_records(out), "expectation": {"value": expected, "source": source},
             "freshness": season.freshness(now)}
 
 
