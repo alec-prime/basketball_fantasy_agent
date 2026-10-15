@@ -53,7 +53,8 @@ def frame(columns, rows):
 
 
 def nba_all(*rows):
-    return frame(["nba_player_id", "nba_name"], rows)
+    """Rows are (id, name) or (id, name, from_year)."""
+    return frame(["nba_player_id", "nba_name", "nba_from_year"], [(*r, None)[:3] for r in rows])
 
 
 def nba_current(*rows):
@@ -166,3 +167,9 @@ def test_unmatched_players_kept_with_blank_id_and_output_shape():
     assert row(m, 5).match_method == "unmatched"
     assert pd.isna(row(m, 5).nba_player_id)
     assert row(m, 5).nba_name == ""
+
+
+def test_from_year_carried_for_matched_players():
+    m = run(yahoo((1, "Cameron", "Boozer", "MEM", "")), nba_all((1643409, "Cameron Boozer", 2026)))
+    assert row(m, 1).nba_from_year == 2026
+    assert str(m.nba_from_year.dtype) == "Int64"

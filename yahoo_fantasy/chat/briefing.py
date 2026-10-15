@@ -1,15 +1,18 @@
 """draft_briefing: everything Claude needs to suggest my next picks, in one call. Pure: no MCP, no network.
 The live, keeper-aware pick schedule comes from my_next_pick so there's one source of truth for it."""
+import sys
 import zipfile
 from datetime import datetime
 
 import pandas as pd
 
 from yahoo_fantasy.chat.context import Context, text_or_none
+from yahoo_fantasy.chat.team import my_team
 from yahoo_fantasy.chat.tools import NO_ROOM, Rehearsal, freshness, keepers_in_play, my_next_pick
+from yahoo_fantasy.paths import PROJECT_ROOT
 from yahoo_fantasy.poller import DraftState
 from yahoo_fantasy.stats.transform import REGULAR
-from yahoo_fantasy.valuation import SEASON, counting_categories, games_by_season, player_values
+from yahoo_fantasy.valuation import SEASON, counting_categories, games_by_season, player_values, pool_size
 
 WINDOW_BEFORE, WINDOW_AFTER = 3, 12  # ADP ranks around my pick: a few that may slip, the rest likely there
 SCORING = {"headone": "one win per week: whoever wins more of the categories takes the week",
@@ -20,10 +23,6 @@ VALUE_FIELDS = ["z", "z_per_game", "games_factor", "gp_by_season", "value", "ft_
 
 def num(value, digits: int = 1) -> float | None:
     return None if pd.isna(value) else round(float(value), digits)
-
-
-def pool_size(settings: dict) -> int:
-    return settings["num_teams"] * sum(s["count"] for s in settings["roster_slots"])
 
 
 def league_summary(ctx: Context, keepers: pd.DataFrame | None, forfeits: dict) -> dict:
@@ -89,6 +88,15 @@ def window(pool: pd.DataFrame, before: int, has_adp: bool) -> pd.DataFrame:
     return rows.assign(likely_gone=rows["adp_rank"].le(before) & rows["average_pick"].notna())
 
 
+def auto_refresh(room_id: str, picks_made: int | None) -> dict | None:
+    """The background command that wakes Claude 4 picks before my next pick; None when no such pick is left."""
+    if picks_made is None:
+        return None
+    script = PROJECT_ROOT / "scripts" / "wait_for_turn.py"
+    return {"when_picks_made": picks_made,
+            "command": f'"{sys.executable}" "{script}" {room_id} {picks_made}'}
+
+
 def draft_briefing(ctx: Context, state: DraftState | None, now: datetime, rounds: int = 4,
                    rehearsal: Rehearsal | None = None) -> dict:
     if state is None:
@@ -124,7 +132,9 @@ def draft_briefing(ctx: Context, state: DraftState | None, now: datetime, rounds
         my_picks.append(pick | {"candidates": [candidate(r, cats, has_adp) for r in rows.to_dict("records")]})
 
     out = {"preferences": preferences, "league": league_summary(ctx, keepers, schedule["keeper_forfeits"]),
-           "my_picks": my_picks, "adp_pulled_at": ctx.adp_pulled_at}
+           "my_picks": my_picks, "adp_pulled_at": ctx.adp_pulled_at,
+           "my_team": my_team(ctx, state, now, rehearsal),
+           "auto_refresh": auto_refresh(state.room.room_id, schedule["refresh_when_picks_made"])}
     if notes:
         out["notes"] = notes
     return out | freshness(state, now)

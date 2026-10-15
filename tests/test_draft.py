@@ -68,3 +68,12 @@ def test_parse_room_recorded_mock():
     assert room.num_teams == len(room.teams) > 0
     assert all(key.startswith(f"{meta['league'][0]['league_key']}.t.") for key in room.teams)
     assert room.draft_status
+
+
+def test_parse_room_flags_my_team():
+    meta = {"league": [{"name": "L", "draft_status": "predraft", "is_mock": "0", "num_teams": "2"}]}
+    teams = {"league": [{}, {"teams": {
+        "0": {"team": [[{"team_key": "k.t.1"}, {"name": "One"}]]},
+        "1": {"team": [[{"team_key": "k.t.2"}, {"name": "Two"}, {"is_owned_by_current_login": 1}]]},
+        "count": 2}}]}
+    assert parse_room("9", meta, teams).my_team_key == "k.t.2"

@@ -1,0 +1,1848 @@
+{
+  "room_id": "2694710",
+  "name": "Three Seconds - H2H",
+  "is_mock": true,
+  "num_teams": 14,
+  "teams": {
+    "478.l.2694710.t.4": "Andre",
+    "478.l.2694710.t.5": "noah",
+    "478.l.2694710.t.9": "Alec",
+    "478.l.2694710.t.14": "Zaim",
+    "478.l.2694710.t.7": "James",
+    "478.l.2694710.t.1": "Team 1",
+    "478.l.2694710.t.2": "Team 2",
+    "478.l.2694710.t.3": "Team 3",
+    "478.l.2694710.t.6": "Team 6",
+    "478.l.2694710.t.8": "Team 8",
+    "478.l.2694710.t.10": "Team 10",
+    "478.l.2694710.t.11": "Team 11",
+    "478.l.2694710.t.12": "Team 12",
+    "478.l.2694710.t.13": "Team 13"
+  },
+  "draft_status": "draft",
+  "slots": 182,
+  "first_seen_at": "2026-10-11T00:32:24+00:00",
+  "completed_at": null,
+  "picks": [
+    {
+      "round": 1,
+      "pick": 1,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 5352,
+      "nba_player_id": 203999,
+      "player_name": "Nikola Joki\u0107",
+      "seen_at": "2026-10-11T00:33:06+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 2,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 10094,
+      "nba_player_id": 1641705,
+      "player_name": "Victor Wembanyama",
+      "seen_at": "2026-10-11T00:33:06+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 3,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 6014,
+      "nba_player_id": 1629029,
+      "player_name": "Luka Don\u010di\u0107",
+      "seen_at": "2026-10-11T00:33:12+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 4,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 6022,
+      "nba_player_id": 1628983,
+      "player_name": "Shai Gilgeous-Alexander",
+      "seen_at": "2026-10-11T00:33:12+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 5,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6512,
+      "nba_player_id": 1630595,
+      "player_name": "Cade Cunningham",
+      "seen_at": "2026-10-11T00:33:28+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 6,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 5185,
+      "nba_player_id": 203507,
+      "player_name": "Giannis Antetokounmpo",
+      "seen_at": "2026-10-11T00:33:28+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 7,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 5765,
+      "nba_player_id": 1628369,
+      "player_name": "Jayson Tatum",
+      "seen_at": "2026-10-11T00:33:28+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 8,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 6413,
+      "nba_player_id": 1630178,
+      "player_name": "Tyrese Maxey",
+      "seen_at": "2026-10-11T00:33:28+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 9,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 6355,
+      "nba_player_id": 1630162,
+      "player_name": "Anthony Edwards",
+      "seen_at": "2026-10-11T00:33:33+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 10,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 6404,
+      "nba_player_id": 1630169,
+      "player_name": "Tyrese Haliburton",
+      "seen_at": "2026-10-11T00:33:33+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 11,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 10468,
+      "nba_player_id": 1642843,
+      "player_name": "Cooper Flagg",
+      "seen_at": "2026-10-11T00:33:39+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 12,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 6562,
+      "nba_player_id": 1630552,
+      "player_name": "Jalen Johnson",
+      "seen_at": "2026-10-11T00:33:39+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 13,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 5826,
+      "nba_player_id": 1628378,
+      "player_name": "Donovan Mitchell",
+      "seen_at": "2026-10-11T00:33:39+00:00"
+    },
+    {
+      "round": 1,
+      "pick": 14,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 6515,
+      "nba_player_id": 1630567,
+      "player_name": "Scottie Barnes",
+      "seen_at": "2026-10-11T00:33:39+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 15,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 5432,
+      "nba_player_id": 1626157,
+      "player_name": "Karl-Anthony Towns",
+      "seen_at": "2026-10-11T00:33:55+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 16,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 4244,
+      "nba_player_id": 201142,
+      "player_name": "Kevin Durant",
+      "seen_at": "2026-10-11T00:33:55+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 17,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 5638,
+      "nba_player_id": 1627750,
+      "player_name": "Jamal Murray",
+      "seen_at": "2026-10-11T00:33:55+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 18,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 6016,
+      "nba_player_id": 1629027,
+      "player_name": "Trae Young",
+      "seen_at": "2026-10-11T00:34:00+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 19,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 6548,
+      "nba_player_id": 1630581,
+      "player_name": "Josh Giddey",
+      "seen_at": "2026-10-11T00:34:00+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 20,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 4563,
+      "nba_player_id": 201935,
+      "player_name": "James Harden",
+      "seen_at": "2026-10-11T00:34:16+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 21,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 10108,
+      "nba_player_id": 1641708,
+      "player_name": "Amen Thompson",
+      "seen_at": "2026-10-11T00:34:16+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 22,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 6606,
+      "nba_player_id": 1630559,
+      "player_name": "Austin Reaves",
+      "seen_at": "2026-10-11T00:34:16+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 23,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6558,
+      "nba_player_id": 1630578,
+      "player_name": "Alperen \u015eeng\u00fcn",
+      "seen_at": "2026-10-11T00:34:16+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 24,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6514,
+      "nba_player_id": 1630596,
+      "player_name": "Evan Mobley",
+      "seen_at": "2026-10-11T00:34:26+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 25,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 6395,
+      "nba_player_id": 1630163,
+      "player_name": "LaMelo Ball",
+      "seen_at": "2026-10-11T00:34:37+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 26,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 5473,
+      "nba_player_id": 1626164,
+      "player_name": "Devin Booker",
+      "seen_at": "2026-10-11T00:34:37+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 27,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 4612,
+      "nba_player_id": 201939,
+      "player_name": "Stephen Curry",
+      "seen_at": "2026-10-11T00:34:43+00:00"
+    },
+    {
+      "round": 2,
+      "pick": 28,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 5827,
+      "nba_player_id": 1628389,
+      "player_name": "Bam Adebayo",
+      "seen_at": "2026-10-11T00:34:43+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 29,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 6559,
+      "nba_player_id": 1630530,
+      "player_name": "Trey Murphy III",
+      "seen_at": "2026-10-11T00:34:43+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 30,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 6044,
+      "nba_player_id": 1628973,
+      "player_name": "Jalen Brunson",
+      "seen_at": "2026-10-11T00:34:43+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 31,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 5769,
+      "nba_player_id": 1628374,
+      "player_name": "Lauri Markkanen",
+      "seen_at": "2026-10-11T00:34:43+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 32,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 5842,
+      "nba_player_id": 1628401,
+      "player_name": "Derrick White",
+      "seen_at": "2026-10-11T00:35:14+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 33,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6712,
+      "nba_player_id": 1631117,
+      "player_name": "Walker Kessler",
+      "seen_at": "2026-10-11T00:35:36+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 34,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6692,
+      "nba_player_id": 1631096,
+      "player_name": "Chet Holmgren",
+      "seen_at": "2026-10-11T00:35:36+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 35,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 6703,
+      "nba_player_id": 1631105,
+      "player_name": "Jalen Duren",
+      "seen_at": "2026-10-11T00:35:36+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 36,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 5642,
+      "nba_player_id": 1627734,
+      "player_name": "Domantas Sabonis",
+      "seen_at": "2026-10-11T00:35:42+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 37,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 6401,
+      "nba_player_id": 1630166,
+      "player_name": "Deni Avdija",
+      "seen_at": "2026-10-11T00:35:53+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 38,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 10104,
+      "nba_player_id": 1641706,
+      "player_name": "Brandon Miller",
+      "seen_at": "2026-10-11T00:35:53+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 39,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 4896,
+      "nba_player_id": 202695,
+      "player_name": "Kawhi Leonard",
+      "seen_at": "2026-10-11T00:35:53+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 40,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 6702,
+      "nba_player_id": 1631114,
+      "player_name": "Jalen Williams",
+      "seen_at": "2026-10-11T00:35:53+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 41,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 6015,
+      "nba_player_id": 1628991,
+      "player_name": "Jaren Jackson Jr.",
+      "seen_at": "2026-10-11T00:35:53+00:00"
+    },
+    {
+      "round": 3,
+      "pick": 42,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 5602,
+      "nba_player_id": 1627759,
+      "player_name": "Jaylen Brown",
+      "seen_at": "2026-10-11T00:36:19+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 43,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 4840,
+      "nba_player_id": 202681,
+      "player_name": "Kyrie Irving",
+      "seen_at": "2026-10-11T00:36:48+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 44,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 3704,
+      "nba_player_id": 2544,
+      "player_name": "LeBron James",
+      "seen_at": "2026-10-11T00:36:48+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 45,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 10285,
+      "nba_player_id": 1642270,
+      "player_name": "Donovan Clingan",
+      "seen_at": "2026-10-11T00:36:48+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 46,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 5007,
+      "nba_player_id": 203076,
+      "player_name": "Anthony Davis",
+      "seen_at": "2026-10-11T00:36:48+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 47,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 10100,
+      "nba_player_id": 1641718,
+      "player_name": "Keyonte George",
+      "seen_at": "2026-10-11T00:36:48+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 48,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 6398,
+      "nba_player_id": 1630168,
+      "player_name": "Onyeka Okongwu",
+      "seen_at": "2026-10-11T00:36:53+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 49,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 6422,
+      "nba_player_id": 1630217,
+      "player_name": "Desmond Bane",
+      "seen_at": "2026-10-11T00:36:53+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 50,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 6550,
+      "nba_player_id": 1630532,
+      "player_name": "Franz Wagner",
+      "seen_at": "2026-10-11T00:36:53+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 51,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6691,
+      "nba_player_id": 1631094,
+      "player_name": "Paolo Banchero",
+      "seen_at": "2026-10-11T00:36:58+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 52,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6205,
+      "nba_player_id": 1629638,
+      "player_name": "Nickeil Alexander-Walker",
+      "seen_at": "2026-10-11T00:37:15+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 53,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 10592,
+      "nba_player_id": 1643409,
+      "player_name": "Cameron Boozer",
+      "seen_at": "2026-10-11T00:37:31+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 54,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 5294,
+      "nba_player_id": 203954,
+      "player_name": "Joel Embiid",
+      "seen_at": "2026-10-11T00:37:31+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 55,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 6167,
+      "nba_player_id": 1629636,
+      "player_name": "Darius Garland",
+      "seen_at": "2026-10-11T00:37:31+00:00"
+    },
+    {
+      "round": 4,
+      "pick": 56,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 5663,
+      "nba_player_id": 1627826,
+      "player_name": "Ivica Zubac",
+      "seen_at": "2026-10-11T00:37:31+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 57,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 10294,
+      "nba_player_id": 1642259,
+      "player_name": "Alex Sarr",
+      "seen_at": "2026-10-11T00:37:37+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 58,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 5660,
+      "nba_player_id": 1627749,
+      "player_name": "Dejounte Murray",
+      "seen_at": "2026-10-11T00:37:37+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 59,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 5658,
+      "nba_player_id": 1627783,
+      "player_name": "Pascal Siakam",
+      "seen_at": "2026-10-11T00:37:37+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 60,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 6025,
+      "nba_player_id": 1629008,
+      "player_name": "Michael Porter Jr.",
+      "seen_at": "2026-10-11T00:37:37+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 61,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 10274,
+      "nba_player_id": 1642276,
+      "player_name": "Kel'el Ware",
+      "seen_at": "2026-10-11T00:37:49+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 62,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6734,
+      "nba_player_id": 1631157,
+      "player_name": "Ryan Rollins",
+      "seen_at": "2026-10-11T00:37:49+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 63,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 6698,
+      "nba_player_id": 1630700,
+      "player_name": "Dyson Daniels",
+      "seen_at": "2026-10-11T00:37:49+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 64,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 10450,
+      "nba_player_id": 1642851,
+      "player_name": "Kon Knueppel",
+      "seen_at": "2026-10-11T00:37:49+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 65,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 5836,
+      "nba_player_id": 1628384,
+      "player_name": "OG Anunoby",
+      "seen_at": "2026-10-11T00:37:54+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 66,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 10265,
+      "nba_player_id": 1641824,
+      "player_name": "Matas Buzelis",
+      "seen_at": "2026-10-11T00:37:54+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 67,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 6253,
+      "nba_player_id": 1629675,
+      "player_name": "Naz Reid",
+      "seen_at": "2026-10-11T00:37:59+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 68,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 10287,
+      "nba_player_id": 1641744,
+      "player_name": "Zach Edey",
+      "seen_at": "2026-10-11T00:37:59+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 69,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 5012,
+      "nba_player_id": 203081,
+      "player_name": "Damian Lillard",
+      "seen_at": "2026-10-11T00:37:59+00:00"
+    },
+    {
+      "round": 5,
+      "pick": 70,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 10290,
+      "nba_player_id": 1642264,
+      "player_name": "Stephon Castle",
+      "seen_at": "2026-10-11T00:38:27+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 71,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 5318,
+      "nba_player_id": 203944,
+      "player_name": "Julius Randle",
+      "seen_at": "2026-10-11T00:38:32+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 72,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 6175,
+      "nba_player_id": 1629639,
+      "player_name": "Tyler Herro",
+      "seen_at": "2026-10-11T00:38:38+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 73,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 5767,
+      "nba_player_id": 1628368,
+      "player_name": "De'Aaron Fox",
+      "seen_at": "2026-10-11T00:38:38+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 74,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 5835,
+      "nba_player_id": 1628386,
+      "player_name": "Jarrett Allen",
+      "seen_at": "2026-10-11T00:38:38+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 75,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 10096,
+      "nba_player_id": 1641709,
+      "player_name": "Ausar Thompson",
+      "seen_at": "2026-10-11T00:38:38+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 76,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 10465,
+      "nba_player_id": 1642907,
+      "player_name": "Cedric Coward",
+      "seen_at": "2026-10-11T00:38:48+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 77,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 4725,
+      "nba_player_id": 202331,
+      "player_name": "Paul George",
+      "seen_at": "2026-10-11T00:38:48+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 78,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 5197,
+      "nba_player_id": 203497,
+      "player_name": "Rudy Gobert",
+      "seen_at": "2026-10-11T00:38:55+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 79,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6021,
+      "nba_player_id": 1628969,
+      "player_name": "Mikal Bridges",
+      "seen_at": "2026-10-11T00:38:55+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 80,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6169,
+      "nba_player_id": 1629632,
+      "player_name": "Coby White",
+      "seen_at": "2026-10-11T00:39:05+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 81,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 6418,
+      "nba_player_id": 1630202,
+      "player_name": "Payton Pritchard",
+      "seen_at": "2026-10-11T00:39:38+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 82,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 6163,
+      "nba_player_id": 1629627,
+      "player_name": "Zion Williamson",
+      "seen_at": "2026-10-11T00:39:38+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 83,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 10595,
+      "nba_player_id": 1643410,
+      "player_name": "Caleb Wilson",
+      "seen_at": "2026-10-11T00:39:38+00:00"
+    },
+    {
+      "round": 6,
+      "pick": 84,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 5601,
+      "nba_player_id": 1627742,
+      "player_name": "Brandon Ingram",
+      "seen_at": "2026-10-11T00:39:38+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 85,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 10454,
+      "nba_player_id": 1642845,
+      "player_name": "VJ Edgecombe",
+      "seen_at": "2026-10-11T00:39:38+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 86,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 10467,
+      "nba_player_id": 1642844,
+      "player_name": "Dylan Harper",
+      "seen_at": "2026-10-11T00:39:38+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 87,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 6417,
+      "nba_player_id": 1630193,
+      "player_name": "Immanuel Quickley",
+      "seen_at": "2026-10-11T00:39:44+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 88,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 6420,
+      "nba_player_id": 1630183,
+      "player_name": "Jaden McDaniels",
+      "seen_at": "2026-10-11T00:39:44+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 89,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 10443,
+      "nba_player_id": 1642867,
+      "player_name": "Collin Murray-Boyles",
+      "seen_at": "2026-10-11T00:40:06+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 90,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6212,
+      "nba_player_id": 1629660,
+      "player_name": "Ty Jerome",
+      "seen_at": "2026-10-11T00:40:06+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 91,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 5506,
+      "nba_player_id": 1626181,
+      "player_name": "Norman Powell",
+      "seen_at": "2026-10-11T00:40:06+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 92,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 6571,
+      "nba_player_id": 1630549,
+      "player_name": "Day'Ron Sharpe",
+      "seen_at": "2026-10-11T00:40:06+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 93,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 5292,
+      "nba_player_id": 203952,
+      "player_name": "Andrew Wiggins",
+      "seen_at": "2026-10-11T00:40:22+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 94,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 10599,
+      "nba_player_id": 1643407,
+      "player_name": "AJ Dybantsa",
+      "seen_at": "2026-10-11T00:40:22+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 95,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 6164,
+      "nba_player_id": 1629630,
+      "player_name": "Ja Morant",
+      "seen_at": "2026-10-11T00:40:22+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 96,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 6516,
+      "nba_player_id": 1630591,
+      "player_name": "Jalen Suggs",
+      "seen_at": "2026-10-11T00:40:27+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 97,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 6693,
+      "nba_player_id": 1631095,
+      "player_name": "Jabari Smith Jr.",
+      "seen_at": "2026-10-11T00:40:27+00:00"
+    },
+    {
+      "round": 7,
+      "pick": 98,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 5832,
+      "nba_player_id": 1628381,
+      "player_name": "John Collins",
+      "seen_at": "2026-10-11T00:40:54+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 99,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 5843,
+      "nba_player_id": 1628404,
+      "player_name": "Josh Hart",
+      "seen_at": "2026-10-11T00:41:00+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 100,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 6694,
+      "nba_player_id": 1631099,
+      "player_name": "Keegan Murray",
+      "seen_at": "2026-10-11T00:41:00+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 101,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 10444,
+      "nba_player_id": 1642852,
+      "player_name": "Derik Queen",
+      "seen_at": "2026-10-11T00:41:00+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 102,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 6023,
+      "nba_player_id": 1628970,
+      "player_name": "Miles Bridges",
+      "seen_at": "2026-10-11T00:41:00+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 103,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 5324,
+      "nba_player_id": 203897,
+      "player_name": "Zach LaVine",
+      "seen_at": "2026-10-11T00:41:00+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 104,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 5471,
+      "nba_player_id": 1626167,
+      "player_name": "Myles Turner",
+      "seen_at": "2026-10-11T00:41:06+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 105,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 5856,
+      "nba_player_id": 1628392,
+      "player_name": "Isaiah Hartenstein",
+      "seen_at": "2026-10-11T00:41:06+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 106,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 10115,
+      "nba_player_id": 1641764,
+      "player_name": "Brandin Podziemski",
+      "seen_at": "2026-10-11T00:41:06+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 107,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 5161,
+      "nba_player_id": 203468,
+      "player_name": "CJ McCollum",
+      "seen_at": "2026-10-11T00:41:06+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 108,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6513,
+      "nba_player_id": 1630224,
+      "player_name": "Jalen Green",
+      "seen_at": "2026-10-11T00:41:28+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 109,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 10065,
+      "nba_player_id": 1641739,
+      "player_name": "Toumani Camara",
+      "seen_at": "2026-10-11T00:41:39+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 110,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 6581,
+      "nba_player_id": 1629674,
+      "player_name": "Neemias Queta",
+      "seen_at": "2026-10-11T00:41:39+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 111,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 6219,
+      "nba_player_id": 1629651,
+      "player_name": "Nic Claxton",
+      "seen_at": "2026-10-11T00:41:44+00:00"
+    },
+    {
+      "round": 8,
+      "pick": 112,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 6580,
+      "nba_player_id": 1630245,
+      "player_name": "Ayo Dosunmu",
+      "seen_at": "2026-10-11T00:41:44+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 113,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 6721,
+      "nba_player_id": 1629614,
+      "player_name": "Andrew Nembhard",
+      "seen_at": "2026-10-11T00:41:44+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 114,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 6171,
+      "nba_player_id": 1629060,
+      "player_name": "Rui Hachimura",
+      "seen_at": "2026-10-11T00:41:44+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 115,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 6551,
+      "nba_player_id": 1630558,
+      "player_name": "Davion Mitchell",
+      "seen_at": "2026-10-11T00:41:44+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 116,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 5327,
+      "nba_player_id": 203994,
+      "player_name": "Jusuf Nurki\u0107",
+      "seen_at": "2026-10-11T00:41:55+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 117,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 10107,
+      "nba_player_id": 1641717,
+      "player_name": "Cason Wallace",
+      "seen_at": "2026-10-11T00:42:18+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 118,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 10447,
+      "nba_player_id": 1642863,
+      "player_name": "Khaman Maluach",
+      "seen_at": "2026-10-11T00:42:23+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 119,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 5640,
+      "nba_player_id": 1627751,
+      "player_name": "Jakob Poeltl",
+      "seen_at": "2026-10-11T00:42:23+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 120,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 10590,
+      "nba_player_id": 1643408,
+      "player_name": "Darryn Peterson",
+      "seen_at": "2026-10-11T00:42:23+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 121,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 10304,
+      "nba_player_id": 1642349,
+      "player_name": "Ajay Mitchell",
+      "seen_at": "2026-10-11T00:42:45+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 122,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 5295,
+      "nba_player_id": 203932,
+      "player_name": "Aaron Gordon",
+      "seen_at": "2026-10-11T00:42:45+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 123,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 6751,
+      "nba_player_id": 1631221,
+      "player_name": "Collin Gillespie",
+      "seen_at": "2026-10-11T00:42:45+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 124,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 6720,
+      "nba_player_id": 1631212,
+      "player_name": "Peyton Watson",
+      "seen_at": "2026-10-11T00:42:45+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 125,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 10272,
+      "nba_player_id": 1642273,
+      "player_name": "Kyshawn George",
+      "seen_at": "2026-10-11T00:42:50+00:00"
+    },
+    {
+      "round": 9,
+      "pick": 126,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 6018,
+      "nba_player_id": 1628976,
+      "player_name": "Wendell Carter Jr.",
+      "seen_at": "2026-10-11T00:42:50+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 127,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 10582,
+      "nba_player_id": 1643411,
+      "player_name": "Darius Acuff Jr.",
+      "seen_at": "2026-10-11T00:42:50+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 128,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 6596,
+      "nba_player_id": 1630572,
+      "player_name": "Sandro Mamukelashvili",
+      "seen_at": "2026-10-11T00:42:50+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 129,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 6226,
+      "nba_player_id": 1629655,
+      "player_name": "Daniel Gafford",
+      "seen_at": "2026-10-11T00:42:50+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 130,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 10289,
+      "nba_player_id": 1642274,
+      "player_name": "Yves Missi",
+      "seen_at": "2026-10-11T00:42:56+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 131,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 6174,
+      "nba_player_id": 1629023,
+      "player_name": "P.J. Washington",
+      "seen_at": "2026-10-11T00:42:56+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 132,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 10571,
+      "nba_player_id": 1642865,
+      "player_name": "Yaxel Lendeborg",
+      "seen_at": "2026-10-11T00:42:56+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 133,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 6165,
+      "nba_player_id": 1629628,
+      "player_name": "RJ Barrett",
+      "seen_at": "2026-10-11T00:43:01+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 134,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 6567,
+      "nba_player_id": 1629656,
+      "player_name": "Quentin Grimes",
+      "seen_at": "2026-10-11T00:43:01+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 135,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6218,
+      "nba_player_id": 1629645,
+      "player_name": "Kevin Porter Jr.",
+      "seen_at": "2026-10-11T00:43:01+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 136,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6733,
+      "nba_player_id": 1631217,
+      "player_name": "Moussa Diabat\u00e9",
+      "seen_at": "2026-10-11T00:43:23+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 137,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 10092,
+      "nba_player_id": 1631170,
+      "player_name": "Jaime Jaquez Jr.",
+      "seen_at": "2026-10-11T00:43:50+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 138,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 5069,
+      "nba_player_id": 203110,
+      "player_name": "Draymond Green",
+      "seen_at": "2026-10-11T00:43:50+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 139,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 6549,
+      "nba_player_id": 1630228,
+      "player_name": "Jonathan Kuminga",
+      "seen_at": "2026-10-11T00:43:50+00:00"
+    },
+    {
+      "round": 10,
+      "pick": 140,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 5858,
+      "nba_player_id": 1628415,
+      "player_name": "Dillon Brooks",
+      "seen_at": "2026-10-11T00:43:50+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 141,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 6433,
+      "nba_player_id": 1630200,
+      "player_name": "Tre Jones",
+      "seen_at": "2026-10-11T00:43:50+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 142,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 4622,
+      "nba_player_id": 201950,
+      "player_name": "Jrue Holiday",
+      "seen_at": "2026-10-11T00:43:50+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 143,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 10288,
+      "nba_player_id": 1642263,
+      "player_name": "Reed Sheppard",
+      "seen_at": "2026-10-11T00:43:55+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 144,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 5727,
+      "nba_player_id": 1627832,
+      "player_name": "Fred VanVleet",
+      "seen_at": "2026-10-11T00:44:06+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 145,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6411,
+      "nba_player_id": 1630180,
+      "player_name": "Saddiq Bey",
+      "seen_at": "2026-10-11T00:44:06+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 146,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 4614,
+      "nba_player_id": 201942,
+      "player_name": "DeMar DeRozan",
+      "seen_at": "2026-10-11T00:44:06+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 147,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 10445,
+      "nba_player_id": 1642856,
+      "player_name": "Egor D\u00ebmin",
+      "seen_at": "2026-10-11T00:44:11+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 148,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 4912,
+      "nba_player_id": 202710,
+      "player_name": "Jimmy Butler III",
+      "seen_at": "2026-10-11T00:44:11+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 149,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 5464,
+      "nba_player_id": 204001,
+      "player_name": "Kristaps Porzi\u0146\u0123is",
+      "seen_at": "2026-10-11T00:44:11+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 150,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 6173,
+      "nba_player_id": 1629661,
+      "player_name": "Cameron Johnson",
+      "seen_at": "2026-10-11T00:44:11+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 151,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 10462,
+      "nba_player_id": 1642846,
+      "player_name": "Ace Bailey",
+      "seen_at": "2026-10-11T00:44:11+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 152,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 10095,
+      "nba_player_id": 1641710,
+      "player_name": "Anthony Black",
+      "seen_at": "2026-10-11T00:44:17+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 153,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 6745,
+      "nba_player_id": 1630611,
+      "player_name": "Gui Santos",
+      "seen_at": "2026-10-11T00:44:17+00:00"
+    },
+    {
+      "round": 11,
+      "pick": 154,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 10312,
+      "nba_player_id": 1641796,
+      "player_name": "Pelle Larsson",
+      "seen_at": "2026-10-11T00:44:17+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 155,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 6711,
+      "nba_player_id": 1631128,
+      "player_name": "Christian Braun",
+      "seen_at": "2026-10-11T00:44:17+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 156,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 6406,
+      "nba_player_id": 1630174,
+      "player_name": "Aaron Nesmith",
+      "seen_at": "2026-10-11T00:44:17+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 157,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 10588,
+      "nba_player_id": 1643414,
+      "player_name": "Mikel Brown Jr.",
+      "seen_at": "2026-10-11T00:44:23+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 158,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 4901,
+      "nba_player_id": 202699,
+      "player_name": "Tobias Harris",
+      "seen_at": "2026-10-11T00:44:23+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 159,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 6707,
+      "nba_player_id": 1631106,
+      "player_name": "Tari Eason",
+      "seen_at": "2026-10-11T00:44:23+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 160,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 6696,
+      "nba_player_id": 1631097,
+      "player_name": "Bennedict Mathurin",
+      "seen_at": "2026-10-11T00:44:23+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 161,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 10496,
+      "nba_player_id": 1642875,
+      "player_name": "Maxime Raynaud",
+      "seen_at": "2026-10-11T00:44:23+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 162,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 6577,
+      "nba_player_id": 1630529,
+      "player_name": "Herbert Jones",
+      "seen_at": "2026-10-11T00:44:23+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 163,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 6403,
+      "nba_player_id": 1630170,
+      "player_name": "Devin Vassell",
+      "seen_at": "2026-10-11T00:44:28+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 164,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 6499,
+      "nba_player_id": 1630230,
+      "player_name": "Naji Marshall",
+      "seen_at": "2026-10-11T00:44:51+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 165,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 5350,
+      "nba_player_id": 203924,
+      "player_name": "Jerami Grant",
+      "seen_at": "2026-10-11T00:44:56+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 166,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 6709,
+      "nba_player_id": 1631222,
+      "player_name": "Jake LaRavia",
+      "seen_at": "2026-10-11T00:44:56+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 167,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 6402,
+      "nba_player_id": 1630188,
+      "player_name": "Jalen Smith",
+      "seen_at": "2026-10-11T00:44:56+00:00"
+    },
+    {
+      "round": 12,
+      "pick": 168,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 6757,
+      "nba_player_id": 1630590,
+      "player_name": "Scotty Pippen Jr.",
+      "seen_at": "2026-10-11T00:44:56+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 169,
+      "team_key": "478.l.2694710.t.1",
+      "team_name": "Team 1",
+      "yahoo_player_id": 4897,
+      "nba_player_id": 202696,
+      "player_name": "Nikola Vu\u010devi\u0107",
+      "seen_at": "2026-10-11T00:45:02+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 170,
+      "team_key": "478.l.2694710.t.2",
+      "team_name": "Team 2",
+      "yahoo_player_id": 6564,
+      "nba_player_id": 1630543,
+      "player_name": "Isaiah Jackson",
+      "seen_at": "2026-10-11T00:45:02+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 171,
+      "team_key": "478.l.2694710.t.3",
+      "team_name": "Team 3",
+      "yahoo_player_id": 10276,
+      "nba_player_id": 1642272,
+      "player_name": "Jared McCain",
+      "seen_at": "2026-10-11T00:45:02+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 172,
+      "team_key": "478.l.2694710.t.4",
+      "team_name": "Andre",
+      "yahoo_player_id": 10340,
+      "nba_player_id": 1642377,
+      "player_name": "Jaylen Wells",
+      "seen_at": "2026-10-11T00:45:07+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 173,
+      "team_key": "478.l.2694710.t.5",
+      "team_name": "noah",
+      "yahoo_player_id": 10585,
+      "nba_player_id": 1643413,
+      "player_name": "Keaton Wagler",
+      "seen_at": "2026-10-11T00:45:13+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 174,
+      "team_key": "478.l.2694710.t.6",
+      "team_name": "Team 6",
+      "yahoo_player_id": 4472,
+      "nba_player_id": 201572,
+      "player_name": "Brook Lopez",
+      "seen_at": "2026-10-11T00:45:13+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 175,
+      "team_key": "478.l.2694710.t.7",
+      "team_name": "James",
+      "yahoo_player_id": 5482,
+      "nba_player_id": 1626171,
+      "player_name": "Bobby Portis Jr.",
+      "seen_at": "2026-10-11T00:45:13+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 176,
+      "team_key": "478.l.2694710.t.8",
+      "team_name": "Team 8",
+      "yahoo_player_id": 6754,
+      "nba_player_id": 1630577,
+      "player_name": "Julian Champagnie",
+      "seen_at": "2026-10-11T00:45:13+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 177,
+      "team_key": "478.l.2694710.t.9",
+      "team_name": "Alec",
+      "yahoo_player_id": 6408,
+      "nba_player_id": 1630191,
+      "player_name": "Isaiah Stewart",
+      "seen_at": "2026-10-11T00:45:19+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 178,
+      "team_key": "478.l.2694710.t.10",
+      "team_name": "Team 10",
+      "yahoo_player_id": 6047,
+      "nba_player_id": 1629011,
+      "player_name": "Mitchell Robinson",
+      "seen_at": "2026-10-11T00:45:19+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 179,
+      "team_key": "478.l.2694710.t.11",
+      "team_name": "Team 11",
+      "yahoo_player_id": 6032,
+      "nba_player_id": 1628960,
+      "player_name": "Grayson Allen",
+      "seen_at": "2026-10-11T00:45:19+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 180,
+      "team_key": "478.l.2694710.t.12",
+      "team_name": "Team 12",
+      "yahoo_player_id": 10313,
+      "nba_player_id": 1642345,
+      "player_name": "Oso Ighodaro",
+      "seen_at": "2026-10-11T00:45:19+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 181,
+      "team_key": "478.l.2694710.t.13",
+      "team_name": "Team 13",
+      "yahoo_player_id": 5475,
+      "nba_player_id": 1626162,
+      "player_name": "Kelly Oubre Jr.",
+      "seen_at": "2026-10-11T00:45:19+00:00"
+    },
+    {
+      "round": 13,
+      "pick": 182,
+      "team_key": "478.l.2694710.t.14",
+      "team_name": "Zaim",
+      "yahoo_player_id": 10048,
+      "nba_player_id": 1630703,
+      "player_name": "Scoot Henderson",
+      "seen_at": "2026-10-11T00:45:24+00:00"
+    }
+  ]
+}

@@ -31,10 +31,11 @@ def test_parse_player_blank_jersey_and_missing_team():
 
 
 def test_shape_current_and_all():
-    raw = pd.DataFrame({"PERSON_ID": [1, 2], "DISPLAY_FIRST_LAST": ["A B", "C D"],
+    raw = pd.DataFrame({"PERSON_ID": [1, 2], "DISPLAY_FIRST_LAST": ["A B", "C D"], "FROM_YEAR": ["2026", "2019"],
                         "TEAM_ID": [1610612738, 0], "TEAM_ABBREVIATION": ["BOS", ""]})
     assert list(shape_current(raw)["nba_player_id"]) == [1]
-    assert list(shape_all(raw).columns) == ["nba_player_id", "nba_name"]
+    assert list(shape_all(raw).columns) == ["nba_player_id", "nba_name", "nba_from_year"]
+    assert list(shape_all(raw)["nba_from_year"]) == [2026, 2019]
 
 
 def test_shape_rosters_normalizes_jerseys():

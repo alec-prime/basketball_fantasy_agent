@@ -13,3 +13,7 @@ oauth2.json
 data/stats/
 data/adp.csv
 data/league_settings.json
+data/keepers.csv
+
+# Editable-install build output
+*.egg-info/

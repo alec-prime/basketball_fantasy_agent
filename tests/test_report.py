@@ -6,7 +6,7 @@ from yahoo_fantasy.id_map.report import (closest_names, diff_maps, format_report
 
 
 def mk(rows):
-    m = pd.DataFrame(rows, columns=MAP_COLUMNS)
+    m = pd.DataFrame(rows, columns=MAP_COLUMNS[:-1]).assign(nba_from_year=pd.NA)
     m["nba_player_id"] = m["nba_player_id"].astype("Int64")
     return m
 

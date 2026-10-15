@@ -1,7 +1,9 @@
 from datetime import timedelta
 
+import pandas as pd
+
 from tests.chat_fixtures import CATS, T0, make_context, make_state
-from yahoo_fantasy.chat.tools import NO_ROOM, available_players, draft_status, eligible
+from yahoo_fantasy.chat.tools import NO_ROOM, Rehearsal, available_players, draft_status, eligible, player_stats
 
 
 def names(out):
@@ -94,3 +96,32 @@ def test_lower_is_better_columns_sort_ascending():
 def test_unknown_position_returns_error_with_valid_values():
     out = available_players(make_context(), make_state(), T0, position="PG/SG")
     assert "unknown position" in out["error"] and "G" in out["valid_positions"] and "PG" in out["valid_positions"]
+
+
+def keepers(league_key):
+    return pd.DataFrame({"league_key": [league_key], "yahoo_player_id": [3], "player_name": ["Jalen Williams"],
+                         "team_key": ["t2"], "team_name": ["Team Two"], "pulled_at": ["2026-10-10T00:00:00+00:00"]})
+
+
+def test_excludes_keepers_of_this_league():
+    out = available_players(make_context(keepers=keepers("478.l.777")), make_state(drafted=[1]), T0)
+    assert "Jalen Williams" not in names(out)
+    assert out["available_count"] == 3
+    assert out["keepers_excluded"]["count"] == 1
+
+
+def test_ignores_keepers_from_another_league():
+    out = available_players(make_context(keepers=keepers("478.l.50556")), make_state(), T0)
+    assert "Jalen Williams" in names(out) and "keepers_excluded" not in out
+
+
+def test_player_stats_reports_kept():
+    out = player_stats(make_context(keepers=keepers("478.l.777")), "Jalen Williams", make_state(), T0)
+    assert out["draft"] == {"status": "kept", "team": "Team Two"}
+
+
+def test_rehearsal_excludes_my_league_keepers_in_a_mock():
+    ctx = make_context(keepers=keepers("478.l.50556"))
+    out = available_players(ctx, make_state(), T0, rehearsal=Rehearsal("50556"))
+    assert "Jalen Williams" not in names(out) and out["keepers_excluded"]["count"] == 1
+    assert player_stats(ctx, "Jalen Williams", make_state(), T0, Rehearsal("50556"))["draft"]["status"] == "kept"

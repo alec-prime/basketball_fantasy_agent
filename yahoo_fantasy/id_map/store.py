@@ -13,8 +13,10 @@ _TEXT = ["yahoo_name", "yahoo_team", "yahoo_jersey", "yahoo_position", "nba_name
 
 
 def read_map(path: Path = MAP_PATH) -> pd.DataFrame:
-    dtypes = {"yahoo_player_id": "int64", "nba_player_id": "Int64"} | {c: "str" for c in _TEXT}
-    return pd.read_csv(path, dtype=dtypes, keep_default_na=False, na_values={"nba_player_id": [""]})
+    ids = {"yahoo_player_id": "int64", "nba_player_id": "Int64", "nba_from_year": "Int64"}
+    dtypes = ids | {c: "str" for c in _TEXT}
+    return pd.read_csv(path, dtype=dtypes, keep_default_na=False,
+                       na_values={"nba_player_id": [""], "nba_from_year": [""]})
 
 
 def read_overrides(path: Path = OVERRIDES_PATH) -> pd.DataFrame:

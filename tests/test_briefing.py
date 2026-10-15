@@ -5,6 +5,7 @@ import pandas as pd
 from tests.chat_fixtures import SETTINGS, T0, line
 from yahoo_fantasy.chat.briefing import draft_briefing
 from yahoo_fantasy.chat.context import Context, prepare_id_map
+from yahoo_fantasy.chat import tools
 from yahoo_fantasy.chat.tools import NO_ROOM, Rehearsal
 from yahoo_fantasy.draft import Pick, Room
 from yahoo_fantasy.poller import DraftState
@@ -168,3 +169,42 @@ def test_unreadable_roles_sheet_is_a_note(tmp_path):
     (tmp_path / "broken.xlsx").write_text("not a spreadsheet")
     out = draft_briefing(ctx(tmp_path, roles_path=tmp_path / "broken.xlsx"), state(), T0)
     assert out["my_picks"] and any("roles sheet unreadable" in n for n in out["notes"])
+
+
+def refresh(out):
+    return out["auto_refresh"]["when_picks_made"] if out["auto_refresh"] else None
+
+
+def test_auto_refresh_when_two_live_picks_before_mine(tmp_path, monkeypatch):
+    monkeypatch.setattr(tools, "REFRESH_BEFORE", 2)  # this 3-team board is too short for the default
+    # live a b c c b a b c: B's #2 is within 2 already, so watch for #5 -> wake after live pick 2
+    out = draft_briefing(ctx(tmp_path), state(), T0)
+    assert refresh(out) == 2
+    command = out["auto_refresh"]["command"]
+    assert "wait_for_turn.py" in command and " 777 2" in command
+    # after 2 live picks: B's #5 is 2 away (now), #7 is 4 away -> wake after live pick 4
+    picks = [Pick(1, 1, "ta", 2, "P2"), Pick(2, 1, "tb", 3, "P3")]
+    assert refresh(draft_briefing(ctx(tmp_path), state(picks), T0)) == 4
+
+
+def test_auto_refresh_counts_board_picks_in_a_rehearsal(tmp_path, monkeypatch):
+    monkeypatch.setattr(tools, "REFRESH_BEFORE", 2)  # this 3-team board is too short for the default
+    rh = Rehearsal("777", my_slot=2)
+    # board 1a 2b 3c 4c 5b (6a forfeited) 7a 8b 9c: pick 5 is 4 live picks away -> wake after board pick 2
+    assert refresh(draft_briefing(ctx(tmp_path), state(room=MOCK), T0, rehearsal=rh)) == 2
+    made = [Pick(i, 1, f"m{i}", 10 + i, f"Q{i}") for i in (1, 2, 3)]
+    # 4c 5b 7a 8b: pick 8 is 3 live picks away -> wake after board pick 4
+    assert refresh(draft_briefing(ctx(tmp_path), state(made, room=MOCK), T0, rehearsal=rh)) == 4
+
+
+def test_no_auto_refresh_when_every_pick_left_is_within_two(tmp_path, monkeypatch):
+    monkeypatch.setattr(tools, "REFRESH_BEFORE", 2)  # this 3-team board is too short for the default
+    picks = [Pick(i, 1, "x", 100 + i, f"Q{i}") for i in range(1, 6)]  # live 6..8: a b c, B's last pick 1 away
+    assert draft_briefing(ctx(tmp_path), state(picks), T0)["auto_refresh"] is None
+
+
+def test_auto_refresh_defaults_to_four_live_picks_before_mine(tmp_path):
+    # live a b c c b a b c: B's #2 and #5 are within 4, #7 is 6 away -> wake after live pick 2
+    assert refresh(draft_briefing(ctx(tmp_path), state(), T0)) == 2
+    picks = [Pick(1, 1, "ta", 2, "P2"), Pick(2, 1, "tb", 3, "P3")]
+    assert draft_briefing(ctx(tmp_path), state(picks), T0)["auto_refresh"] is None  # #5 and #7 both within 4

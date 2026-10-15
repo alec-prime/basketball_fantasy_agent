@@ -20,7 +20,7 @@ def normalize_name(name: str) -> str:
 
 MAP_COLUMNS = [
     "yahoo_player_id", "yahoo_name", "yahoo_team", "yahoo_jersey", "yahoo_position",
-    "nba_player_id", "nba_name", "nba_team", "nba_jersey", "match_method",
+    "nba_player_id", "nba_name", "nba_team", "nba_jersey", "match_method", "nba_from_year",
 ]
 
 
@@ -34,6 +34,7 @@ def build_map(yahoo, nba_all, nba_current, rosters, overrides) -> pd.DataFrame:
         by_key.setdefault(key_of[pid], []).append(pid)
     team_of = dict(zip(nba_current["nba_player_id"], nba_current["nba_team"]))
     jersey_of = dict(zip(rosters["nba_player_id"], rosters["nba_jersey"]))
+    from_year_of = dict(zip(nba_all["nba_player_id"], nba_all["nba_from_year"]))
     on_roster: dict[tuple[str, str], list[int]] = {}
     for pid, team, jersey in zip(rosters["nba_player_id"], rosters["nba_team"], rosters["nba_jersey"]):
         if team and jersey:
@@ -86,4 +87,6 @@ def build_map(yahoo, nba_all, nba_current, rosters, overrides) -> pd.DataFrame:
     out["nba_name"] = lookup(name_of)
     out["nba_team"] = lookup(team_of)
     out["nba_jersey"] = lookup(jersey_of)
+    out["nba_from_year"] = out["nba_player_id"].map(
+        lambda p: pd.NA if pd.isna(p) else from_year_of.get(int(p), pd.NA)).astype("Int64")
     return out[MAP_COLUMNS].sort_values("yahoo_player_id").reset_index(drop=True)

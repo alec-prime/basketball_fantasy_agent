@@ -1,6 +1,8 @@
 import asyncio
 import json
 
+import pandas as pd
+
 from tests.chat_fixtures import T0, make_context, make_state
 from yahoo_fantasy.chat.server import build_server
 
@@ -37,7 +39,23 @@ def test_lists_all_tools():
     server = build_server(make_context(), start_poller=factory([]), clock=lambda: T0)
     names = {t.name for t in asyncio.run(server.list_tools())}
     assert names == {"set_draft_room", "league_settings", "draft_status", "available_players", "player_stats",
-                     "game_logs"}
+                     "my_next_pick", "game_logs", "draft_briefing", "my_team"}
+
+
+def test_instructions_run_the_rehearsal_flow_on_a_draft_link():
+    from yahoo_fantasy.chat.server import INSTRUCTIONS
+    assert "as_my_league=true" in INSTRUCTIONS and "draft_briefing" in INSTRUCTIONS
+    assert "without being asked" in INSTRUCTIONS
+    assert "no_2025_26_stats" in INSTRUCTIONS and "player_stats" in INSTRUCTIONS
+    assert "auto_refresh" in INSTRUCTIONS and "run_in_background" in INSTRUCTIONS
+
+
+def test_draft_briefing_is_wired_to_the_current_room():
+    server = build_server(make_context(), start_poller=factory([]), clock=lambda: T0)
+    assert "No draft room set" in call(server, "draft_briefing")["error"]
+    call(server, "set_draft_room", room="777")
+    out = call(server, "draft_briefing", rounds=2)
+    assert "error" in out and "No draft room set" not in out["error"]  # reached the schedule (no order for 777)
 
 
 def test_set_room_then_available_excludes_drafted():
@@ -87,3 +105,18 @@ def test_setting_the_same_room_again_keeps_the_running_poller():
     out = call(server, "set_draft_room", room="https://basketball.fantasysports.yahoo.com/draftclient/nba/777/3")
     assert out["room_id"] == "777"
     assert len(pollers) == 1 and not pollers[0].stopped
+
+
+def test_rehearse_mock_as_my_league():
+    ctx = make_context(keepers=pd.DataFrame({
+        "league_key": ["478.l.50556"], "yahoo_player_id": [3], "player_name": ["Jalen Williams"], "team_key": ["t2"],
+        "team_name": ["Team Two"], "pulled_at": ["2026-10-10T00:00:00+00:00"]}))
+    url = "https://basketball.fantasysports.yahoo.com/draftclient/nba/777/9"
+    assert "LEAGUE_KEY" in call(build_server(ctx, start_poller=factory([]), clock=lambda: T0),
+                                "set_draft_room", room=url, as_my_league=True)["error"]
+    server = build_server(ctx, start_poller=factory([]), clock=lambda: T0, my_league="478.l.50556")
+    out = call(server, "set_draft_room", room=url, as_my_league=True)
+    assert out["rehearsing_league"] == {"league_id": "50556", "my_slot": 9}
+    assert "Jalen Williams" not in [p["player"] for p in call(server, "available_players")["players"]]
+    call(server, "set_draft_room", room=url)
+    assert "Jalen Williams" in [p["player"] for p in call(server, "available_players")["players"]]

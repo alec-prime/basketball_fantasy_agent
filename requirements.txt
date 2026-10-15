@@ -20,6 +20,7 @@ cryptography==50.0.1
 debugpy==1.8.21
 defusedxml==0.7.1
 docopt==0.6.2
+et_xmlfile==2.0.0
 executing==2.2.1
 fastapi==0.141.1
 fastjsonschema==2.22.1
@@ -73,6 +74,7 @@ notebook_shim==0.2.4
 numpy==2.5.2
 oauthlib==3.3.1
 objectpath==0.6.1
+openpyxl==3.1.5
 opentelemetry-api==1.45.0
 packaging==26.3
 pandas==3.0.5

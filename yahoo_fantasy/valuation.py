@@ -9,6 +9,11 @@ FULL_SEASON_GAMES = 82
 PUNTED = {"TOV"}  # plus every percentage category
 
 
+def pool_size(settings: dict) -> int:
+    """About the number of rostered players: teams x roster slots."""
+    return settings["num_teams"] * sum(s["count"] for s in settings["roster_slots"])
+
+
 def counting_categories(categories: list[str]) -> list[str]:
     return [c for c in categories if not c.endswith("_PCT") and c not in PUNTED]
 

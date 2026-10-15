@@ -48,14 +48,34 @@ Python package `yahoo_fantasy/` (installed editable), with offline scripts in `s
 - `paths.py` / `io.py` — project-root paths; atomic writes; `now_iso()`.
 - `yahoo_client.py` — Yahoo OAuth (`private.json`), retried `fantasy_json(path)`, JSON-shape helpers, `iter_game_players()`.
 - `nba_client.py` — `nba_frame()`: rate-limited (0.6s), retried `nba_api` calls.
-- `id_map/` — Yahoo→NBA player ID map → `data/player_id_map.csv` (committed; also the draftable pool). Hand fixes in
+- `id_map/` — Yahoo→NBA player ID map → `data/player_id_map.csv` (committed; also the draftable pool; carries NBA.com
+  `nba_from_year`, a player's first season). Hand fixes in
   `data/id_overrides.csv` (committed).
 - `stats/` — `pull_stats.py` output in `data/stats/` (gitignored): season lines + game logs + `manifest.json`.
 - `league.py` — my league's settings (`LEAGUE_KEY` in `.env`) → `data/league_settings.json`; `CATEGORY_COLUMNS`.
 - `adp.py` — Yahoo-wide ADP → `data/adp.csv`.
+- `keepers.py` — my league's keepers (`players;status=K/ownership`; Yahoo omits them from draftresults/rosters
+  pre-draft, and
+  only shows commissioner-locked [K] keepers) + hand entries in `data/keeper_overrides.csv` (committed) → `data/keepers.csv` (gitignored). `available_players` drops them only when the room is this league.
+- `draft_order.py` — snake schedule minus keeper-forfeited picks (league rule `KEEPER_ROUNDS`: 1st keeper costs
+  round 2, 2nd costs round 3). First-round order from `data/draft_order.csv` (committed), or round 1 picks in mocks.
 - `draft.py` — draft room client (room ID = league ID). `poller.py` — background `DraftPoller` (5s).
   `draft_store.py` — every watched draft saved to `data/drafts/{room}.json|.jsonl` (committed).
-- `chat/` — `context.py` loads data once; `tools.py` pure tool logic; `server.py` MCP stdio server `yahoo-draft`.
+- `roles.py` — unit (1st/2nd/3rd) and two roles (playmaker/scorer/finisher/POA/rim protector) from 2025-26
+  tracking, matchup and play-by-play stats, as team shares per share of minutes, ranked league-wide →
+  `data/roles/team_roles.xlsx` (committed; Unit/Role 1/Role 2 2026-27 + Notes columns are filled by hand and
+  survive rebuilds; Unit 2026-27 also allows "Injured"). Rookie = `nba_from_year` 2026 (NBA.com's first season, same as the roster's EXP "R"). Team comes from NBA.com rosters via the ID map (re-run
+  `build_id_map.py` first to pick up signings/cuts); anyone on no roster is FA.
+- `valuation.py` — simple draft value: z-scores over the league's counting categories (no percentages, no TO) on
+  2025-26 per-game stats against the top `teams × roster` players by minutes, × games factor (mean GP / 82);
+  FT% impact reported apart as the tiebreaker.
+- `turn_watch.py` — `scripts/wait_for_turn.py`: Claude Code runs it in the background after each briefing (the
+  briefing's `auto_refresh` command); it watches the poller's `data/drafts/{room}.json` and exits 4 live picks
+  before my next pick, which wakes Claude to re-brief unprompted.
+- `chat/` — `context.py` loads data once (preferences doc and roles sheet are re-read per call); `tools.py` pure
+  tool logic; `team.py` `my_team` (my roster's category z totals ranked against every team in the room, open
+  positions, needs; rehearsals map mock slots to league teams); `briefing.py` `draft_briefing` (keeper-aware candidate windows for my next picks with value and
+  roles); `server.py` MCP stdio server `yahoo-draft`, whose instructions run the rehearsal flow on any draft link.
 
 `.env` keys: `LEAGUE_KEY` (required), `DRAFT_POLL_SECONDS` (default 5), `DRAFT_ROOM_ID` (optional auto-start).
 
@@ -67,7 +87,11 @@ python scripts/build_id_map.py                     # rebuild the Yahoo->NBA ID m
 python scripts/pull_league_settings.py             # once before the draft
 python scripts/pull_stats.py [--preseason]         # NBA stats cache (preseason: re-run until draft day)
 python scripts/pull_adp.py                         # Yahoo ADP (re-run until draft day)
+python scripts/pull_keepers.py                     # league keepers (re-run as managers set them)
+python scripts/pull_pbp.py                         # 2025-26 play-by-play -> data/stats/pbp/ (resumable, ~15 min)
+python scripts/build_roles.py [--cached]          # team roles sheet (keeps hand-filled 2026-27 columns)
 python scripts/save_draft.py <room|url|league key> # save a draft the poller wasn't watching
+python scripts/wait_for_turn.py <room> <picks made>  # exits when the room has that many picks (auto-refresh)
 python scripts/record_yahoo.py "<api path>" <out>  # save a raw Yahoo response as a test fixture
 claude mcp add yahoo-draft -- "$PWD/fantasy_venv/bin/python" -m yahoo_fantasy.chat.server   # register once
 ```

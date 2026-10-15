@@ -29,6 +29,7 @@ class Room:
     is_mock: bool
     num_teams: int
     teams: dict[str, str]
+    my_team_key: str | None = None  # the team owned by the OAuth login, if it's in this room
 
 
 def parse_room_id(text: str) -> str:
@@ -41,6 +42,12 @@ def parse_room_id(text: str) -> str:
     if text.isdigit():
         return text
     raise ValueError(f"not a Yahoo draft room ID, draft URL or league key: {text!r}")
+
+
+def parse_room_slot(text: str) -> int | None:
+    """The draft slot at the end of a draft client URL (/draftclient/nba/{room}/{slot}), if there is one."""
+    match = re.search(r"/draftclient/nba/\d+/(\d+)", text)
+    return int(match.group(1)) if match else None
 
 
 def league_key(room_id: str) -> str:
@@ -66,13 +73,15 @@ def parse_board(content: dict) -> Board:
 
 def parse_room(room_id: str, meta_content: dict, teams_content: dict) -> Room:
     meta = meta_content["league"][0]
-    teams = {}
+    teams, mine = {}, None
     for item in collection_items(teams_content["league"][1]["teams"]):
         team = merge_fields(item["team"][0])
         teams[team["team_key"]] = team["name"]
+        if str(team.get("is_owned_by_current_login")) == "1":
+            mine = team["team_key"]
     return Room(room_id=room_id, name=meta.get("name", ""), draft_status=meta.get("draft_status", ""),
                 is_mock=str(meta.get("is_mock")) == "1", num_teams=int(meta.get("num_teams") or len(teams)),
-                teams=teams)
+                teams=teams, my_team_key=mine)
 
 
 def fetch_board(room_id: str) -> Board:

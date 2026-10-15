@@ -28,7 +28,8 @@ def fetch_yahoo_players() -> pd.DataFrame:
 
 
 def shape_all(raw: pd.DataFrame) -> pd.DataFrame:
-    return pd.DataFrame({"nba_player_id": raw["PERSON_ID"].astype(int), "nba_name": raw["DISPLAY_FIRST_LAST"]})
+    return pd.DataFrame({"nba_player_id": raw["PERSON_ID"].astype(int), "nba_name": raw["DISPLAY_FIRST_LAST"],
+                         "nba_from_year": pd.to_numeric(raw["FROM_YEAR"], errors="coerce").astype("Int64")})
 
 
 def shape_current(raw: pd.DataFrame) -> pd.DataFrame:
