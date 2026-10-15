@@ -90,3 +90,10 @@ def test_free_agent_with_no_stats_is_not_a_candidate():
     out = inputs(snapshots=snapshots(*base_snaps(), snap(GHOST, "Ghost Guy", pct=30.0, positions="SG")))
     assert GHOST not in out["by_id"]
     assert any("Ghost Guy" in n and "free agent" in n for n in out["notes"])
+
+
+def test_injured_free_agents_neither_set_replacement_nor_are_candidates():
+    rows = [r for r in base_snaps() if r["yahoo_player_id"] != ZUBAC]
+    out = inputs(snapshots=snapshots(*rows, snap(ZUBAC, "Ivica Zubac", positions="C", status="NA")))
+    assert ZUBAC not in out["by_id"] and all(p.yahoo_player_id != ZUBAC for p in out["candidates"])
+    assert out["Week"].replacement == out["by_id"][CMB].ros  # CMB, the best healthy free agent

@@ -1,5 +1,6 @@
 import time
 
+from yahoo_fantasy import streaming
 from yahoo_fantasy.streaming import Player, Week, best_move_for, plan_week
 
 DAYS = ("2026-11-11", "2026-11-12", "2026-11-13", "2026-11-14")
@@ -57,3 +58,11 @@ def test_protected_players_are_never_dropped():
     assert plan_week([unknown], [a], 2, w)["moves"] == []
     assert best_move_for(a, [unknown], w) is None
     assert [m.drop.name for m in plan_week([unknown, BENCH], [a], 1, w)["moves"]] == ["Bench"]
+
+
+def test_out_candidates_do_not_take_candidate_slots(monkeypatch):
+    monkeypatch.setattr(streaming, "TOP_CANDIDATES", 1)
+    hurt = Player(7, "Hurt", "C", "AAA", status="O", value=9.0)
+    a = Player(4, "A", "C", "AAA", value=2.0)
+    plan = plan_week([BENCH], [hurt, a], 1, week({"AAA": set(DAYS)}))
+    assert [m.add.name for m in plan["moves"]] == ["A"]

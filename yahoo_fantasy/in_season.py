@@ -5,6 +5,7 @@ from datetime import date, timedelta
 import pandas as pd
 
 from yahoo_fantasy.breakouts import UNMATCHED_SHOWN, current_team
+from yahoo_fantasy.season import OUT
 from yahoo_fantasy.season.data import SeasonData
 from yahoo_fantasy.season.schedule import team_dates, week_of
 from yahoo_fantasy.season.transactions import adds_in_week
@@ -86,9 +87,10 @@ def week_inputs(season: SeasonData, settings: dict, id_map: pd.DataFrame, valuer
         notes.append(f"no stats to value {len(unvalued)} free agent(s) ({', '.join(unvalued[:UNMATCHED_SHOWN])}); "
                      "not considered as adds")
     pairs = [(p, r) for p, r in pairs if not (p and p.protected)]
-    candidates = [p for p, _ in pairs if p]  # unmatched free agents have no stats to plan with
     unmatched = sorted(((float(r["percent_owned"]), r["player_name"]) for p, r in pairs if p is None), key=lambda u: -u[0])
-    replacement = max((p.ros for p, r in pairs if p and r["owner"] == "FA"), default=0.0)
+    healthy = [(p, r) for p, r in pairs if p and p.status not in OUT]  # an OUT free agent is no add and no replacement
+    candidates = [p for p, _ in healthy]  # unmatched free agents have no stats to plan with
+    replacement = max((p.ros for p, r in healthy if r["owner"] == "FA"), default=0.0)
 
     limit = settings.get("max_weekly_adds")
     if limit is None:

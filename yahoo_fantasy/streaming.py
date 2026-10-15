@@ -144,7 +144,7 @@ def plan_week(roster: list[Player], candidates: list[Player], adds_left: int, we
     """Beam search over (add, drop, day) sequences, at most adds_left moves, days non-decreasing. Chains allowed:
     a later move may drop a player an earlier move added."""
     cache: dict = {}
-    pool = sorted(candidates, key=lambda p: -p.value)[:TOP_CANDIDATES]
+    pool = sorted((c for c in candidates if c.status not in OUT), key=lambda p: -p.value)[:TOP_CANDIDATES]
     droppable = {p.yahoo_player_id for p in sorted((p for p in roster if not p.protected),
                                                     key=lambda p: _drop_cost(p, week))[:DROP_CANDIDATES]}
     beam: list[tuple[Move, ...]] = [()]
