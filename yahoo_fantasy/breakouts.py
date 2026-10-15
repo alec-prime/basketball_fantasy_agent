@@ -78,6 +78,8 @@ def role_change(player_logs: pd.DataFrame) -> RoleChange | None:
 
 ABSENT = OUT
 ALIGN_GAMES = 2  # the change must start within this many team games of the absence
+ROTATION_MIN = 15.0  # missed games count only for a teammate who plays this much (2026-27 games played, or 2025-26)
+NOT_A_UNIT = {None, "Injured"}  # the hand sheet's Unit 2026-27 may say "Injured"
 RETURN_NOTE = "role may last only until he returns"
 
 
@@ -106,7 +108,14 @@ def _teammates(team: str, all_logs: pd.DataFrame, id_map: pd.DataFrame) -> list[
              "name": r["yahoo_name"], "positions": r["yahoo_position"]} for _, r in rows.iterrows()]
 
 
-def absences(team: str, all_logs: pd.DataFrame, latest: pd.DataFrame, id_map: pd.DataFrame) -> tuple[list[dict], list[str]]:
+def last_season_minutes(lines: pd.DataFrame) -> dict[int, float]:
+    last = lines[(lines["SEASON"] == LAST) & (lines["SEASON_TYPE"] == REGULAR)]
+    return dict(zip(last["nba_player_id"].astype(int), last["MIN"]))
+
+
+def absences(team: str, all_logs: pd.DataFrame, latest: pd.DataFrame, id_map: pd.DataFrame,
+             minutes_2025: dict[int, float]) -> tuple[list[dict], list[str]]:
+    """Teammates listed OUT, or missing 2+ straight games if they're in the rotation (a DNP benchwarmer isn't)."""
     dates = team_game_dates(all_logs, team)
     status = dict(zip(latest["yahoo_player_id"], latest["status"]))
     current = season_games(all_logs, CURRENT, REGULAR)
@@ -120,7 +129,9 @@ def absences(team: str, all_logs: pd.DataFrame, latest: pd.DataFrame, id_map: pd
                 break
             streak.insert(0, d)
         st = status.get(mate["yahoo_player_id"], "")
-        if len(streak) >= 2 or st in ABSENT:
+        rotation = ((not mine.empty and float(mine["MIN"].mean()) >= ROTATION_MIN)
+                    or minutes_2025.get(mate["nba_player_id"], 0.0) >= ROTATION_MIN)
+        if (len(streak) >= 2 and rotation) or st in ABSENT:
             out.append(mate | {"status": st or "missed", "games_missed": len(streak),
                                "since": streak[0] if streak else None,
                                "since_index": dates.index(streak[0]) if streak else len(dates)})
@@ -129,7 +140,8 @@ def absences(team: str, all_logs: pd.DataFrame, latest: pd.DataFrame, id_map: pd
 
 def shares_role(a: dict, b: dict) -> bool:
     def units(r):
-        return {r.get("unit_2026_27") or r.get("unit_2025_26")} - {None}
+        unit = r.get("unit_2026_27")
+        return {unit if unit not in NOT_A_UNIT else r.get("unit_2025_26")} - NOT_A_UNIT
 
     def roles(r):
         return set(r.get("roles_2026_27") or r.get("roles_2025_26") or [])
@@ -142,7 +154,7 @@ def shares_role(a: dict, b: dict) -> bool:
 
 def explain(cand: dict, change: RoleChange, all_logs: pd.DataFrame, latest: pd.DataFrame, id_map: pd.DataFrame,
             roles_by_yid: dict[int, dict], minutes_2025: dict[int, float]) -> dict:
-    found, dates = absences(cand["team"], all_logs, latest, id_map)
+    found, dates = absences(cand["team"], all_logs, latest, id_map, minutes_2025)
     start = change.window_dates[0]
     start_index = dates.index(start) if start in dates else len(dates)
     me = roles_by_yid.get(cand["yahoo_player_id"], {}) | {"positions": cand["positions"]}
@@ -203,9 +215,7 @@ def scan(season, id_map: pd.DataFrame, roles_by_yid: dict[int, dict], valuer) ->
     pool = latest[latest["owner"].isin(OPEN)]
     nba = {int(y): (None if pd.isna(n) else int(n)) for y, n in zip(id_map["yahoo_player_id"], id_map["nba_player_id"])}
     all_logs = season.stats.game_logs
-    lines = season.stats.season_lines
-    last = lines[(lines["SEASON"] == LAST) & (lines["SEASON_TYPE"] == REGULAR)]
-    minutes_2025 = dict(zip(last["nba_player_id"].astype(int), last["MIN"]))
+    minutes_2025 = last_season_minutes(season.stats.season_lines)
     records, unmatched = [], []
     for _, r in pool.iterrows():
         yid, nid = int(r["yahoo_player_id"]), nba.get(int(r["yahoo_player_id"]))

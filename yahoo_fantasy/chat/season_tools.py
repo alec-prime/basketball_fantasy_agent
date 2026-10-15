@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pandas as pd
 
-from yahoo_fantasy.breakouts import absences, current_team, scan
+from yahoo_fantasy.breakouts import absences, current_team, last_season_minutes, scan
 from yahoo_fantasy.chat.context import Context
 from yahoo_fantasy.chat.tools import lookup_player, to_records
 from yahoo_fantasy.in_season import attach_moves, build_valuer, roles_by_yid, week_inputs
@@ -72,7 +72,7 @@ def player_trend(ctx: Context, name: str, now: datetime, last_n: int = 15) -> di
         if not team:
             notes.append("teammate status unavailable: no 2026-27 games to tell his team")
         else:
-            found, _ = absences(team, logs, latest, ctx.id_map)
+            found, _ = absences(team, logs, latest, ctx.id_map, last_season_minutes(season.stats.season_lines))
             out_now = [{k: a[k] for k in ("name", "status", "games_missed", "since")}
                        for a in found if a["nba_player_id"] != nid]
     expected, source = valuer.expectation(nid)

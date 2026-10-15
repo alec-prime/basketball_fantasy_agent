@@ -1,5 +1,5 @@
 from tests.season_fixtures import CMB, ID_MAP, KAWHI, ZUBAC, day, games, kawhi_logs, logs, season_data, snap, snapshots
-from yahoo_fantasy.breakouts import current_team, explain, role_change
+from yahoo_fantasy.breakouts import absences, current_team, explain, role_change, shares_role
 
 CAND = {"yahoo_player_id": CMB, "nba_player_id": 1001, "team": "LAC", "positions": "SF,PF"}
 
@@ -36,3 +36,23 @@ def test_absent_non_role_mate_is_ignored():
 def test_current_team_follows_latest_log():
     traded = logs(*games(1001, [20.0] * 3, team="OKC"), *games(1001, [25.0] * 2, start=3, team="LAC"))
     assert current_team(traded) == "LAC"
+
+
+def mates_out(all_logs, latest, minutes_2025):
+    found, _ = absences("LAC", all_logs, latest, ID_MAP, minutes_2025)
+    return {a["name"] for a in found}
+
+
+def test_missed_games_count_only_for_a_teammate_who_plays_real_minutes():
+    # games 0..10; Kawhi (33 min) and Zubac (a DNP-level 8 min) both sit from game 7, neither listed OUT
+    all_logs = logs(*games(1002, [33.0] * 7), *games(1003, [8.0] * 7), *games(1001, [18.0] * 11))
+    no_status = snapshots(snap(CMB, "Cam Middle"))
+    assert mates_out(all_logs, no_status, {}) == {"Kawhi Leonard"}
+    assert mates_out(all_logs, no_status, {1003: 15.0}) == {"Kawhi Leonard", "Ivica Zubac"}  # 2025-26 rotation
+    listed_out = snapshots(snap(ZUBAC, "Ivica Zubac", owner="t3", positions="C", status="O"))
+    assert mates_out(all_logs, listed_out, {}) == {"Kawhi Leonard", "Ivica Zubac"}  # OUT always counts
+
+
+def test_injured_is_not_a_unit():
+    assert not shares_role({"unit_2026_27": "Injured"}, {"unit_2026_27": "Injured"})
+    assert shares_role({"unit_2026_27": "Injured", "unit_2025_26": "2nd"}, {"unit_2026_27": "2nd"})
