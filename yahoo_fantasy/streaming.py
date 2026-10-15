@@ -78,3 +78,49 @@ def day_lineup(players: list[Player], day: str, week: Week, cache: dict | None =
     if cache is not None:
         cache[key] = chosen
     return chosen
+
+
+END = "9999-12-31"
+
+
+@dataclass(frozen=True)
+class Move:
+    add: Player
+    drop: Player
+    day: str  # first day the add counts; the drop leaves that day
+
+
+def roster_on(roster: list[Player], moves: list[Move], day: str) -> list[Player]:
+    current = list(roster)
+    for m in moves:
+        if m.day <= day:
+            current = [p for p in current if p.yahoo_player_id != m.drop.yahoo_player_id] + [m.add]
+    return current
+
+
+def week_value(roster: list[Player], moves: list[Move], week: Week, cache: dict | None = None) -> float:
+    return sum(day_worth(p, d, week) for d in week.days
+               for p in day_lineup(roster_on(roster, moves, d), d, week, cache))
+
+
+def ros_term(roster: list[Player], moves: list[Move], replacement: float) -> float:
+    """Rest-of-season value above replacement gained minus lost, on the roster I end the week with: a streamer
+    added and dropped again within the week costs and earns nothing here."""
+    start = {p.yahoo_player_id: p for p in roster}
+    end = {p.yahoo_player_id: p for p in roster_on(roster, moves, END)}
+
+    def above(p: Player) -> float:
+        return max(0.0, p.ros - replacement)
+
+    return (sum(above(p) for k, p in end.items() if k not in start)
+            - sum(above(p) for k, p in start.items() if k not in end))
+
+
+def plan_gain(roster: list[Player], moves: list[Move], week: Week, cache: dict | None = None) -> float:
+    gained = week_value(roster, moves, week, cache) - week_value(roster, [], week, cache)
+    return round(gained + ros_term(roster, moves, week.replacement), 3)
+
+
+def usable_games(player: Player, roster: list[Player], moves: list[Move], week: Week, cache: dict | None = None) -> int:
+    return sum(any(p.yahoo_player_id == player.yahoo_player_id
+                   for p in day_lineup(roster_on(roster, moves, d), d, week, cache)) for d in week.days)
