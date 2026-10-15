@@ -1,4 +1,5 @@
-"""MCP server (stdio) that makes Claude a live Yahoo draft assistant.
+"""MCP server (stdio, or streamable HTTP with MCP_TRANSPORT=http) that makes
+Claude a Yahoo fantasy assistant: live draft and in-season waiver wire.
 
 Register: claude mcp add yahoo-draft -- "$PWD/fantasy_venv/bin/python" -m yahoo_fantasy.chat.server
 Never print to stdout here: stdout is the MCP transport. Logging goes to stderr."""
@@ -6,12 +7,12 @@ import logging
 import os
 import sys
 import threading
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 
 from dotenv import load_dotenv
 from mcp.server.mcpserver import MCPServer
 
-from yahoo_fantasy.chat import briefing, team, tools
+from yahoo_fantasy.chat import briefing, season_tools, team, tools
 from yahoo_fantasy.chat.context import Context, load_context
 from yahoo_fantasy.draft import parse_room_id, parse_room_slot
 from yahoo_fantasy.keepers import league_id
@@ -40,6 +41,15 @@ available_players lists undrafted players with ADP and the league's category sta
 game_logs give one player's history. my_next_pick says when I'm up and who's likely gone by then (snake
 order, keepers' forfeited picks removed). Stats are 2023-24 to 2025-26 regular season plus 2026-27 preseason.
 Report numbers from the tools; say when a player has no NBA stats instead of guessing."""
+
+INSTRUCTIONS += """
+In season: breakouts lists free agents whose role is changing (sustained rises in minutes and/or shot attempts),
+why (an injured role-mate, named with his status, or organic), production vs expectation and % owned trend; alerts
+carry the implied add/drop and how it compares with the weakest planned stream. player_trend shows one player's
+recent games. stream_plan gives the best add/drop/day sequence for my remaining weekly adds, counting only games that
+land in an open starting slot; week_grid shows games and open slots per day; compare_moves scores one add/drop pair.
+Re-run stream_plan whenever I ask mid-week. These tools only recommend: I make every move in Yahoo myself.
+Say how fresh the data is and name any failed source."""
 
 
 def build_server(ctx: Context, *, start_poller: Callable[[str], DraftPoller], clock=utcnow,
@@ -150,9 +160,44 @@ def build_server(ctx: Context, *, start_poller: Callable[[str], DraftPoller], cl
         season_type="Pre Season"), newest first, plus averages over those games."""
         return tools.game_logs(ctx, name, season_type, last_n)
 
+    @server.tool()
+    def breakouts(include_watchlist: bool = True) -> dict:
+        """Free agents breaking out: sustained minutes/FGA change, injury or organic, score 0-100, implied move."""
+        return season_tools.breakouts(ctx, clock(), include_watchlist)
+
+    @server.tool()
+    def player_trend(name: str, last_n: int = 15) -> dict:
+        """One player's 2026-27 games (minutes, FGA, value), his team, ownership and injury status."""
+        return season_tools.player_trend(ctx, name, clock(), last_n)
+
+    @server.tool()
+    def stream_plan() -> dict:
+        """Best add/drop/day sequence for my remaining adds this fantasy week (counted from Yahoo transactions)."""
+        return season_tools.stream_plan(ctx, clock())
+
+    @server.tool()
+    def week_grid() -> dict:
+        """My players' games and open starting slots for each remaining day of this fantasy week."""
+        return season_tools.week_grid(ctx, clock())
+
+    @server.tool()
+    def compare_moves(add: str, drop: str) -> dict:
+        """Score one move: add a free agent or waiver player, drop one of mine."""
+        return season_tools.compare_moves(ctx, add, drop, clock())
+
     if initial_room:
         log.info("DRAFT_ROOM_ID=%s: %s", initial_room, set_draft_room(initial_room))
     return server
+
+
+def transport_from_env(env: Mapping) -> tuple[str, dict]:
+    mode = env.get("MCP_TRANSPORT", "stdio")
+    if mode == "stdio":
+        return "stdio", {}
+    if mode == "http":
+        host, _, port = env.get("MCP_BIND", "127.0.0.1:8765").rpartition(":")
+        return "streamable-http", {"host": host, "port": int(port)}
+    raise ValueError(f"MCP_TRANSPORT must be stdio or http, not {mode!r}")
 
 
 def main() -> None:
@@ -168,8 +213,9 @@ def main() -> None:
         poller.start()
         return poller
 
+    transport, options = transport_from_env(os.environ)
     build_server(ctx, start_poller=start_poller, initial_room=os.environ.get("DRAFT_ROOM_ID"),
-                 my_league=os.environ.get("LEAGUE_KEY")).run()
+                 my_league=os.environ.get("LEAGUE_KEY")).run(transport, **options)
 
 
 if __name__ == "__main__":

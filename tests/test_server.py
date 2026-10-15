@@ -39,7 +39,8 @@ def test_lists_all_tools():
     server = build_server(make_context(), start_poller=factory([]), clock=lambda: T0)
     names = {t.name for t in asyncio.run(server.list_tools())}
     assert names == {"set_draft_room", "league_settings", "draft_status", "available_players", "player_stats",
-                     "my_next_pick", "game_logs", "draft_briefing", "my_team"}
+                     "my_next_pick", "game_logs", "draft_briefing", "my_team",
+                     "breakouts", "player_trend", "stream_plan", "week_grid", "compare_moves"}
 
 
 def test_instructions_run_the_rehearsal_flow_on_a_draft_link():
@@ -120,3 +121,31 @@ def test_rehearse_mock_as_my_league():
     assert "Jalen Williams" not in [p["player"] for p in call(server, "available_players")["players"]]
     call(server, "set_draft_room", room=url)
     assert "Jalen Williams" in [p["player"] for p in call(server, "available_players")["players"]]
+
+
+import pytest
+
+from yahoo_fantasy.chat.server import INSTRUCTIONS, transport_from_env
+
+
+def test_transport_from_env():
+    assert transport_from_env({}) == ("stdio", {})
+    assert transport_from_env({"MCP_TRANSPORT": "http"}) == ("streamable-http", {"host": "127.0.0.1", "port": 8765})
+    assert transport_from_env({"MCP_TRANSPORT": "http", "MCP_BIND": "100.64.0.5:9000"}) == (
+        "streamable-http", {"host": "100.64.0.5", "port": 9000})
+    with pytest.raises(ValueError):
+        transport_from_env({"MCP_TRANSPORT": "carrier-pigeon"})
+
+
+def test_http_app_builds():
+    server = build_server(make_context(), start_poller=factory([]), clock=lambda: T0)
+    assert server.streamable_http_app() is not None
+
+
+def test_instructions_cover_in_season_tools():
+    assert "stream_plan" in INSTRUCTIONS and "breakouts" in INSTRUCTIONS and "recommend" in INSTRUCTIONS
+
+
+def test_stream_plan_tool_reports_missing_data():
+    server = build_server(make_context(), start_poller=factory([]), clock=lambda: T0)
+    assert "error" in call(server, "stream_plan")
