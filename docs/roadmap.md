@@ -17,7 +17,7 @@ undrafted players and see their past-season stats, in the context of my league's
 
 | # | Sub-project | Delivers | Spec | Status |
 |---|---|---|---|---|
-| 7 | Free agent picker | in-season data layer, breakout finder (alerts + on demand), weekly streamer, HTTP transport | `specs/2026-10-14-free-agent-picker-design.md` | spec in review |
+| 7 | Free agent picker | in-season data layer, breakout finder (alerts + on demand), weekly streamer, HTTP transport | `specs/2026-10-14-free-agent-picker-design.md` | plan written: `plans/2026-10-14-free-agent-picker.md` |
 | 8 | Home server hub | server owns data, token, scans and MCP over HTTP, reached through a secure tunnel | — | parked |
 
 Spec paths are relative to `docs/superpowers/`.

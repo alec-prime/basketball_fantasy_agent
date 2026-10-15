@@ -85,7 +85,7 @@ tunnel details live only in `.env` on the machines that use them — never in th
 - `players/{YYYY-MM-DD}.csv` — one daily snapshot: yahoo_player_key, nba_player_id (via the ID map), owner
   team key or `FA`/`W`, waiver clear date, percent_owned, eligible positions, status, injury note. Kept for the
   season (small) so % owned has a trend and status history shows when an absence began.
-- `my_transactions.csv` — my adds/drops with timestamps.
+- `transactions.csv` — league adds/drops with timestamps; my adds this week are counted from it.
 - `alerts.json` — per player: last alerted score, explanation, timestamp. Written atomically (`io.py`).
 - `manifest.json` — per source: pulled_at, rows, last error.
 
@@ -164,7 +164,7 @@ open slots.
 
 For a candidate (optionally replacing a dropped player): usable games = starts the matching gains with the move
 minus starts without it, over the remaining days from the day the add takes effect (waiver players: from
-their clear date; FA timing per league settings). Respect any games-played cap from league settings.
+their clear date; FA timing per league settings). Games-played caps aren't modeled: this league's settings have none.
 
 ### 3. Projection
 
@@ -186,7 +186,7 @@ not a list.
 
 ### 5. Spending the adds
 
-Adds left = league max weekly adds − my adds this week (from `my_transactions.csv`). A beam search over
+Adds left = league max weekly adds − my adds this week (from `transactions.csv`). A beam search over
 (candidate, add day, drop) sequences of up to adds-left moves, top ~15 candidates by projection, chaining
 allowed (add Mon, drop him Wed for a Wed–Sun player). Returns the highest net-gain sequence and prices its
 weakest move (used by breakout alerts).

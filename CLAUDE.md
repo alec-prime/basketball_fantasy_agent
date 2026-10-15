@@ -72,12 +72,28 @@ Python package `yahoo_fantasy/` (installed editable), with offline scripts in `s
 - `turn_watch.py` — `scripts/wait_for_turn.py`: Claude Code runs it in the background after each briefing (the
   briefing's `auto_refresh` command); it watches the poller's `data/drafts/{room}.json` and exits 4 live picks
   before my next pick, which wakes Claude to re-brief unprompted.
+- `season/` — in-season data layer → `data/season/` (gitignored): NBA schedule (games with no team tricodes, i.e.
+  TBD, are dropped) + Yahoo fantasy weeks (US Eastern; week 1 runs Tue 2026-10-20 to Sun 10-25), daily league-wide
+  player snapshots (owner, % owned, positions, injury status), league transactions, and a per-source
+  `manifest.json`. `data.py` `load_season()` is read per call. `value.py` `Valuer`: per-game z-value (draft
+  categories), 2026-27/2025-26 blend, `worth()` for streaming.
+- `breakouts.py` — role change (minutes/FGA, last 5 vs baseline, sustained) → explanation (aligned role-mate
+  absence or organic) → score 0-100 → alert diff (`data/season/alerts.json`).
+- `streaming.py` — per-day lineup (greedy over the slot matching), plan value (started games + ROS above
+  replacement), beam search over chained add/drop/day moves; also lists free agents it couldn't match.
+  `in_season.py` glues SeasonData to both engines.
+- `scan.py` / `notify.py` — headless breakout scan for `scripts/scan_breakouts.py`: reports "stale" and raises no
+  alerts when 2026-27 game logs are over 36 h old or have no rows yet. Notifier stdout (Claude scheduled task) or
+  ntfy (home server).
 - `chat/` — `context.py` loads data once (preferences doc and roles sheet are re-read per call); `tools.py` pure
   tool logic; `team.py` `my_team` (my roster's category z totals ranked against every team in the room, open
   positions, needs; rehearsals map mock slots to league teams); `briefing.py` `draft_briefing` (keeper-aware candidate windows for my next picks with value and
-  roles); `server.py` MCP stdio server `yahoo-draft`, whose instructions run the rehearsal flow on any draft link.
+  roles); `season_tools.py` in-season tools (`breakouts`, `player_trend`, `stream_plan`, `week_grid`,
+  `compare_moves`); `server.py` MCP server `yahoo-draft` (stdio, or streamable HTTP), whose instructions run the rehearsal flow on any draft link.
 
 `.env` keys: `LEAGUE_KEY` (required), `DRAFT_POLL_SECONDS` (default 5), `DRAFT_ROOM_ID` (optional auto-start).
+`DATA_DIR` (move the data folder), `YAHOO_OAUTH_FILE` (OAuth token file, default `private.json`), `MCP_TRANSPORT`
+(`stdio`|`http`), `MCP_BIND` (default `127.0.0.1:8765`), `NOTIFIER` (`stdout`|`ntfy`), `NTFY_URL`.
 
 ## Commands
 
@@ -93,8 +109,15 @@ python scripts/build_roles.py [--cached]          # team roles sheet (keeps hand
 python scripts/save_draft.py <room|url|league key> # save a draft the poller wasn't watching
 python scripts/wait_for_turn.py <room> <picks made>  # exits when the room has that many picks (auto-refresh)
 python scripts/record_yahoo.py "<api path>" <out>  # save a raw Yahoo response as a test fixture
+python scripts/refresh_season.py                   # in-season data (schedule, snapshot, transactions, 2026-27 logs)
+python scripts/pull_stats.py --season 2026-27      # 2026-27 regular season only (refresh_season.py runs this)
+python scripts/scan_breakouts.py [--no-refresh]    # scheduled breakout scan; prints new alerts as JSON
+MCP_TRANSPORT=http python -m yahoo_fantasy.chat.server   # MCP over streamable HTTP (home server)
 claude mcp add yahoo-draft -- "$PWD/fantasy_venv/bin/python" -m yahoo_fantasy.chat.server   # register once
 ```
+
+After the draft, re-run `python scripts/pull_league_settings.py` for `my_team_key`, `max_weekly_adds`,
+`waiver_days`, `season_end`.
 
 Claude Desktop: add to `claude_desktop_config.json` →
 `"mcpServers": {"yahoo-draft": {"command": "<project>/fantasy_venv/bin/python", "args": ["-m", "yahoo_fantasy.chat.server"]}}`.
