@@ -22,7 +22,8 @@ def test_game_z_skips_zero_std():
 
 def valuer(rows, z_2025=None):
     df = logs(*rows)
-    return Valuer(df.assign(z=df["PTS"]), {"2025-26": z_2025 or {}}, {}, offset=5.0)  # z = PTS keeps the arithmetic visible
+    # z = PTS keeps the arithmetic visible
+    return Valuer(df.assign(z=df["PTS"]), {"2025-26": z_2025 or {}}, {}, offset=5.0)
 
 
 def test_projection_blends_toward_this_season():

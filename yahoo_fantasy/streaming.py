@@ -182,7 +182,8 @@ def best_move_for(add: Player, roster: list[Player], week: Week) -> dict | None:
     days = add_days(add, week, week.today)
     if not days:
         return None
-    options = [(plan_gain(roster, [Move(add, drop, days[0])], week, cache), drop) for drop in roster if not drop.protected]
+    options = [(plan_gain(roster, [Move(add, drop, days[0])], week, cache), drop)
+               for drop in roster if not drop.protected]
     if not options:
         return None
     gain, drop = max(options, key=lambda o: o[0])

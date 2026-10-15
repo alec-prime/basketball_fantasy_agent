@@ -74,8 +74,8 @@ def _season_z(lines: pd.DataFrame, categories: list[str], pool: int, season: str
     if not _has_season(lines, season):
         return {}
     values = player_values(lines, categories, pool, season=season)
-    return {int(pid): float(z) for pid, z, gp in zip(values["nba_player_id"], values["z_per_game"], values["gp_by_season"])
-            if gp.get(season, 0) >= MIN_EXPECTATION_GP}
+    rows = zip(values["nba_player_id"], values["z_per_game"], values["gp_by_season"])
+    return {int(pid): float(z) for pid, z, gp in rows if gp.get(season, 0) >= MIN_EXPECTATION_GP}
 
 
 def make_valuer(cache: StatsCache, categories: list[str], pool: int) -> Valuer:
