@@ -53,8 +53,8 @@ class NtfyNotifier:
         self.url, self.post = url, post
 
     def send(self, alerts: list[dict], stale: str | None) -> None:
-        for a in alerts:
-            self.post(self.url, data=alert_text(a).encode(), timeout=10)
+        for a in alerts:  # a failed post raises, so the scan doesn't save these alerts as sent
+            self.post(self.url, data=alert_text(a).encode(), timeout=10).raise_for_status()
 
 
 def from_env(env: Mapping) -> Notifier:

@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from yahoo_fantasy.chat.context import load_context
 from yahoo_fantasy.notify import from_env
 from yahoo_fantasy.paths import DATA_DIR, PROJECT_ROOT
-from yahoo_fantasy.scan import ALERTS_FILE, run_scan
+from yahoo_fantasy.scan import ALERTS_FILE, scan_and_send
 from yahoo_fantasy.season.data import load_season
 
 
@@ -25,8 +25,8 @@ def main(argv=None) -> None:
         env["PYTHONPATH"] = os.pathsep.join(filter(None, [str(PROJECT_ROOT), env.get("PYTHONPATH")]))
         subprocess.run([sys.executable, str(PROJECT_ROOT / "scripts" / "refresh_season.py")],
                        stdout=sys.stderr, env=env, check=False)
-    out = run_scan(load_context(), load_season(), DATA_DIR / "season" / ALERTS_FILE, datetime.now(timezone.utc))
-    from_env(os.environ).send(out["new_alerts"], out["stale"])
+    scan_and_send(load_context(), load_season(), DATA_DIR / "season" / ALERTS_FILE, datetime.now(timezone.utc),
+                  from_env(os.environ))
 
 
 if __name__ == "__main__":

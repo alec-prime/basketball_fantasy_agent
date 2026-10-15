@@ -2,11 +2,13 @@ import io
 import json
 from pathlib import Path
 
+import pytest
+
 from tests.chat_fixtures import make_context
 from tests.season_fixtures import ID_MAP, NOW, SETTINGS, season_data
 from yahoo_fantasy import breakouts
 from yahoo_fantasy.notify import NtfyNotifier, StdoutNotifier, alert_text, from_env
-from yahoo_fantasy.scan import run_scan
+from yahoo_fantasy.scan import run_scan, scan_and_send
 from yahoo_fantasy.season.data import GAME_LOGS_KEY
 from yahoo_fantasy.stats.cache import StatsCache
 
@@ -24,10 +26,14 @@ def test_stale_logs_suppress_alerts(tmp_path):
     assert not (tmp_path / "alerts.json").exists()
 
 
+def send(path, notifier=None):
+    return scan_and_send(ctx(), season_data(), path, NOW, notifier or StdoutNotifier(io.StringIO()))
+
+
 def test_alerts_once_then_dedupes(tmp_path, monkeypatch):
     monkeypatch.setattr(breakouts, "ALERT_AT", 0)  # make the fixture's CMB alert regardless of exact score
-    first = run_scan(ctx(), season_data(), tmp_path / "alerts.json", NOW)
-    second = run_scan(ctx(), season_data(), tmp_path / "alerts.json", NOW)
+    first = send(tmp_path / "alerts.json")
+    second = send(tmp_path / "alerts.json")
     assert [a["name"] for a in first["new_alerts"]] == ["Cam Middle"] and second["new_alerts"] == []
     assert "move" in first["new_alerts"][0]
     assert "101" in json.loads((tmp_path / "alerts.json").read_text())
@@ -59,11 +65,52 @@ def test_stdout_notifier_prints_json():
     assert json.loads(buf.getvalue())["new_alerts"][0]["name"] == "Cam Middle"
 
 
+class Response:
+    def __init__(self, ok=True):
+        self.ok = ok
+
+    def raise_for_status(self):
+        if not self.ok:
+            raise RuntimeError("503 Service Unavailable")
+
+
 def test_ntfy_posts_one_message_per_alert():
     sent = []
-    NtfyNotifier("https://ntfy.example/topic", post=lambda url, data, timeout: sent.append((url, data))).send(
-        [ALERT, ALERT], stale=None)
+
+    def post(url, data, timeout):
+        sent.append((url, data))
+        return Response()
+
+    NtfyNotifier("https://ntfy.example/topic", post=post).send([ALERT, ALERT], stale=None)
     assert len(sent) == 2 and sent[0][1].decode().startswith("Cam Middle")
+
+
+def test_ntfy_raises_on_a_failed_post():
+    with pytest.raises(RuntimeError, match="503"):
+        NtfyNotifier("https://ntfy.example/topic", post=lambda url, data, timeout: Response(ok=False)).send(
+            [ALERT], stale=None)
+
+
+class Broken:
+    def send(self, alerts, stale):
+        raise RuntimeError("push failed")
+
+
+def test_failed_send_leaves_alert_state_unchanged(tmp_path, monkeypatch):
+    monkeypatch.setattr(breakouts, "ALERT_AT", 0)
+    path = tmp_path / "alerts.json"
+    path.write_text("{}")
+    with pytest.raises(RuntimeError):
+        send(path, Broken())
+    assert path.read_text() == "{}"
+    assert [a["name"] for a in send(path)["new_alerts"]] == ["Cam Middle"]  # still new on the next scan
+    assert "101" in json.loads(path.read_text())
+
+
+def test_run_scan_itself_writes_nothing(tmp_path, monkeypatch):
+    monkeypatch.setattr(breakouts, "ALERT_AT", 0)
+    out = run_scan(ctx(), season_data(), tmp_path / "alerts.json", NOW)
+    assert out["new_alerts"] and "101" in out["state"] and not (tmp_path / "alerts.json").exists()
 
 
 def test_from_env():
@@ -85,3 +132,10 @@ def test_missing_2025_26_stats_are_reported_stale(tmp_path):
     season.stats = StatsCache(lines[lines["SEASON"] != "2025-26"], season.stats.game_logs, season.stats.manifest)
     out = run_scan(ctx(), season, tmp_path / "alerts.json", NOW)
     assert out["new_alerts"] == [] and out["stale"] == "stats 2025-26 missing: run python scripts/pull_stats.py"
+
+
+@pytest.mark.parametrize("manifest, shown", [({}, "never pulled"),
+                                             ({"players": {"pulled_at": "2026-11-08T00:00:00+00:00"}}, "68.0 h old")])
+def test_stale_player_snapshots_suppress_alerts(tmp_path, manifest, shown):
+    out = run_scan(ctx(), season_data(manifest=manifest), tmp_path / "alerts.json", NOW)
+    assert out["new_alerts"] == [] and out["stale"].startswith(f"player snapshots {shown}")
